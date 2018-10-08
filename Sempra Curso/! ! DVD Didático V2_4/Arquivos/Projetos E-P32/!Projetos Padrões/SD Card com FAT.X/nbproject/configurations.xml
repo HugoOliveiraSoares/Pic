@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="62">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <logicalFolder name="f1" displayName="MDD File System" projectFiles="true">
+        <itemPath>MDD File System/FSconfig.h</itemPath>
+        <itemPath>MDD File System/FSDefs.h</itemPath>
+        <itemPath>MDD File System/FSIO.h</itemPath>
+        <itemPath>MDD File System/SD-SPI.h</itemPath>
+      </logicalFolder>
+      <itemPath>Compiler.h</itemPath>
+      <itemPath>Delays.h</itemPath>
+      <itemPath>GenericTypeDefs.h</itemPath>
+      <itemPath>HardwareProfile.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="LibraryFiles"
+                   displayName="Library Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="LinkerScript"
+                   displayName="Linker Files"
+                   projectFiles="true">
+      <itemPath>app_hid_boot_PIC32MX775F512L.ld</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ObjectFiles"
+                   displayName="Object Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <logicalFolder name="f1" displayName="MDD File System" projectFiles="true">
+        <itemPath>MDD File System/FSIO.c</itemPath>
+        <itemPath>MDD File System/SD-SPI.c</itemPath>
+      </logicalFolder>
+      <itemPath>Delays.c</itemPath>
+      <itemPath>Demonstration.c</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="default" type="2">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <targetDevice>PIC32MX775F512L</targetDevice>
+        <targetHeader></targetHeader>
+        <platformTool>Simulator</platformTool>
+        <languageToolchain>C32</languageToolchain>
+        <languageToolchainVersion>2.02</languageToolchainVersion>
+        <platform>3</platform>
+      </toolsSet>
+      <compileType>
+        <linkerTool>
+          <linkerLibItems>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <makeCustomizationType>
+        <makeCustomizationPreStepEnabled>false</makeCustomizationPreStepEnabled>
+        <makeCustomizationPreStep></makeCustomizationPreStep>
+        <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
+        <makeCustomizationPostStep></makeCustomizationPostStep>
+        <makeCustomizationAlternativeFileToLoadEnabled>false</makeCustomizationAlternativeFileToLoadEnabled>
+        <makeCustomizationAlternativeFileToLoad></makeCustomizationAlternativeFileToLoad>
+        <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
+      </makeCustomizationType>
+      <C32>
+      </C32>
+      <C32-AS>
+      </C32-AS>
+      <C32-LD>
+      </C32-LD>
+      <C32Global>
+      </C32Global>
+      <Simulator>
+      </Simulator>
+    </conf>
+  </confs>
+</configurationDescriptor>

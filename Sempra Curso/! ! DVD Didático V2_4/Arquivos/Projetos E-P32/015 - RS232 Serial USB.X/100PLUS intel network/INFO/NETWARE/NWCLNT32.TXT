@@ -1,0 +1,281 @@
+   6 Workstation: NetWare Client 32
+                                                                   v1.11
+
+
+NetWare* Client 32 for Windows* 95 and DOS/Windows 3.1x with Intel's
+EtherExpress(TM) PRO/100+ PCI adapter
+====================================================================
+
+Location of Drivers:  \NWSERVER\E100B.LAN
+
+                      \NWSERVER\E100B.LDI
+
+
+
+Install the latest drivers available for this adapter. At
+publicationtime (April 1997), the latest drivers are on the
+Configuration and Drivers Disk that comes with this adapter.
+
+
+
+General Installation of Client 32 with Windows 95 using Intel's 32 bit
+LAN driver
+-----------------------------------------------------------------------
+
+Prerequisite:
+
+1. Windows 95 operating system installed.
+
+2. NetWare Client 32 for Windows 95 archive file and any patch files.
+
+3. Access to the Windows 95 CD or CAB files, since the Client 32
+   installation will ask for it.
+
+4. Access to the latest drivers available from online services.
+
+
+General Instructions
+--------------------
+
+1. If the Intel EtherExpress PCI adapter is being installed for the
+   first time when Client 32 is being added, install the adapter
+   hardware as described in the manual and go to step 2. If the adapter
+   is already installed on the Windows 95 system, go to step 3.
+
+2. When Windows 95 is restarting, it may display the message "Windows
+   has found new hardware and is installing software for it". Select the
+   option labeled "Do not install a driver (Windows will not prompt you
+   again)" then click on OK.
+
+3. Run the SETUP.EXE program for Client 32. It is located in the
+   \ENGLISH subdirectory of the Client 32 software.
+
+4. On the NetWare Client 32 Installation screen, make sure the "Upgrade
+   NDIS driver to ODI, if available" box is checked if you are replacing
+   the NDIS driver with the ODI.
+
+5. When the Select Devices screen appears, highlight "Intel" under
+   Manufacturers and select "Intel EtherExpress (TM) PRO/100+ PCI
+   Adapter (ODI)" under Models. Click OK to install the driver.
+
+6. On the Recommended NetWare Client 32 properties screen, set the
+   appropriate settings for the version of NetWare you are using.
+
+7. The Client 32 installation program will copy files. It may ask for
+   the source of the Windows 95 installation files. Click OK and then
+   enter the correct path to the files.
+
+8. The Client 32 installation will finish, and you must reboot in order
+   for the changes to become effective.
+
+9. When Windows 95 reboots you may receive a DOS box message, "Command
+   line parameter Prompt for E100B". Note the supported Slot value and
+   select OK to continue. If you see a message "E100B.LAN did not remain
+   resident ....", ignore it.
+
+10.To prevent the Slot message from appearing each time Windows 95 is
+   rebooted, right click the Network Neighborhood Icon. Click
+   Properties. Highlight the "Intel EtherExpress(TM) PRO/100+ PCI
+   Adapter(ODI)" and click Properties. Select the Advanced tab. Under
+   Properties highlight Slot. Under Value, type in the slot value noted
+   in step 9 and click OK twice. You will need to restart Windows 95.
+
+
+Hints and Tips for Client 32 in Windows 95
+------------------------------------------
+
+1. If the Intel EtherExpress PCI adapter driver loads as an "ATI AT-2560
+   Series PCI/100 Ethernet Adapter (ODI)", then the wrong driver has
+   been installed. This can be easily corrected as follows:
+   
+   a) In the INF directory, which is located off the Windows 95
+      directory, rename the file A2560.INF to A2560.BAK (or some other
+      name that doesn't end in .INF).
+   
+   b) Go to Device Manager by right clicking on the Network Neighborhood
+      Icon. Click Properties. Select the Device Manager tab. Highlight
+      the "ATI AT-2560 Series PCI/100 Ethernet Adapter (ODI) and select
+      remove. Next, highlight Novell ODINSUP and select remove. Restart
+      Windows 95 after both entries have been removed.
+
+2. Message - Module c:\novell\client32\e100b.lan did not remain
+   resident: Occasionally on restarting Windows 95 after the Client 32
+   installation, this NetWare Alert message appears. If you click on OK,
+   another message says that "The hardware configuration conflicts
+   E100B.LAN-NW-Adapter 0-Board-0". The ODINSUP device did not load
+   properly (Device Manager doesn't show it under Network Adapters).
+   Shut down the system and reboot. This action should load ODINSUP
+   successfully.
+
+3. PRO/10+ PCI adapter driver loads indicating it is a PRO/100+ adapter:
+   If a problem occurs loading the driver, the driver may default to
+   indicating it is a PRO/100+. This condition will not cause any
+   problems since these two adapters use the same drivers. The only
+   consideration to be aware of is if any advanced settings have to be
+   made for the adapter. Speed is not a valid option for the PRO/10+
+   PCI, and it will always operate at 10mbps. The Force Duplex option
+   defaults to Auto-negotiate which isn't supported on the PRO/10+ PCI.
+   It will operate in half duplex. If you need Full Duplex, set it
+   specifically for Full.
+
+
+General Installation of Client 32 with DOS/Windows 3.1x
+-------------------------------------------------------
+
+1. From the Novell NetWare Client 32 software, run INSTALL.EXE.
+
+2. Select the NetWare Client 32 products you want to install from the on
+   your workstation from the list:
+      
+      [X] NetWare Client 32 for DOS
+      [X] NetWare Client 32 for Windows
+      [ ] NetWare TCP/IP protocol stack
+           [ ] NetWare IP (TCP/IP Required)
+      [ ]Desktop SNMP
+           [ ] HOSTMIB for SNMP (SNMP Required)
+      [ ] NetWare TSA for SMS
+
+
+      
+      Note - "NetWare Client 32 for DOS" and "NetWare Client 32 for
+            Windows" are usually selected by default.
+
+3. From the Customize Support for Windows menu, specify if you want to
+   use multiple country codes or if you want to set the shared Windows
+   path. The default for both of these is NO.
+
+4. From the Select LAN Driver Type menu, select "32-bit LAN drivers".
+
+5. From the 32-Bit Network Board Drivers menu, select
+
+        "USER SPECIFIED 32 BIT DRIVER"
+
+   Insert the driver diskette and type "A:\NWSERVER", select:
+
+        "Intel EtherExpress PRO/100+ LAN Adapter"
+
+6. <OPTIONAL> Specify the following settings for the Intel EtherExpress
+   LAN adapter:
+
+          Parameter                       Default
+          -------------                   -------
+           Speed (100B only)               0 (auto detect)
+           IOMAPMODE                       Memory Mapped
+           Forceduplex                     0 (auto negotiate)
+           Frame Type                      Ethernet_802.2
+                                           Ethernet_802.3
+      
+      Note: The default settings will work for most installations. If
+            you use multiple frame types, please see Hints and Tips
+            section below.
+
+7. From the Installation Configuration Summary, verify the default
+   settings for Client 32 are correct, or modify as necessary.
+      
+      Modify AUTOEXEC.BAT and CONFIG.SYS      [YES]
+      
+      Client Directory:       C:\NOVELL\CLIENT32
+      Windows Directory:      C:\WINDOWS
+      LAN driver type:        32-bit LAN drivers
+      LAN driver:             Intel EtherExpress(TM) PCI Adapters
+
+8. Novell NetWare will now copy the files to your workstations and
+   modify the configuration files to match your selected configuration.
+
+
+Hints and Tips
+--------------
+
+1. If you are using multiple frame types, you will get the following
+   message when you load the driver:
+      
+      "Do you want to load another frame type for a previously loaded
+      board?  Y/N "
+
+   The way to avoid this is to add the slot number to the load line for
+   the driver in the STARTNET.BAT (by default it is located in the
+   \NOVELL\CLIENT32 directory). The only way to determine the slot
+   number Novell is expecting is to put an invalid value on the load
+   line. For example (and the load line should be all on one line):
+      
+           LOAD C:\NOVELL\CLIENT32\E100B.LAN SPEED=0 IOMAPMODE=0
+           FORCEDUPLEX=0 FRAME=ETHERNET_802.2 SLOT=e
+
+   When you next reboot, you will be prompted with the correct value.
+   Modify the STARTNET.CFG again, and use that value. If the slot is not
+   specified correctly, only the first frame type will load.
+
+2. Check for a LASTDRIVE statement in the CONFIG.SYS file. You must have
+   LASTDRIVE=Z in config.sys when using Client 32.
+
+3. Verify that you have FIRST NETWORK DRIVE = F in the NET.CFG file
+   under the NetWare DOS Requester section.
+      
+      NOTE: NET.CFG is position sensitive, so be careful to indent lines
+            with one space or one tab as shown above in the example.
+
+4. Verify that the EtherExpress adapter passes the diagnostics test by
+   running SETUP.EXE on the EtherExpress driver disk. If the adapter
+   fails diagnostics it will not function correctly running Client 32.
+
+5. Using 16-bit ODI driver with Client 32 requires CLIENT32.NLM dated
+   10/09/96 or later. The driver will not load with older versions.
+
+Sample Configurations
+---------------------
+
+Below are sample files from a Novell NetWare Client 32 workstation with
+a EtherExpress adapter installed using the default installation:
+   
+   CONFIG.SYS
+   ----------
+   
+   DEVICE=C:\WINDOWS\HIMEM.SYS
+   BUFFERS=30,0
+   FILES=60
+   LASTDRIVE=Z
+   
+   
+   
+   AUTOEXEC.BAT
+   ------------
+   
+   prompt $P$G
+   path=C:\WINDOWS;c:\dos;C:\NOVELL\CLIENT32\
+   SET TEMP=C:\TEMP
+   @CALL C:\NOVELL\CLIENT32\STARTNET
+   
+   
+   
+   STARTNET.BAT
+   ------------
+   
+   SET NWLANGUAGE=ENGLISH
+   C:\NOVELL\CLIENT32\NIOS.EXE
+   LOAD C:\NOVELL\CLIENT32\LSLC32.NLM
+   LOAD C:\NOVELL\CLIENT32\CMSM.NLM
+   LOAD C:\NOVELL\CLIENT32\ETHERTSM.NLM
+   LOAD C:\NOVELL\CLIENT32\E100B.LAN SPEED=0 IOMAPMODE=0 FORCEDUPLEX=0
+        FRAME=ETHERNET_802.2 SLOT=2
+   LOAD C:\NOVELL\CLIENT32\E100B.LAN SPEED=0 IOMAPMODE=0 FORCEDUPLEX=0
+        FRAME=ETHERNET_802.3 SLOT=2
+   LOAD C:\NOVELL\CLIENT32\IPX.NLM
+   LOAD C:\NOVELL\CLIENT32\CLIENT32.NLM
+      
+      NOTE: If you are loading multiple frame types, you will need to
+            specify the slot number of the adapter on the load lines.
+            See Hints and Tips section above for detailed information.
+   
+   NET.CFG
+   -------
+   
+   NetWare DOS Requester
+      FIRST NETWORK DRIVE F
+      NETWARE PROTOCOL NDS BIND
+   
+   Protocol IPX
+      IPX SOCKETS 40
+
+
+
+*Third-party trademarks are the property of their respective owners.

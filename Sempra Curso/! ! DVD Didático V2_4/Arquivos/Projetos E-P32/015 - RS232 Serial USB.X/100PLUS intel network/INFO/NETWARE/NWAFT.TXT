@@ -1,0 +1,185 @@
+   4 Server: NetWare AFT
+                                                                 v1.10
+
+NetWare* 4.1X Adapter Fault Tolerance Driver Installation Notes for
+Intel's EtherExpress(TM) PRO/100+ adapter
+===================================================================
+
+Location of driver: \NWSERVER\AFT.NLM
+     
+     NOTE: AFT is supported on NetWare 4.10 and 4.11 only.
+
+Overview
+--------
+Adapter Fault Tolerance provides Adapter redundancy for two
+EtherExpress PRO/100+ adapters.  When configured, there becomes
+a primary and secondary PRO/100+ adapter.  If the primary loses
+communication with the hub/switch, the secondary automatically takes
+over.  The secondary adapter will take over for such reasons as cable
+connection problems, switch or hub port failure or adapter failure.
+For more information on Adapter Fault Tolerance, see the AFT.TXT
+readme file.
+
+
+
+
+**********************************************************************
+;- Example: With Adapter Fault Tolerance
+**********************************************************************
+
+;- Load Adapter Fault Tolerance (STARTUP.NCF)
+load aft
+
+
+;- Load LAN Driver on 1st Adapter (AUTOEXEC.NCF)
+load e100b slot=4 frame=ethernet_802.2 name=pri_802.2
+load e100b slot=4 frame=ethernet_802.3 name=pri_802.3
+load e100b slot=4 frame=ethernet_snap  name=pri_snap
+load e100b slot=4 frame=ethernet_ii    name=pri_ii
+
+
+
+;- Load LAN Driver on 2nd Adapter
+load e100b slot=5 frame=ethernet_802.2 name=sec_802.2
+load e100b slot=5 frame=ethernet_802.3 name=sec_802.3
+load e100b slot=5 frame=ethernet_snap  name=sec_snap
+load e100b slot=5 frame=ethernet_ii    name=sec_ii
+
+
+
+;- Bind ipx to 1st adapter
+bind ipx pri_802.2 net=2
+bind ipx pri_802.3 net=3
+bind ipx pri_snap  net=5
+bind ipx pri_ii    net=11
+
+
+;-Set the 2nd Adapter to be a Fault Tolerance Partner with to the 1st
+aft bind 4 5
+
+
+Additional Information
+
+Following are some commands that can be helpful in configuring or
+troubleshooting Adapter Fault Tolerance.
+
+Command: AFT BIND
+
+Description: Used for creating Adapter Fault Tolerance group by
+specifying slot numbers of primary and secondary NICs.
+
+Format: AFT BIND PrimarySlotNo SecondarySlotNo
+
+Example: AFT BIND 4 5
+
+Error Conditions:
+
+If you receive the error message: "Failed to create AFT group.  Make
+sure that the drivers for supported adapters are loaded, primary
+adapter is bound to protocols and secondary adapter is not bound to
+any protocols." Check the following:
+
+1. The slot number is valid for the primary and secondary adapter.
+
+2. The primary adapter has a protocol stack bound to it.
+
+3. The secondary adapter is not bound to a protocol stack.
+
+4. AFT is not being bound to an unsupported adapter.
+
+
+
+Command: AFT NAMEBIND
+
+Description: Used for creating a Adapter Fault Tolerance group by
+specifying logical names associated with primary and secondary NICs.
+
+Format: AFT NAMEBIND PrimaryLName SecondaryLname
+
+Example: AFT NAMEBIND primary_8022 secondary_8022
+
+Error Conditions:
+
+If you receive the error message: "Failed to create AFT group.  Make
+sure that the drivers for supported adapters are loaded, primary
+adapter is bound to protocols and secondary adapter is not bound to
+any protocols." Check the following:
+
+1. The specified board name is valid.
+
+2. The primary adapter has a protocol stack bound to it.
+
+3. The secondary adapter is not bound to a protocol stack.
+
+4. AFT is not being bound to an unsupported adapter.
+
+
+
+Command: AFT UNBIND
+
+Description: Used for deleting a Adapter Fault Tolerance group from
+the list. To delete a group, user has to specify the slot number
+associated with primary adapter. The group gets deleted automatically
+if LAN driver for that group is unloaded.
+
+Format: AFT UNBIND PrimarySlotNo
+
+Example: AFT UNBIND 4
+
+
+
+Command: AFT RESET SLOT
+
+Description: Used for issuing a hardware reset to the slot in the
+system. This command is particularly useful after a transceiver
+failure has happened and the user is trying to correct the problem.
+
+If the fault was on the TPE cable, then AFT will detect the link as
+soon as the cable is plugged in again.  No reset command is required.
+
+If the fault involved a MII transceiver that has failed or was
+disconnected, transceivers that support hot-swapping can be replaced
+and returned to service without downing the server.  If this is done,
+the card must be reset before AFT will add it back in to the group.
+
+Format: AFT RESET SLOT SlotNumber
+
+Example: AFT RESET SLOT 4
+
+
+
+Command: AFT LINK TIMEOUT
+
+Description: Used for setting the link timeout value. During the
+binding process, AFT does a network topology test for short period of
+time before creating an Adapter Fault Tolerance group. This test
+ensures that both cards are connected to the same network segment, and
+that they can properly transfer data.  The default value for this
+parameter is 5 seconds.
+
+When using AFT with certain Fast Ethernet switches, AFT may fail to
+create the group within the five second timeout.  In this case, the
+timeout should be extended to allow the switch to begin passing
+traffic.  The recommended value is 40 seconds for Catalyst 5000* and
+other Cisco* switches.
+
+This command must be issued before the AFT BIND command.
+
+Format: AFT LINK TIMEOUT TimeoutValue
+
+Example: AFT LINK TIMEOUT 40
+
+
+
+Command: AFT STATUS
+
+Description: Displays current status of Adapter Fault Tolerance
+Groups.
+
+Format: AFT STATUS
+
+Example: AFT STATUS
+
+
+
+*  Third-party trademarks are the property of their respective owners.

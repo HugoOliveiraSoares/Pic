@@ -1,0 +1,165 @@
+   Release Notes
+                                                        1.03
+
+
+Intel EtherExpress(TM) PRO/100+ adapters
+========================================
+
+
+82557 Ethernet Controller
+-------------------------
+
+The PRO/100+ PCI adapter uses the Intel 82557 high-
+performance Ethernet controller. You will see references to
+this component in other README files. Sometimes, the
+PRO/100B PCI adapter will be referred to as the "82557-based
+adapter."
+
+
+Full duplex support
+-------------------
+
+Full duplex is an optional setting that can improve adapter
+performance.
+
+To run the PRO/100+ PCI adapter at full duplex, you need to
+be connected to a full duplex switching hub.
+
+If your TX hub supports auto-negotiation, the PRO/100+ TX
+adapter and hub will negotiate to select the best mode. If
+your TX hub does not support auto-negotiation, you need to
+manually change to full duplex. Refer to the Installation
+Guide or the "Duplex Support" README file for complete
+instructions.
+
+
+EMM386
+------
+
+If using Microsoft's EMM386 memory manager, use EMM386
+version 4.49 or later. This version is included with DOS
+version 6.22.
+
+
+Busmaster slots
+---------------
+
+You must install the adapter in a busmaster slot. If the
+driver fails to load or diagnostics fail, try moving the
+adapter to a different slot. If you're not sure if your
+slots are busmaster enabled, see your computer's
+documentation.
+
+
+PCI BIOS
+--------
+
+Make sure you're using the latest BIOS for your computer.
+See the help file called "PCI installation" under the
+"Adapter installation and special configurations" section
+for a list of phone numbers of the leading PCI computer
+manufacturers.
+
+
+PCI shared interrupts
+---------------------
+
+The server and DOS ODI client drivers for the EtherExpress
+PRO/100+ PCI adapters support shared interrupts. However,
+because there is no industry-standard way to support shared
+interrupts, other adapters may support them differently, or
+not at all. You may notice this when you install the
+PRO/100+ PCI adapter or when you install another add-in PCI
+card at a later date.
+
+If you think you have another PCI adapter that doesn't
+support shared interrupts (for example, a SCSI adapter),
+contact its manufacturer for a shared interrupt driver. Or,
+try running your computer's CMOS Setup program to assign a
+different interrupt to the other adapter.
+
+
+Configuring your PCI BIOS
+-------------------------
+
+Some computers allow you to configure various BIOS
+parameters. If you have problems installing your adapter,
+run the BIOS setup program and, if possible, set these
+parameters:
+   
+   Interrupt type:   level-triggered
+   
+   PCI slots:   enable
+
+These should already be the default settings.
+
+
+Compaq Prolinea* Deskpro* XL
+----------------------------
+
+To work with the EtherExpress PRO/10+ PCI LAN adapter, these
+two Compaq computers need updated BIOS software. You can
+download the necessary files from the Compaq website:
+
+http://www.compaq.com
+
+From the Compaq home page, navigate to the Downloadable
+Files page. On this page, select the file that corresponds
+to your Compaq computer model. Follow the instructions
+provided by Compaq.
+
+
+NetWare 3.11 Servers
+--------------------
+
+On NetWare 3.11 servers, the driver won't operate correctly
+unless you modify the server's STARTUP.NCF to include:
+
+SET MAXIMUM PHYSICAL RECEIVE PACKET SIZE = 1536  (or larger)
+
+This specifies the size for preallocated server buffers. See
+the NetWare 3.11 installation instructions for more details.
+
+
+Using LANDesk(R) Traffic Analyst 2.0
+------------------------------------
+
+If you're using LANDesk Management Suite 2.0 and a Novell
+DOS ODI client driver on your workstation, load RXMONSTK.COM
+(supplied by Novell) after loading LSL. Also, be sure you
+have updated VMON.386 dated 12-14-95 which supports the
+latest NetWare ODI client specification (v4.0). You can
+download the VMON.386 file from our website. Refer to the
+'Using Intel's Automated Customer Support' README file on
+this disk for information.
+
+
+Use the drivers that come with this adapter
+-------------------------------------------
+
+Use the drivers that come with this adapter. The drivers for
+the prior version of this adapter (PRO/100) will not work.
+If you download an updated driver from one of our online
+services in the future, make sure it is for the PRO/100+ PCI
+adapter and not the PRO/100 PCI (non-B) version.
+
+
+SETUP
+-----
+
+Use SETUP.EXE utility on the Intel Configuration and Drivers
+disk to automatically install the DOS ODI driver, run
+diagnostics, get help with installation problems, and to
+view information and help files.
+
+You must use SETUP.EXE version 3.03 or later with this
+adapter. Previous version of SETUP.EXE will not work.
+
+
+
+
+
+
+
+*  Third-party trademarks are the property of their
+   respective owners.

@@ -1,0 +1,106 @@
+   Using Intel's Automated Customer Support
+                                                       v1.07
+
+
+Using Intel's automated customer support
+========================================
+
+The following services are available 24-hours a day, 365
+days a year.
+
+
+Intel BBS
+=========
+
+The Intel BBS is an interactive dial-in service. You can use
+your modem to download software updates for Intel products.
+
+
+Phone numbers
+-------------
+
+US & Canada    1-503-264-7999
+
+Europe         +44-1793-432955
+
+Singapore      +65-256-4776
+
+Hong Kong      +852-2-530-4116
+
+Taiwan         +886-2-718-6422
+
+Korea          +882-784-3430
+
+Australia      +61-2-975-3066
+
+Worldwide      1-503-264-7999
+
+
+Modem settings
+--------------
+
+8-N-1
+
+up to 14.4 Kbps
+
+
+
+
+Internet
+========
+
+Use anonymous FTP to access files on software updates.
+
+
+Connection information
+----------------------
+
+Address ftp.intel.com
+
+IP address 143.185.65.2
+
+Login name anonymous
+
+Password your email address
+
+Directory
+/pub/support/enduser_reseller/etherexpress_lan_adapters/
+
+World Wide Web http://support.intel.com
+
+
+Other Support Services
+======================
+
+You can purchase a range of support services, including 24-
+hour support, per incident support, on-site service, and
+software and hardware maintenance agreements. For details
+about the Intel Support Service options, download document
+number 8549 from one of the automated services.
+
+
+Worldwide Access
+================
+
+Intel has technical support centers worldwide. Many of the
+centers are staffed by technicians who speak the local
+languages.
+
+For a list of all Intel support centers, the telephone
+numbers, and the times they are open, download document
+number 9089 from one of the automated services.
+
+If you don't have access to automated services, contact your
+local dealer or distributor. Or call +1-916-377-7000 from
+07:00 to 17:00 Mon.-Fri., U.S. Pacific Time.
+
+
+
+
+
+*  Third-party trademarks are the property of their
+   respective owners.
+
+
+
+

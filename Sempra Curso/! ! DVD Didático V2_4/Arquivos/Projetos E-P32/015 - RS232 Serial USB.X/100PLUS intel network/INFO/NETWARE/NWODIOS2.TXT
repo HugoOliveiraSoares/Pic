@@ -1,0 +1,232 @@
+   8 Workstation: NetWare OS/2 requester
+                                                                    v1.05
+
+
+NetWare* OS/2* ODI client driver installation notes for Intel's
+EtherExpress(TM) PRO/100+ adapter
+===============================================================
+
+Location of driver:   \OS2\E100BODI.SYS
+
+
+Sample configuration files
+==========================
+
+CONFIG.SYS
+   DEVICE=C:\NETWARE\E100BODI.SYS
+
+NET.CFG
+   LINK DRIVER E100BODI
+        SLOT n
+        FRAME ETHERNET_802.3
+        FRAME ETHERNET_802.2
+
+
+Introduction
+============
+
+To connect an OS/2 workstation to a NetWare* server, you must have the
+latest version of the Novell NetWare Requester for OS/2 and the
+EtherExpress PRO/100+ adapter OS/2 ODI driver.
+
+These installation instructions assume you're using the INSTALL program
+that ships with Novell's OS/2 requester. For more information about OS/2
+workstations, see the Novell manual, "NetWare Requester for OS/2."
+
+NOTE: If you're running IBM OS/2 2.0, 2.1 or Warp, you must have the OS/2
+      Requester version 2.01 or later.
+
+
+General instructions
+====================
+
+1  Run Novell's INSTALL utility on the OS/2 requester disk and follow its
+   instructions. If asked for the name of the network interface driver,
+   enter E100BODI.SYS.
+
+2  Choose the session support you need.  This is based on your
+   configuration. See the NetWare Requester manual if you need help.
+
+3  Save the configuration.
+
+4  When asked for the path and filename for the driver, insert the Intel
+   Configuration and Drivers disk in drive A and press enter.
+
+5  After completing the installation section, choose CONFIGURATION from
+   the main menu. Then choose THIS WORKSTATION. This allows you to modify
+   the NET.CFG file. (NET.CFG must reside in the root directory.)
+   
+   Note: The default frame type for E100BODI.SYS is 802.2. If you're
+         using the 802.3 frame type, you have to include a FRAME
+         statement in the NET.CFG file. List the 802.3 FRAME type first
+         in the NET.CFG file.
+   
+   
+
+
+Hints and tips
+==============
+
+
+Verify driver loaded properly
+-----------------------------
+
+In the CONFIG.SYS file, add a "fake" device=xxx statement after the
+E100BODI.SYS line. The screen stops and you can check for error messages.
+
+
+Error message "not getting a connection ID"
+-------------------------------------------
+
+This OS/2 error message often appears when there is a frame type mismatch
+or cable disconnect.
+
+
+NET.CFG optional parameters
+---------------------------
+
+FORCEDUPLEX:
+      
+      Note: The PRO/100B T4 adapter does not support full duplex at 100
+            Mbps.  It does at 10 Mbps.  The PRO/100+ TX adapter supports
+            full duplex at 10 and 100 Mbps.
+
+         Syntax: FORCEDUPLEX n
+
+         Where n=0 auto-negotiate (PRO/100+ TX adapter only)
+               1 half duplex
+               2 full duplex
+      
+      Note: If the adapter is set to half or full duplex, set the SPEED
+            parameter to either 10 or 100. (see SPEED below)
+
+         Duplex modes:
+
+         Auto-negotiate:  The adapter negotiates with the hub how to
+         send/receive packets, either full or half duplex.  If
+         unsuccessful at negotiating the duplex, the adapter defaults to
+         half duplex.
+
+      Note: The PRO/100B T4 adapter does not support auto-negotiate.
+
+         Full duplex:  The adapter sends and receives packets at the same
+         time. This improves the performance of your adapter. Set duplex
+         mode to full duplex ONLY if you have a switch that supports full
+         duplex.
+
+         Half duplex:  The adapter performs one operation at a time. It
+         either sends or receives.
+
+         Default: auto-negotiation     (PRO/100+ TX adapter)
+         half duplex         (PRO/100B T4 adapter)
+
+         The PRO/100+ TX adapter has the added ability to "talk" to the
+         hub and determine at which mode to communicate (either full or
+         half duplex). This is called auto-negotiation. You must have an
+         auto-negotiating hub (an Nway switch) to get full duplex support
+         with the FORCEDUPLEX parameter set to 0 (auto-negotiation).
+
+         Examples:
+
+         PRO/100+ TX (100 Mbps full duplex):
+                  FORCEDUPLEX 2  (Sets adapter to full duplex)
+                  SPEED 100      (See SPEED parameter below)
+
+         PRO/100+ TX (10 Mbps full duplex):
+                  FORCEDUPLEX 2 (Sets adapter to full duplex)
+                  SPEED 10
+
+         PRO/100B T4 (100 Mbps full duplex): Not Supported
+
+         PRO/100B T4 (10 Mbps full duplex):
+                  FORCEDUPLEX 2 (Sets adapter to full duplex)
+                  SPEED 10
+      
+      Note: Use auto-negotiate for full duplex support only when the
+            adapter is connected to a switch that fully supports Nway
+            auto negotiation specification.
+
+SLOT:    For PCI adapters, SLOT is derived from bus number and device
+         location as defined by the PCI specification. One way to
+         determine the slot number is to run setup.exe from DOS.
+
+         Syntax:  SLOT n     (n = 1,2,3,4,...)
+
+SPEED:   Specifies the speed the driver uses. If you don't use this
+         parameter, the driver automatically detects the network speed.
+         If no cable is attached, the driver defaults to 10 Mbps.
+
+         If you don't have a auto-negotiating hub and are configuring the
+         adapter for full or half duplex support, specify the speed to
+         either 10 or 100 Mbps using this parameter.
+
+         If you use this parameter, the driver operates at the specified
+         speed instead of automatically detecting network speed.
+
+         Syntax:  SPEED n  (n = 10 or 100)
+
+         Default: none, the adapter automatically senses speed
+      
+      NOTE: Set the SPEED parameter to either 10 or 100 if you're setting
+            the FORCEDUPLEX parameter to either 1 or 2 (half or full).
+
+
+
+TXTHRESHOLD: Represents the threshold for transmits from extender SRAM
+         FIFO (output buffer).
+
+         Syntax: TXTHRESHOLD n  (n = number of 8 bytes)
+         
+
+         For example, 16 represents 16x8 (or 128 bytes). In this case,
+         the LAN controller transmits after copying 128 bytes from the
+         host memory to the SRAM FIFO.
+
+         Default: dynamic
+
+         The maximum number that you can specify is 200 (200x8=1600
+         bytes).
+
+NODE ADDRESS:      Specifies a local administered address (LAA) unique to
+         each adapter.  The node address is a 12-digit hexadecimal
+         number; the second digit must be one of the following digits: 2,
+         6, A, E.
+
+              Syntax: NODE ADDRESS 02A0C9345678
+
+                 02 => Locally administered address
+                 00 => Typical Intel address (default)
+
+FRAME:   Configures the adapter to process the four valid NetWare
+         Ethernet frame types.
+
+         Syntax:  FRAME n
+
+                  n = Ethernet_802.2
+                      Ethernet_802.3
+                      Ethernet_II
+                      Ethernet_SNAP
+
+         Default: Ethernet_802.2
+
+PROTOCOL:     Indicates the standard protocol in use.
+
+         Syntax: Protocol ipx e0 Ethernet_802.2
+
+         Values: e0=Ethernet_802.2
+                  0=Ethernet_802.3
+               8137=Ethernet_II
+               8137=Ethernet_SNAP
+
+
+Detailed example
+----------------
+
+LINK DRIVER E100BODI
+   SPEED 100
+   THRESHOLD 16
+   NODE ADDRESS 02xxxxxxxxxx
+   FRAME ETHERNET_802.2
+   PROTOCOL IPX E0 ETHERNET_802.2
+
+* Third-party trademarks are the property of their respective owners.

@@ -1,0 +1,164 @@
+   5 Windows for Workgroups 3.11
+                                                                    v1.05
+
+
+Microsoft Windows* for Workgroups 3.11 installation notes for Intel's
+EtherExpress(TM) PRO/100+ PCI LAN Adapter
+=====================================================================
+
+Location of Driver:       \WFW\E100B.38_
+Location of Setup file:   \WFW\OEMSETUP.INF
+
+
+General Instructions
+--------------------
+
+NOTE: If you are running Novell NetWare* on this workstation, see the
+      Novell NetWare section of Hints and Tips below before continuing
+      with this installation.
+
+1  Double-click the Network Setup icon in the Network Group.
+
+2  If you are replacing a previous LAN adapter, click the Remove button
+   to delete that adapter.
+
+3  Click the Networks button. Select Install Microsoft Windows Network
+   and click OK.
+   
+   Optional: To add Novell NetWare support to this workstation, click
+         Other, then select Novell NetWare Shell 3.x if you are using
+         NETX, or select Novell NetWare Shell 4.x if you use VLMs. Click
+         OK.
+   
+   Optional: To share files and printers on this workstation, click the
+         Sharing button, then click on OK.
+
+4  Click the Drivers button.
+
+5  Click the Add Adapter button.  Select Unlisted or Updated Network
+   Adapter and click on OK.
+
+6  Insert the adapter driver disk in drive A and specify the path A:\WFW
+   for the location of the driver.
+
+7  Select the Intel EtherExpress PRO/100+ PCI adapter from the list box
+   and click OK.
+
+8  Specify the correct speed for your network.  If you are using the TX
+   based adapter, specify the correct duplex mode. If you are unsure of
+   the correct settings, contact you Network Administrator.
+   
+   Note: If you set the PRO/100+ TX adapter to FULL duplex and you are
+         running at 100 Mbps, you must change your speed setting to 100.
+   
+   Note: These options will not come up if you already have the NetWare
+         ODI driver installed.  These settings are set in the NET.CFG
+         file.
+
+9  The driver and default protocols will appear in the Network Drivers
+   window. If you need to add or remove a protocol, do so here.
+
+10 In the Network Drivers window, click Close.
+
+11 In the Network Setup window, click OK.
+
+12 In the Microsoft Windows Network Names window, enter a unique User
+   Name, the name of your new or existing Workgroup, and a unique
+   Computer Name for your workstation, then click OK.
+
+13 Choose Yes To All when WFW asks if you want to replace the files
+   currently installed with the versions you are installing now.
+
+14 Insert the WFW disks WFW asks for. If prompted for the NetWare files,
+   insert the Novell disk containing the drivers from the Novell file
+   WINDR3.EXE. If prompted for the path of E100B.386, insert the Intel
+   Configuration and Driver disk into a drive and for the path, type:
+      A:\WFW.
+   If prompted for the path of E100B.DOS, specify:
+      A:\NDIS
+
+15 When finished updating the files, WFW reports that it modified several
+   files. Click on OK. WFW changes your last drive to P:.  If you want to
+   change this setting, do so in your CONFIG.SYS file.  WFW also modifies
+   your NET.CFG file (for NetWare users).  Check this file to make sure
+   your frame types load in the correct order for your network.
+
+16 When WFW prompts you to restart your computer for the changes to take
+   effect, click on Restart Computer.
+
+Hints and Tips
+--------------
+
+Novell NetWare
+
+1. Before you begin to install driver support for WFW and Novell NetWare
+   on the same workstation, you'll need these Novell NetWare files:
+   NETWARE.DRV, NETWARE.HLP, NWPOPUP.EXE, VIPX.386, and VNETWARE.386.  To
+   obtain these files, do one of the following:
+   
+   a  Download the self-extracting file WINDR3.EXE from Novell NetWire
+      forum on CompuServe or Novell's FTP server on the internet
+      (ftp.novell.com) or WWW
+      (ftp://ftp.novell.com/pub/updates/nwos/dsclnt12).
+   
+   b  Call Novell (1-800-NETWARE) to have the files sent to you.
+   
+   c  Contact a Novell NetWare dealer in your area.
+
+2  Set up the workstation to connect to NetWare using the DOS ODI client
+   driver.
+
+3  Load the ODI driver and login to your NetWare server.
+
+4  Start WFW and set up the driver for the EtherExpress PRO/100+ adapter
+   by following the instructions shown above. When the driver is chosen,
+   WFW detects the ODI driver is already loaded and automatically
+   installs the appropriate support.  Next to the adapter name in the
+   Network Drivers window, you'll see [ODI/NDIS3] which indicates it
+   recognized the ODI driver.
+
+
+   Sample PROTOCOL.INI:
+
+   Windows for Workgroups(WFW) creates the PROTOCOL.INI for you. This is
+   provided for reference. This is a sample with Microsoft NetBEUI and
+   IPX/SPX Compatible Transport with NetBIOS.
+      
+      [network.setup]
+      version=0x3110
+      netcard=in$e100b,1,IN$E100B,3
+      transport=ms$nwlinknb,NWLINK
+      transport=ms$ndishlp,MS$NDISHLP
+      transport=ms$netbeui,NETBEUI
+      lana0=in$e100b,1,ms$netbeui
+      lana1=in$e100b,1,ms$nwlinknb
+      lana2=in$e100b,1,ms$ndishlp
+      
+      [protman]
+      DriverName=PROTMAN$
+      PRIORITY=MS$NDISHLP
+      
+      [IN$E100B]
+      DriverName=E100B$
+      
+      [E100B]
+      Adapters=IN$E100B
+      
+      [NWLINK]
+      
+      BINDINGS=IN$E100B
+      [MS$NDISHLP]
+      DriverName=ndishlp$
+      BINDINGS=IN$E100B
+      
+      [NETBEUI]
+      DriverName=netbeui$
+      SESSIONS=10
+      NCBS=12
+      BINDINGS=IN$E100B
+      LANABASE=0
+
+
+
+
+*    Third-party trademarks are the property of their respective owners

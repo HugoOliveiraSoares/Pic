@@ -1,0 +1,149 @@
+   6 LAN Manager Workstation/Server
+                                                                    v1.06
+
+
+LAN Manager* 2.2 Workstation/Server installation notes for Intel's
+EtherExpress(TM) PRO/100+ PCI LAN Adapter
+==================================================================
+
+Location of Driver: \NDIS\MSLANMAN.BAT
+
+
+MSLANMAN.BAT will create the following directory structure on a local
+hard drive:
+   
+   \MSLANMAN.DOS\DRIVERS\ETHERNET\E100B\E100B.DOS (DOS NDIS driver)
+   \MSLANMAN.DOS\DRIVERS\ETHERNET\E100B\PROTOCOL.INI
+   \MSLANMAN.DOS\DRIVERS\NIF\E100B.NIF
+   
+   \MSLANMAN.OS2\DRIVERS\ETHERNET\E100B\E100B.OS2 (OS/2 NDIS driver)
+   \MSLANMAN.OS2\DRIVERS\ETHERNET\E100B\PROTOCOL.INI
+   \MSLANMAN.OS2\DRIVERS\NIF\E100B.NIF
+
+
+Sample Configuration Files
+--------------------------
+
+CONFIG.SYS (for DOS) will include these lines:
+   
+   DEVICE=C:\LANMAN\PROTMAN.DOS /I:C:\LANMAN
+   DEVICE=C:\LANMAN\E100B.DOS
+
+CONFIG.SYS (for OS/2) will include these lines:
+   
+   DEVICE=C:\LANMAN\PROTMAN /I:C:\LANMAN
+   DEVICE=C:\LANMAN\E100B.OS2
+
+PROTOCOL.INI will contain these lines:
+   
+   [E100B_NIF]
+   ; PROTOCOL.INI section for Intel EtherExpress(TM) PRO/100+ adapters
+   
+   DRIVERNAME = E100B$
+
+
+General Installation
+--------------------
+
+1  Create the directory structure needed for the LAN Manager installation
+   by running the batch file MSLANMAN.BAT.  It will create the
+   directories at the root of the specified drive and copy the necessary
+   files.
+
+2  Run the appropriate Microsoft LAN Manager setup for the computer you
+   are setting up (DOS, OS/2 or OS/2 Server). When prompted for the LAN
+   adapter driver, select "Other Driver" (the EtherExpress PRO/100+
+   driver isn't included on the LAN Manager disk) and specify the drive
+   from step 1. Select the EtherExpress PRO/100+ driver and follow the
+   directions.
+
+3  If you are using DOS, copy the EMM386.EXE from your DOS directory to the
+   \MSLANMAN.DOS\DRIVERS\DOSUTILS directory.
+
+4  When completed, reboot your computer in order for changes to take
+   effect.
+
+
+Hints and Tips
+--------------
+
+1  Parameters for the PROTOCOL.INI file:
+   
+   DRIVERNAME: (required) If you have a single adapter, use the syntax in
+      the Sample Configuration file section.  If you are installing
+      multiple adapters, each adapter must have a unique driver name.
+      Additional instances of the driver would be referenced by
+      DRIVERNAME=E100Bx$, where "x" is a unique number 2 through 9.
+   
+   SPEED: (optional; parameters are [Auto / 10 / 100]) The parameter
+      disables Auto-Speed Detect and causes the adapter to function at
+      the speed indicated. If the FORCEDUPLEX parameter is assigned to
+      either 1 or 2, the SPEED parameter is required because auto-speed
+      sensing is disabled if the duplex mode is forced. Auto-negotiate
+      devices cannot detect speed changes in this configuration until the
+      driver is reloaded.[Example: SPEED=100]
+   
+   FORCEDUPLEX: Full duplex and auto-negotiate capabilities vary between
+      the PRO/100 TX and the PRO/100 T4 adapters.
+
+         EtherExpress PRO/100+ TX adapter: Supports auto-negotiate, full
+         and half duplex at 10 or 100 Mbps.
+
+         EtherExpress PRO/100B T4 adapter: Supports full and half duplex
+         at 10 Mbps; supports only half duplex at 100 Mbps.  Auto-
+         negotiate is not a valid option at either speed.
+   
+      This parameter disables Auto-Negotiate capability and forces the
+      adapter to operate in Half or Full Duplex mode. The SPEED parameter
+      must be specified and must be valid if the default of Auto-
+      negotiate is changed. Options for FORCEDUPLEX are Auto (for auto-
+      negotiate), 1 (for half), 2 (for full). [Example: FORCEDUPLEX = 2]
+   
+   SLOT: (required for multiple adapters) This parameter is optional if
+      only one adapter is present.  If it is specified but is incorrect,
+      a message indicates that the value doesn't match the configuration
+      but the driver finds the adapter and loads anyway.
+   
+      This parameter is required if more than one adapter is present in
+      either one bus or multiple PCI buses of a system. The parameter
+      tells the driver which adapter it controls. The SLOT number is the
+      encoded value of the PCI adapter's device location. To determine
+      the slot number, load the driver with only the DRIVERNAME parameter
+      specified.  The driver reports all the slots that have PCI
+      adapter(s) installed. You can determine which card is in which slot
+      by using SETUP.EXE and matching the Ethernet addresses of the
+      adapter to the device number specified in View Configuration.
+   
+      [Example: SLOT=0x1C]
+   
+   NODE: (optional) This value sets the adapter's Individual Address,
+      overriding the value read from the adapter EEprom. The address must
+      consist of 12 hexadecimal digits, enclosed in double quotes.  The
+      value can not be all zeros. The value can not have the Multicast
+      bit set. So, use only the hexadecimal digits 2, 6, A, or E as the
+      second digit of the twelve required in the NODE ADDRESS parameter.
+      Use any hexadecimal digits in all other positions.
+   
+      [Example: NODE = "02AA00123456"]
+
+2  Sample PROTOCOL.INI for LAN Manager:
+   
+   [PROTMAN]
+   DRIVERNAME = PROTMAN$
+   DYNAMIC = YES
+   PRIORITY = NETBEUI
+   
+   [NETBEUI_XIF]
+   Drivername = netbeui$
+   SESSIONS = 6
+   NCBS = 12
+   BINDINGS = "E100B_NIF"
+   LANABASE = 0
+   
+   [E100B_NIF]
+   ; PROTOCOL.INI section for the Intel EtherExpress PRO/100+ adapter
+   DRIVERNAME = E100B$
+   
+   
+
+*  Third-party trademarks are the property of their respective owners.

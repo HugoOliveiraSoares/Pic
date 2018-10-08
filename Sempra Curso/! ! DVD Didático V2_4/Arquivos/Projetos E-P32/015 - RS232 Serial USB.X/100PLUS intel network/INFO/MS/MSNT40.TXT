@@ -1,0 +1,190 @@
+   2 Windows NT 4.0
+                                                                    v1.03
+
+
+Windows NT* 4.0 installation notes for Intel's EtherExpress(TM) PRO/100+
+LAN Adapter
+========================================================================
+LOCATION OF DRIVER:    \NT\E100BNT.SY_ (NDIS 4.0 compressed)
+                       \OEMSETUP.INF
+      
+      Note: NT 4.0 ships with a driver for the PRO/100B.  However, it is
+            recommended that you install the more recent driver contained
+            on the Configuration and Drivers diskette.
+
+
+General Instructions
+--------------------
+
+
+After putting the adapter in the computer, you need to configure it under
+Windows NT.
+
+1  Double-click the Network icon in the Control Panel.
+
+2  Select the "Adapter" tab and click Add...
+
+3  Select Have Disk. Insert the PRO/100+ Drivers Disk in the disk driver
+   and click OK.
+
+5  Select "Intel EtherExpress PRO/100+ PCI Adapter (TX or T4)" from the
+   list of available drivers and click OK.
+
+6  The Intel PROSet Setup program automatically scans computer resources
+   and determines the settings assigned to your adapter.  It also adds an
+   Intel PROSet icon to the Control Panel for future use of PROSet.
+
+7  (Optional) You can test the adapter by clicking the Test button.
+
+8  To exit PROSet and finish installing the driver, click OK in the
+   PROSet main menu.
+
+9  Select the protocol(s) required (TCP/IP is the default) by selecting
+   the Protocol Tab.
+
+10 Select the network services required (by default, all are selected) by
+   selecting the Service tab.
+
+11 Click Close to continue.  Other Configuration screens may appear.
+   configure as desired.
+
+   Note that after the driver is installed, NT may show the adapter as
+   "Intel 82557-based 10/100 Ethernet PCI Adapter".  PROSet will display
+   the adapter specifically as "Intel EtherExpress PRO/100+ PCI 100Base-
+   TX, 10BaseT" adapter.  Also, The NDIS 4.0 miniport driver will
+   automatically get installed in Windows NT 4.0.
+
+12 When prompted, restart NT.
+
+13 Repeat the General Instruction process for installing additional
+   adapters.
+
+
+ADAPTER SETTINGS
+
+
+There are two ways to run PROSet, which allows changing the adapter
+settings.
+   
+   - From the Control Panel double-click on the Intel PROSet icon.
+   
+   - From the Control Panel, double-click on the Network icon, select the
+   adapters section, and double-click on the "Intel 82557-based 10/100
+   Ethernet PCI adapter".
+
+
+From the main Intel PROSet menu click the Change button to get to the
+Adapter Settings screen. The defaults work correctly for most
+configurations.
+
+
+Network Speed
+-------------
+
+Recommended setting:  Auto (default)
+
+This parameter lets the EtherExpress PRO/100+ adapter know what speed to
+use on the Ethernet wire.  The choices are 10 Mbps, 100 Mbps, and Auto.
+In Auto mode, the adapter detects if its environment can support 100 Mbps
+speed. It then sets the speed to 100 if it can, or 10 if it can't. If you
+are using a cross over cable connected to another adapter, set the speed
+to either 10 Mbps or 100 Mbps.
+      
+      Note: If the Duplex Mode is not set to Auto, then set the speed to
+            either 10 Mbps or 100 Mbps.
+
+
+DUPLEX MODE (100BASE-T4 does not support full duplex)
+-----------
+
+Recommended setting: Auto (PRO/100+ TX adapter only)
+      
+      Auto: The adapter negotiates with the hub how to send/receive
+            packets, either full or half duplex. The PRO/100B T4 adapter
+            does not support auto-negotiating.
+      
+      Full duplex: The adapter sends and receives packets at the same
+            time. This improves the performance of your adapter. Set
+            duplex mode to full duplex only if you have a full duplex
+            switch.
+      
+      Half duplex: The adapter performs one operation at a time. It
+            either sends or receives.
+
+A regular adapter can perform only one operation at a time (half-
+duplexing). The PRO/100+ TX adapter has the ability to send and receive
+packets at the same time (full-duplexing) at both 10 and 100 Mbps. The
+PRO/100B T4 adapter supports full duplex only at 10 Mbps.  In order to
+reap the benefits of full duplexing, you MUST have a full duplex switch.
+
+The PRO/100+ adapter has the added ability to "talk" to the hub and
+determine at which mode to communicate (either full or half duplex). This
+is called auto-negotiation. You must have an auto-negotiating switch  to
+get full duplex support with the Duplex Mode set to Auto. If you don't
+have an auto-negotiating hub and want to run at full duplex, set Duplex
+Mode to Full and then set the SPEED parameter to either 100 Mbps
+(PRO/100+ TX) or 10 Mbps (PRO/100+ TX or T4).
+
+Note: If you set duplex to Full, and leave Speed at Auto, the adapter
+will run at 10 Mbps.
+
+
+ADVANCED ADAPTER SETTINGS
+
+Click the Advanced button in the Adapter Settings screen to change the
+Advanced setting.
+      
+      Note: The defaults work correctly for most configurations. Please
+            use caution when changing these parameters. Use the on-line
+            help for additional information.
+
+
+COALESCE BUFFERS
+----------------
+
+Recommended setting:  8
+
+
+RECEIVE BUFFERS
+---------------
+
+Recommended setting:  32
+
+
+TRANSMIT CONTROL BLOCKS
+-----------------------
+
+Recommended setting:  16
+
+
+ADAPTIVE TRANSMIT THRESHOLD
+---------------------------
+
+Recommended setting:  On
+
+This parameter dynamically optimizes the point at which early transmit
+cycles will be executed.  This results in higher performance but may
+generate an occasional underrun. To eliminate underruns, set it to OFF.
+
+
+ADAPTIVE TECHNOLOGY
+-------------------
+
+Recommended setting:  On
+
+Adaptive Technology customizes the PRO/100+ adapter to the respective
+operating system by downloading microcode to the silicon.  This improves
+performance and minimizes CPU utilization.
+
+
+MAP REGISTERS
+-------------
+
+Recommended settings: 64
+
+
+
+
+
+
+*  Third-party trademarks are the property of their respective owners.

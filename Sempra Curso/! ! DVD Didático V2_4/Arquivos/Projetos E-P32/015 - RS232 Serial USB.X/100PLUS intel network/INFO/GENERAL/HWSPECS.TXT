@@ -1,0 +1,91 @@
+Hardware specifications
+                                                       v1.03
+
+
+Specifications for Intel's EtherExpress(TM) PRO/100+ adapter
+============================================================
+
+
+System compatibility
+--------------------
+
+PCI systems
+
+
+Media (Cable) connectors and wiring
+-----------------------------------
+
+RJ45
+
+Use Category 5 cabling at 100 Mbps
+
+Supports 100BASE TX Fast Ethernet standard
+
+
+Data Rate mode
+--------------
+
+10 or 100 Mbps
+
+
+Interrupt levels
+----------------
+
+PCI:   INTA
+
+
+SRAM Transmit/Receive Buffer
+----------------------------
+
+16 Kbytes
+
+
+Power requirements
+------------------
+
+0.9 Watts @ +5 VDC
+
+
+Isolation voltage
+-----------------
+
+200V RMS
+
+
+Operating temperature
+---------------------
+
+0 - 55 degrees C
+
+
+Humidity
+--------
+
+10% - 90% non-condensing
+
+
+Diagnostic LED
+--------------
+
+Activity and Link
+
+100 Mbps
+
+
+Diagnostic software
+-------------------
+
+On-board
+
+On-network
+
+Responder
+
+
+
+
+
+
+
+*  Third-party trademarks are the property of their
+   respective owners.

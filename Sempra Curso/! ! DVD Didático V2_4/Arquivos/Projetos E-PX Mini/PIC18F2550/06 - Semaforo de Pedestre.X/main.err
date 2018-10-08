@@ -1,0 +1,16 @@
+Warning[2054] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 180 : suspicious pointer conversion
+Error[1105] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 186 : symbol 'LATDbits' has not been defined
+Error[1151] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 186 : struct or union object designator expected
+Error[1101] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 186 : Warning[2054] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 180 : suspicious pointer conversion
+Error[1105] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 186 : symbol 'LATDbits' has not been defined
+Error[1151] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 186 : struct or union object designator expected
+Error[1101] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 186 : lvalue required
+Warning[2054] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 189 : suspicious pointer conversion
+Error[1105] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 356 : symbol 'TRISDbits' has not been defined
+Error[1151] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 356 : struct or union object designator expectedlvalue required
+Warning[2054] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 189 : suspicious pointer conversion
+Error[1105] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 356 : symbol 'TRISDbits' has not been defined
+Error[1151] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 356 : struct or union object designator expected
+Error[1101] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 356 : lvalue required
+
+Error[1101] C:\Users\User\Dropbox\SEMPRA - Desenvolvimento\KIT E-P18 Mini\Firmware\18F2550\06 - Semaforo de Pedestre.X\main.c 356 : lvalue required

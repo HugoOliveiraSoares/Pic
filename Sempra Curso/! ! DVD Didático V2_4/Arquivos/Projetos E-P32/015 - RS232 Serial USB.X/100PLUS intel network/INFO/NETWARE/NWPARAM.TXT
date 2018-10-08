@@ -1,0 +1,132 @@
+   9 Server: NetWare Server Parameters
+                                                                    v1.00
+
+NetWare* Server Driver LOAD line parameters or Intel's 
+EtherExpress(TM) PRO/100+ adapter
+======================================================
+  
+   FORCEDUPLEX:
+
+      Duplex modes:
+
+      Auto-negotiate:  The adapter negotiates with the hub how to
+      send/receive packets, either full or half duplex.  If unsuccessful
+      at negotiating the duplex, the adapter defaults to half duplex. You
+      must have an auto-negotiating hub (an Nway* switch) to get full
+      duplex support with the FORCEDUPLEX parameter set to 0 (auto-
+      negotiation).
+
+      Full duplex:  The adapter sends and receives packets at the same
+      time. This improves the performance of your adapter. Set duplex
+      mode to full duplex ONLY if you have a switch that supports full
+      duplex.
+
+      Half duplex:  The adapter performs one operation at a time. It
+      either sends or receives.
+      
+      Note: The PRO/100B T4 adapter does not support full duplex at 100
+            Mbps, nor does the T4 adapter support Auto-Negotiation, or
+            Nway.  The PRO/100+ TX adapter does not have any of these
+            limitations.
+
+      Syntax: FORCEDUPLEX=n
+
+      Where n=0 auto-negotiate (PRO/100+ TX adapter only)
+      
+              1 half duplex
+              2 full duplex
+      
+      Note: If the adapter is set to half or full duplex, set the SPEED
+            parameter to either 10 or 100. (see SPEED below)
+
+         Default:   auto-negotiation    (PRO/100+ TX adapter)
+                    half duplex         (PRO/100B T4 adapter)
+
+      Examples:
+
+      PRO/100+ TX (100 Mbps full duplex):
+                  FORCEDUPLEX=2 SPEED=100
+
+      PRO/100+ TX (10 Mbps full duplex):
+                  FORCEDUPLEX=2 SPEED=10
+
+      PRO/100B T4 (100 Mbps full duplex): Not Supported
+
+      PRO/100B T4 (10 Mbps full duplex):
+                  FORCEDUPLEX=2 SPEED=10
+
+   SLOT (required):
+
+      For PCI adapters, SLOT is derived from bus number and device
+      location as defined by the PCI specification. One way to determine
+      the slot number is to load the driver from the command line. You'll
+      be prompted with valid device number(s) for the adapter(s). Select
+      one of them.
+
+      Syntax:  SLOT=n     (n = 1,2,3,4,...)
+
+   SPEED:
+
+      Specifies the speed the driver uses. If you don't use this
+      parameter, the driver automatically detects the network speed. If
+      unable to autosense, the driver defaults to 10 Mbps.
+      
+      NOTE: You must set the SPEED parameter to either 10 or 100 if
+            you're setting the FORCEDUPLEX parameter to either half or
+            full.
+
+         If you use this parameter, the driver operates at the specified
+         speed instead of auto-detecting network speed.
+
+         Syntax:  SPEED=n  (n = 10 or 100)
+
+         Default: The adapter automatically senses speed.
+
+   NODE:
+
+      Specifies a local administered address (LAA) unique to each
+      adapter.  Use this option to provide your own unique node address
+      for the adapter.  The node address is a 12-digit hexadecimal
+      number; the second digit must be one of the following digits: 2, 6,
+      A, E.
+
+      Syntax: NODE=xnxxxxxxxxxx
+
+      n = 2, 6, A, E
+      x = hexadecimal number
+
+      Default: The adapter's assigned address
+   
+
+   FRAME:
+
+      Indicates one of four valid frame types the system is transmitting
+      and receiving.
+
+         Syntax:  FRAME=n
+
+         n = Ethernet_802.2
+             Ethernet_802.3
+             Ethernet_II
+             Ethernet_SNAP
+
+         Default: Ethernet_802.2
+
+   TXTHRESHOLD:
+
+      Represents the threshold for transmits from extender SRAM FIFO
+      (output buffer).
+
+         Syntax: TXTHRESHOLD=n (n = number of 8 bytes)
+
+         For example, 16 represents 16x8 (or 128 bytes). In this case,
+         the LAN controller transmits after copying 128 bytes from the
+         host memory.
+
+         Default: dynamically set
+
+         The maximum number that you can specify is 200 (200x8=1600
+         bytes) which ensures there will not be any underruns.
+
+
+

@@ -1,0 +1,10 @@
+fosc=frequencia oscilador
+BitRate=velocidade da comunicação 
+
+sspadd=(fosc/BitRate)/4-1
+
+100kbits/s
+48mhz
+
+sspadd=48000000/100000/4-1
+sspadd=119

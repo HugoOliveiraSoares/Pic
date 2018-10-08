@@ -1,0 +1,143 @@
+   2 Banyan 6.00 NDIS workstation
+                                                                    v1.05
+
+
+Banyan* NDIS workstation installation notes for Intel's EtherExpress(TM)
+PRO/100+ PCI LAN adapter
+========================================================================
+
+Location of Driver:  \NDIS\E100B.DOS
+
+
+Sample Configuration Files
+--------------------------
+
+CONFIG.SYS (will contain):
+   
+   DEVICE=C:\BAN\PROTMAN.DOS /I:C:\BAN
+   DEVICE=C:\BAN\E100B.DOS
+
+PROTOCOL.INI:
+   
+   [E100B_NIF]
+      Drivername = E100B$
+
+
+General Installation
+--------------------
+
+1  The EtherExpress PRO/100+ adapter uses an NDIS 2.0.1 driver to connect
+   to a Banyan server. If you have an NDIS client disk prepared, skip to
+   step #6.
+
+2  To create an NDIS client disk, run PCCOPY (located on the Z drive of
+   the Banyan server).
+
+3  Choose PC Configuration Software and/or LAN driver, then select NDIS
+   Ethernet and PCCONFIG.
+
+4  Choose the appropriate DOS redirector. For example, REDIRALL for all
+   versions of DOS.
+
+5  Specify the directory you want the client software copied to. The
+   default is A:\.
+
+6  On the client you're setting up, copy the NDIS client software to a
+   directory on the hard drive.
+
+7  Run Banyan's PCCONFIG program.
+
+8  Select Network Card Settings and page down to select the NDIS Ethernet
+   option.
+
+9  Specify E100B_NIF as the PROTOCOL.INI bindings parameter.
+
+10 Select Login Environment Settings, then select Default Communications
+   Driver. Page down to select the NDIS Ethernet option.
+
+11 Save the settings and exit PCCONFIG.
+
+12 Copy the PROTOCOL.INI and E100B.DOS files located in the NDIS
+   subdirectory on the Intel Configuration and Driver disk to the BAN
+   subdirectory or other directory where Banyan client files are located.
+   Modify the PROTOCOL.INI file to make sure the file contains the line
+   [E100B_NIF] above the DRIVERNAME=E100B$ line.
+
+13 Add the lines to your CONFIG.SYS file as shown in the Sample
+   Configuration Files section above.
+
+14 Reboot and run BAN to attach to the Banyan server.
+
+
+Hints and Tips
+--------------
+
+1  Error Message with PRO0025E:
+
+   This type of message occurs when the driver attempts to bind to the
+   protocol manager. It usually indicates there's a syntax or other error
+   in the PROTOCOL.INI file. Review the file carefully for errors. Also,
+   verify parameters entered in PCCONFIG. For additional information, see
+   NDISBAN.DOC which is part of the NDIS Banyan client software.
+
+2  Make sure your NDISBAN.COM is dated April 1994 or later. Earlier
+   versions may not work properly.
+
+3  Parameters for the PROTOCOL.INI file:
+   
+   DRIVERNAME: (required) If you have a single adapter, use the syntax in
+      the Sample Configuration file section.  If you are installing
+      multiple adapters, each adapter must have a unique driver name.
+      Additional instances of the driver would be referenced by
+      DRIVERNAME=E100Bx$, where "x" is a unique number 2 through 9.
+   
+   SPEED: (optional; parameters are [Auto / 10 / 100]) The parameter
+      disables Auto-Speed Detect and causes the adapter to function at
+      the speed indicated. If the FORCEDUPLEX parameter is assigned to
+      either 1 or 2, the SPEED parameter is required because auto-speed
+      sensing is disabled if the duplex mode is forced. Auto-negotiate
+      devices cannot detect speed changes in this configuration until the
+      driver is reloaded.[Example: SPEED=100]
+   
+   FORCEDUPLEX: Full duplex and auto-negotiate capabilities vary between
+      the PRO/100 TX and the PRO/100 T4 adapters.
+
+         EtherExpress PRO/100+ TX adapter: Supports auto-negotiate, full
+         and half duplex at 10 or 100 Mbps.
+
+         EtherExpress PRO/100B T4 adapter: Supports full and half duplex
+         at 10 Mbps; supports only half duplex at 100 Mbps.  Auto-
+         negotiate is not a valid option at either speed.
+   
+      This parameter disables Auto-Negotiate capability and forces the
+      adapter to operate in Half or Full Duplex mode. The SPEED parameter
+      must be specified and must be valid if the default of Auto-
+      negotiate is changed. Options for FORCEDUPLEX are Auto (for auto-
+      negotiate), 1 (for half), 2 (for full). [Example: FORCEDUPLEX = 2]
+   
+   SLOT: (required for multiple adapters) This parameter is optional if
+      only one adapter is present.  If it is specified but is incorrect,
+      a message indicates that the value doesn't match the configuration
+      but the driver finds the adapter and loads anyway.
+   
+      This parameter is required if more than one adapter is present in
+      either one bus or multiple PCI buses of a system. The parameter
+      tells the driver which adapter it controls. The SLOT number is the
+      encoded value of the PCI adapter's device location. To determine
+      the slot number, load the driver with only the DRIVERNAME parameter
+      specified.  The driver reports all the slots that have PCI
+      adapter(s) installed. You can determine which card is in which slot
+      by using SETUP.EXE and matching the Ethernet addresses of the
+      adapter to the device number specified in View Configuration.
+      [Example: SLOT=0x1C]
+   
+   NODE: (optional) This value sets the adapter's Individual Address,
+      overriding the value read from the adapter EEprom. The address must
+      consist of 12 hexadecimal digits, enclosed in double quotes.  The
+      value can not be all zeros. The value can not have the Multicast
+      bit set. So, use only the hexadecimal digits 2, 6, A, or E as the
+      second digit of the twelve required in the NODE ADDRESS parameter.
+      Use any hexadecimal digits in all other positions.[Example: NODE =
+      "02AA00123456"]
+
+*  Third-party trademarks are the property of their respective owners.

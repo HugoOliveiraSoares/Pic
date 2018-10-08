@@ -1,0 +1,167 @@
+   3 NDIS 2.x Driver Notes (OS/2*, LAN Manager*, others)
+                                                                    v1.05
+
+
+General NDIS 2.x Driver Notes for Intel's EtherExpress(TM) PRO/100+ LAN
+Adapter
+=======================================================================
+
+Location of Driver:      \NDIS\E100B.DOS
+                         \NDIS\E100B.OS2
+
+Support files:           \NDIS\E100BEDS.NIF
+                         \NDIS\E100BEO2.NIF
+                         \NDIS\OEMSETUP.INF
+                         \NDIS\MSLANMAN.BAT
+                         \NDIS\PROTOCOL.INI
+                         \NDIS\STNDNIF\E100BDOS.NIF
+                         \NDIS\STNDNIF\E100BOS2.NIF
+
+
+
+Sample Configuration Files
+--------------------------
+
+CONFIG.SYS (for DOS will contain)
+   DEVICE=C:\path\PROTMAN.DOS /I:C:\path
+   DEVICE=C:\path\E100B.DOS
+
+CONFIG.SYS (for OS/2* will contain)
+   DEVICE=C:\path\PROTMAN.OS2 /I:C:\path
+   DEVICE=C:\path\E100B.OS2
+
+PROTOCOL.INI (may contain)
+   [PROTMAN]
+   DriverName = PROTMAN$
+   
+   [NETBEUI_XIF]
+   Drivername = netbeui$
+   Sessions = 6
+   NCBS = 12
+   Bindings = "E100B_NIF"
+   LANABASE = 0
+   
+   [E100B_NIF]
+   Drivername = E100B$
+
+
+General Notes
+--------------
+
+Several network operating systems use a standard 2.0.1 version NDIS
+driver to talk to the network adapter. The EtherExpress PRO/100+
+adapter's NDIS driver conforms to the Microsoft NDIS 2.0.1 specification.
+
+The NDIS subdirectory on the EtherExpress PRO/100 disk contains the files
+needed to use the adapter card with one of these operating systems. The
+files and their purpose are listed below.
+
+E100B.DOS:     NDIS driver for DOS workstations.
+
+E100B.OS2:     NDIS driver for servers & OS/2 workstations.
+
+E100BDOS.NIF:  The standard DOS NIF file used with Microsoft LAN Manager*
+               installations. Other network operating systems may use
+               these during their installation. If so, copy the E100B.DOS
+               and this NIF file into the same directory and reference
+               that directory.
+
+E100BOS2.NIF:  The standard OS/2 NIF file used with Microsoft LAN
+               Manager* installations. Other network operating systems
+               may use these during their installation. If so, copy the
+               E100B.OS2 and this NIF file into the same directory and
+               reference that directory.
+
+E100BEDS.NIF:  The Extended Network Information file (NIF) that IBM LAN
+               Support uses during its installation process. Specify the
+               \NDIS directory when installing so the installation
+               procedure will find the correct NIF file.
+
+E100BEO2.NIF:  The Extended Network Information file (NIF) that IBM OS/2
+               uses during its installation process. Specify the \NDIS
+               directory when installing so the installation procedure
+               will find the correct NIF file.
+
+PROTOCOL.INI:  A fragment of the general PROTOCOL.INI file. This fragment
+               contains information specific to the EtherExpress PRO/100+
+               adapter. Be sure your file contains this fragment. Some
+               installation procedures create this file for you.  This
+               file is provided as an example of what the EtherExpress
+               PRO/100+ adapter section could look like.
+
+OEMSETUP.INF:  The version located in the \NDIS subdirectory on the
+               driver disk is used by IBM's LAN requester for DOS version
+               4.0.
+
+MSLANMAN.BAT:  Executing this file creates the directory structure
+               required for a Microsoft LAN Manager installation.  Other
+               NDIS installations may also look for this structure:
+               \MSLANMAN.DOS\DRIVERS\ETHERNET\E100B\E100B.DOS (DOS) or
+               \MSLANMAN.OS2\DRIVERS\ETHERNET\E100B\E100B.OS2 (OS/2)
+
+
+Hints and Tips
+--------------
+
+1. Parameters for the PROTOCOL.INI file are listed below.
+   
+   DRIVERNAME: (required) If you have a single adapter, use the syntax in
+      the Sample Configuration file section.  If you are installing
+      multiple adapters, each adapter must have a unique driver name.
+      Additional instances of the driver would be referenced by
+      DRIVERNAME=E100Bx$, where "x" is a unique number 2 through 9.
+   
+   SPEED: (optional; parameters are [Auto / 10 / 100]) The parameter
+      disables Auto-Speed Detect and causes the adapter to function at
+      the speed indicated. If the FORCEDUPLEX parameter is assigned to
+      either 1 or 2, the SPEED parameter is required because auto-speed
+      sensing is disabled if the duplex mode is forced. Auto-negotiate
+      devices cannot detect speed changes in this configuration until the
+      driver is reloaded.[Example: SPEED=100]
+   
+   FORCEDUPLEX: Full duplex and auto-negotiate capabilities vary between
+      the PRO/100 TX and the PRO/100 T4 adapters.
+
+         EtherExpress PRO/100+ TX adapter: Supports auto-negotiate, full
+         and half duplex at 10 or 100 Mbps.
+
+         EtherExpress PRO/100B T4 adapter: Supports full and half duplex
+         at 10 Mbps; supports only half duplex at 100 Mbps.  Auto-
+         negotiate is not a valid option at either speed.
+   
+      This parameter disables Auto-Negotiate capability and forces the
+      adapter to operate in Half or Full Duplex mode. The SPEED parameter
+      must be specified and must be valid if the default of Auto-
+      negotiate is changed. Options for FORCEDUPLEX are Auto (for auto-
+      negotiate), 1 (for half), 2 (for full). [Example: FORCEDUPLEX = 2]
+   
+   SLOT: (required for multiple adapters) This parameter is optional if
+      only one adapter is present.  If it is specified but is incorrect,
+      a message indicates that the value doesn't match the configuration
+      but the driver finds the adapter and loads anyway.
+   
+      This parameter is required if more than one adapter is present in
+      either one bus or multiple PCI buses of a system. The parameter
+      tells the driver which adapter it controls. The SLOT number is the
+      encoded value of the PCI adapter's device location. To determine
+      the slot number, load the driver with only the DRIVERNAME parameter
+      specified.  The driver reports all the slots that have PCI
+      adapter(s) installed. You can determine which card is in which slot
+      by using SETUP.EXE and matching the Ethernet addresses of the
+      adapter to the device number specified in View Configuration.
+   
+      [Example: SLOT=0x1C]
+   
+   NODE: (optional) This value sets the adapter's Individual Address,
+      overriding the value read from the adapter EEprom. The address must
+      consist of 12 hexadecimal digits, enclosed in double quotes.  The
+      value can not be all zeros. The value can not have the Multicast
+      bit set. So, use only the hexadecimal digits 2, 6, A, or E as the
+      second digit of the twelve required in the NODE ADDRESS parameter.
+      Use any hexadecimal digits in all other positions.
+   
+      [Example: NODE = "02AA00123456"]
+
+*  Third-party trademarks are the property of their respective owners.
+
+

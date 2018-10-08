@@ -1,0 +1,356 @@
+   5 Workstation: DOS ODI Client
+                                                                    v1.05
+
+
+NetWare* DOS ODI Client Driver installation notes for Intel's
+EtherExpress(TM) PRO/100+ LAN Adapter
+=============================================================
+
+Location of Driver:  \DOS\E100BODI.COM
+
+
+Quick Installation
+------------------
+
+Use the Automatic setup option in the SETUP utility on the Intel
+Configuration and Drivers disk to quickly and easily install the ODI
+driver using NETX. For workstations using VLM's, see the VLM client
+section below.
+
+
+Sample Configuration Files
+--------------------------
+
+AUTOEXEC.BAT:
+   
+   CD\NWCLIENT
+   
+   LSL
+   
+   E100BODI
+   
+   IPXODI
+   
+   NETX or VLM (VLM's for NetWare 4.1 or 3.12)
+
+NET.CFG (for 802.3 clients - generally NetWare 3.11 servers):
+   
+   LINK DRIVER E100BODI
+      FRAME ETHERNET_802.3
+
+NET.CFG (for 802.2 clients - generally NetWare 3.12 and 4.1 servers):
+   
+   LINK DRIVER E100BODI
+      FRAME ETHERNET_802.2
+   
+   NETWARE DOS REQUESTER
+      FIRST NETWORK DRIVE = F
+
+
+General Installation for NetWare 3.11/3.12 clients
+------------------------------------------------------
+
+All the files necessary to connect to the NetWare servers are supplied on
+the Intel Configuration and Drivers disk. Newer versions of the shell
+files (LSL.COM, IPXODI.COM, NETX.EXE) may be available from Novell on the
+NetWire forum.
+
+1  From the \DOS directory on the Intel Configuration and Driver disk,
+   copy the following files onto your hard drive:  LSL.COM, E100BODI.COM,
+   IPXODI.COM, NETX.EXE, and NET.CFG.
+
+2  Add the commands to your AUTOEXEC.BAT file as shown above under the
+   Sample Configuration Files section. Make sure you change to the
+   subdirectory where the drivers are loaded before executing the files.
+   In the example above, the drivers are located in the NWCLIENT
+   subdirectory.
+
+3  Edit the NET.CFG file per your requirements.
+
+   If you don't know which frame type to load, type CONFIG at your file
+   server console to see which frame type your file server is loading and
+   load one of these frame types on the workstation.
+
+   If you list two or more NetWare frame types in the NET.CFG, the first
+   frame type will bind to the IPX protocol.
+
+   The NET.CFG file should be in the same directory as the adapter
+   driver.
+
+   If you're running EMM386, make sure you are using v4.49 or later. It's
+   the version that ships with DOS 6.22.
+
+4  Reboot the computer and the drivers will load and connect you to the
+   network.
+
+
+General Instructions for NetWare 4.1/3.12 client with VLMs
+----------------------------------------------------------
+
+The installation of the NetWare 4.1 client software is much easier than
+earlier versions. The installation procedure transfers files to a
+specific directory on the workstation and creates or modifies existing
+configuration files to fit your specific needs. The installation utility,
+INSTALL.EXE, is located on NetWare's "Workstation for DOS" disk. The
+install program is also located in \PUBLIC\CLIENT\DOSWIN on the server.
+NetWare 3.12 does not automatically create this directory on the server
+during installation.
+
+
+Installation Procedure for NetWare 4.1/3.12 client with VLMs
+-------------------------------------------------------------
+
+1  Run INSTALL.EXE on the workstation you are configuring.  It can be
+   found on the NetWare Workstation for DOS Disk.
+         
+         NOTE: INSTALL.EXE must be version 1.21 or greater
+
+2  The NetWare Client Install program screen appears. You must complete
+   each of the options as they are specific to your needs.
+
+   Step #1:  Specifies the directory on the hard drive that you want to
+   install the client software. The default directory is C:\NWCLIENT. You
+   can specify another directory if you desire.
+
+   Step #2:  Gives you the option to automatically update the CONFIG.SYS
+   and the AUTOEXEC.BAT files or modify them at a later time manually.
+
+   Step #3:  Installs Windows software for your system if your
+   workstation supports Windows and asks you to specify the directory
+   where Windows is located.  You will also have the option to customize
+   for Windows.
+
+   Step #4:  Gives you the option to configure your workstation for back-
+   up by a NetWare server.
+
+   Step #5:  Asks you to select a network driver and provide
+   configuration options. It uses the specifications you select to create
+   the NET.CFG file. Do NOT select a Driver from the list Novell
+   provides, rather choose OTHER DRIVER and insert the Intel
+   Configuration and Drivers disk.  Select the Intel EtherExpress
+   PRO/100+ LAN Adapter.  There are four configurable settings:
+   
+      Frame Type: You must set the frame type to match the file server.
+   
+      Adapter Node Address: (optional) Changes the Node Address to a
+      local address.
+
+      Force Duplex Mode: (100BASE-T4 does not support full duplex)
+
+           Sets the duplex mode of the driver.
+
+                  0 = auto-negotiate  (default, PRO/100+ TX adapter)
+                  1 = half duplex     (default, PRO/100B T4 adapter)
+                  2 = full duplex
+         
+         NOTE: If Duplex Mode is set to full, the Line Speed defaults to
+               10 Mbps. Also, the PRO/100B T4 adapter doesn't support
+               auto-negotiate.
+   
+      Line Speed: (optional) Sets the line speed to either 10 or 100
+      Mbps. If you don't use this parameter, the driver automatically
+      detects the network speed.
+
+   Step #6:  The install program copies the appropriate files to your
+   hard drive. This is the final step.
+
+3  Be sure to add LASTDRIVE=Z to your CONFIG.SYS file and FIRST NETWORK
+   DRIVE=F in the NET.CFG file under the Netware DOS Requestor section.
+
+
+Hints and tips
+=====================================================================
+
+
+NET.CFG optional parameters
+---------------------------
+
+FORCEDUPLEX:
+      
+      Note: The PRO/100B T4 adapter does not support full duplex at 100
+            Mbps.  It does support full duplex at 10 Mbps.  The PRO/100+
+            TX adapter supports full duplex at 10 and 100 Mbps.
+
+         Syntax: FORCEDUPLEX n
+
+         Where n=  0 auto-negotiate (PRO/100+ TX adapter only)
+                   1 half duplex
+                   2 full duplex
+      
+      Note: If the adapter is set to half or full duplex, set the SPEED
+            parameter to either 10 or 100. (see SPEED below)
+
+         Duplex modes:
+
+         Auto-negotiate:  The adapter negotiates with the hub how to
+         send/receive packets, either full or half duplex.  If
+         unsuccessful at negotiating the duplex, the adapter defaults to
+         half duplex.
+
+      Note: The PRO/100B T4 adapter does not support auto-negotiate.
+
+         Full duplex:  The adapter sends and receives packets at the same
+         time. This improves the performance of your adapter. Set duplex
+         mode to full duplex ONLY if you have a switch that supports full
+         duplex.
+
+         Half duplex:  The adapter performs one operation at a time. It
+         either sends or receives.
+
+         Default:   auto-negotiation    (PRO/100+ TX adapter)
+                    half duplex         (PRO/100B T4 adapter)
+
+
+
+         The PRO/100+ TX adapter has the added ability to "talk" to the
+         hub and determine at which mode to communicate (either full or
+         half duplex). This is called auto-negotiation. You must have an
+         auto-negotiating hub (an Nway switch) to get full duplex support
+         with the FORCEDUPLEX parameter set to 0 (auto-negotiation).
+
+         Examples:
+
+         PRO/100+ TX (100 Mbps full duplex):
+                  FORCEDUPLEX 2  (Sets adapter to full duplex)
+                  SPEED 100      (See SPEED parameter below)
+
+         PRO/100+ TX (10 Mbps full duplex):
+                  FORCEDUPLEX 2 (Sets adapter to full duplex)
+                  SPEED 10
+
+         PRO/100B T4 (100 Mbps full duplex): Not Supported
+
+         PRO/100B T4 (10 Mbps full duplex):
+                  FORCEDUPLEX 2 (Sets adapter to full duplex)
+                  SPEED 10
+
+      Note: Use auto-negotiate for full duplex support only when the
+      adapter is connected to a switch that fully supports Nway     auto
+      negotiation specification.
+
+
+
+SPEED:   Specifies the speed the driver uses. If you don't use this
+         parameter, the driver automatically detects the network speed.
+         If no cable is attached, the driver defaults to 10 Mbps.
+      
+      Note: If you don't have a auto-negotiating hub and are forcing the
+            duplex mode, specify the speed to either 10 or 100 using this
+            parameter.
+
+         If you use this parameter, the driver operates at the specified
+         speed instead of automatically detecting network speed.
+
+         Syntax:  SPEED n  (n = 10 or 100)
+
+         Default: none, the adapter automatically senses speed.
+
+TXTHRESHOLD: Represents the threshold for transmits from extender SRAM
+         FIFO (output buffer).
+
+         Syntax: TXTHRESHOLD n (n = number of 8 bytes). For example, 16
+         represents 16x8 (or 128 bytes). In this case, the LAN controller
+         transmits after copying 128 bytes from the host memory.
+
+         Default: dynamically set
+
+         The maximum number that you can specify is 200 (200x8=1600
+         bytes) which ensures there will not be any underruns.
+
+
+
+EARLYRECV: This parameter determines whether the driver enables early
+         receives. Early receives allows a frame to start being processed
+         before it is completely received in to host memory.  It boosts
+         performance.
+
+         Syntax: EARLYRECV n
+
+         Where n=  0 disables early receives
+                   1 enables early receives
+
+         Default: early receives enabled
+
+
+
+IRQMODE: This parameter enables or disables interrupt sharing mode of the
+         driver. It has the capability to automatically select the
+         enabled or disabled state depending on system configuration. If
+         the IRQ assigned to the driver is not being shared with another
+         device, then interrupt sharing is disabled.  If the IRQ assigned
+         to the driver is being shared, then the interrupt sharing is
+         enabled.
+
+         Syntax: IRQMODE n
+
+         Where n=  0 automatically selects interrupt sharing mode
+                   1 interrupt sharing is disabled
+                   2 interrupt sharing is enabled
+
+         Default: 0 automatically selects
+
+
+
+NODE ADDRESS:      Specifies a local administered address (LAA) unique to
+         each adapter.  The node address is a 12-digit hexadecimal
+         number; the second digit must be one of the following digits: 2,
+         6, A, E.
+
+         Syntax: NODE ADDRESS 02AA12345678
+
+         02AA => LAA, 02 is set by the driver if not specified.
+         00A0 => Typical Intel address (default)
+
+
+
+FRAME:   Configures the adapter to process the valid NetWare Ethernet
+         frame types.
+
+         Syntax:  FRAME n
+
+         n = Ethernet_802.2
+             Ethernet_802.3
+             Ethernet_II
+             Ethernet_SNAP
+
+         Default: Ethernet_802.2
+
+
+
+PROTOCOL:     Indicates the standard protocol in use.
+
+         Syntax: Protocol IPX E0 Ethernet_802.2
+
+         Values: E0=Ethernet_802.2
+                  0=Ethernet_802.3
+               8137=Ethernet_II
+               8137=Ethernet_SNAP
+
+NetWare DOS Requester
+=====================
+
+FIRST NETWORK DRIVE: (Used only with the VLM.EXE). Indicates the first
+         network drive available in the client system.
+   
+   Note: If you use FIRST NETWORK DRIVE, the last line in the CONFIG.SYS
+         file must read: LASTDRIVE=Z
+
+
+Detailed example
+----------------
+
+LINK DRIVER E100BODI
+   SPEED 100
+   TXTHRESHOLD 16
+   NODE ADDRESS 02xxxxxxxxxx
+   FRAME ETHERNET_802.2
+   PROTOCOL IPX E0 ETHERNET_802.2
+
+In addition, the NET.CFG file can contain the following optional
+information:
+
+NETWARE DOS REQUESTER
+   PB BUFFERS=10
+   FIRST NETWORK DRIVE=F
+
+* Third-party trademarks are the property of their respective owners.

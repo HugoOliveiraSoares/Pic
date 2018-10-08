@@ -1,0 +1,44 @@
+   Adapter Fault Tolerance
+                                                       v1.01
+
+
+Adapter Fault Tolerance Overview
+================================
+
+Adapter Fault Tolerance (AFT) is a simple, effective, and
+fail-safe approach to increase the reliability of server
+connections. AFT gives you the ability to set up link
+recovery to the server adapter in case of a cable, port, or
+network interface card failure. By assigning two Intel
+EtherExpress(TM) PRO/100+ adapters as a team, AFT enables
+you to maintain uninterrupted network performance.
+
+AFT is implemented with two PRO/100+ adapters: a primary
+adapter and a backup, or secondary, adapter. During normal
+operation, the backup will have transmit disabled. If the
+link to the primary adapter fails, the link to the backup
+adapter automatically takes over.
+   
+   Notes:
+   
+   This feature is currently available for NetWare* 4.1x and
+   Windows NT* 4.0 only.
+
+For more information about AFT, see:
+
+-  the NetWare or Windows NT AFT readme files for setup
+   instructions
+
+-  white papers on Intel's web site: www.intel.com/network
+
+
+
+
+
+
+
+
+
+
+
+* Brand, name, or trademark owned by another company.

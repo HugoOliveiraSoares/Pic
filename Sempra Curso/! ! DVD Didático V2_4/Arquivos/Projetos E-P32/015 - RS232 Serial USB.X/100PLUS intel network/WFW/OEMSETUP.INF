@@ -1,0 +1,23 @@
+;; Windows for Workgroups 3.11
+;; OEMSETUP.INF for Intel 82557-based Ethernet PCI Adapters
+;; $Revision: 7 $
+[data]
+type=network
+version="3.11.202"
+[disks]
+y = \wfw,  "Intel EtherExpress PRO PCI Adapter driver disk", D100DISK
+z = \ndis, "Intel EtherExpress PRO PCI Adapter driver disk", D100DISK
+[netcard]
+in$e100b_g="Intel EtherExpress PRO PCI Adapter (10/100)",0,ndis,ethernet,0x7,in$e100b_install,in$e100b_nif
+in$e100b_T="Intel EtherExpress PRO/10+ PCI Adapter",0,ndis,ethernet,0x7,in$e100b_install,in$e100b_10_nif
+[in$e100b_install]
+ndis2=z:e100b.dos
+ndis3=y:e100b.386
+mlid=*:e100bodi.com
+[in$e100b_nif]
+DriverName=E100B$
+param=SPEED,"Line Speed (Mbits/sec)",text,"Auto-Speed,10,100",Auto-Speed,0x30
+param=FORCEDPX,"Force Duplex Setting",enum,"Auto-Negotiate,0,Half-Duplex,1,Full-Duplex,2",0,0x30
+[in$e100b_10_nif]
+DriverName=E100B$
+param=FORCEDPX,"Force Duplex Setting",enum,"Half-Duplex,1,Full-Duplex,2",1,0x30

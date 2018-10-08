@@ -1,0 +1,73 @@
+   6 UNIX Driver Information
+                                                                    v1.05
+
+
+Obtaining UNIX drivers for the EtherExpress(TM) PRO/100+ LAN Adapter
+====================================================================
+
+UNIX drivers for Intel LAN adapters are provided and supported by the
+independent software vendor (ISV), unless otherwise noted.
+
+Release schedules included in this file are based on the latest
+information available and are subject to change. All dates are estimated
+for the calendar year.  Products listed are trademarks of the
+corresponding ISV.
+
+Directions to specific World Wide Web addresses and archive file names,
+were current as of February, 1997 and are subject to change.
+
+
+NextStep
+      
+      NeXT Computer
+      900 Chesapeake Drive
+      Redwood City, CA 94063
+      (800) TRY-NEXT   (415)366-0900   FAX (415)780-3929
+      http://www.next.com
+      
+      The EtherExpress(TM) PRO/100+ adapter driver for NeXTStep r4.0 is
+      available and supported by NeXT Computer.  Driver is available in
+      NeXTanswer #2109.
+
+
+SCO Unix
+
+      Santa Cruz Operation
+      425 Encinal St.
+      Santa Cruz, CA 95060
+      (800) 726-8649   (408) 425-7222   FAX (408) 458-4227
+      http://www.sco.com/
+
+      Go to Support
+      Go to "Search the SCO Support Library Techincal Articles"
+
+      Search for "EtherExpress" by typing it in search box.
+      
+      
+      
+
+SunSoft
+      
+      SunSoft
+      2550 Garcia Avenue
+      Mountain View, CA 94043
+      (800)SUNSOFT * (415)336-4960
+      http://access1.sun.com/
+      
+      Solaris 2.5/2.5.1: x86 Driver Update 3. The EtherExpress PRO/100+
+      driver for Solaris is available from SunSoft in the Solaris
+      2.5/2.5.1 x86 Driver Update 5.
+      
+      Interactive: There are no known plans for a SunSoft Interactive
+      driver.
+
+
+Linux
+      
+      A Linux driver is available for the PRO/100+.
+      
+      http://cesdis.gsfc.nasa.gov/linux/drivers/eepro100.html
+
+
+
+*  Third-party trademarks are the property of their respective owners.

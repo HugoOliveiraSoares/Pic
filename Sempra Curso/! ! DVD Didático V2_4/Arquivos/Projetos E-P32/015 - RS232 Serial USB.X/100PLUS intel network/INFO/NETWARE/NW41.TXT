@@ -1,0 +1,274 @@
+   1 Server: NetWare 4.11 server
+                                                                      
+                                                                 v1.08
+NetWare* 4.11 Server Driver Installation Notes for Intel's
+EtherExpress(TM) PRO/100+ adapter
+==========================================================
+
+Location of driver: \NWSERVER\E100B.LAN (ODI Assembly Specification
+                    version 3.3.  An earlier version of this driver
+                    ships with NetWare 4.11)
+
+Location of NLM's:  Ships with NetWare 4.11, updates also available in
+                    LANDRx.EXE (where x is the latest version) on
+                    Novell's automated services.
+      
+      NOTE: For NetWare 4.10 installation instructions please see
+            NW312.TXT.
+
+
+Sample load commands
+====================
+   
+   LOAD C:<PATH>\E100B SLOT=n FRAME=ETHERNET_802.2
+   BIND IPX TO E100B NET=xxxxxxxx
+
+
+General Instructions
+====================
+
+1  If you're doing a NEW installation of NetWare 4.11, install it
+   according to the NetWare installation instructions. The
+   installation process will automatically detect the PRO/100+. A
+   message appears indicating that it detected the hardware but found
+   more than one driver supporting it. The hardware ID you'll see
+   displayed for the PRO/100+ is PCI.8086.1229.XXXX.XXXX.XX. Press
+   Enter for a list of drivers. DO NOT select the Intel EtherExpress
+   PRO/100 LAN Adapter from the list.  Press F-10 to install the newer
+   driver from the Intel Configuration and Driver disk.  Choose the
+   Select additional or Modify Selected Disk/LAN drivers.  Follow the
+   installation screens to complete the installation of the driver.
+   The necessary load and bind parameters will automatically be added
+   to the AUTOEXEC.NCF file with Ethernet_802.2 and Ethernet_802.3
+   bound to the adapter.  If you need to change the frame types for
+   your network, edit the AUTOEXEC.NCF after the installation is
+   completed.
+      
+      Note: A good way to determine the slot number is to let the
+            driver load without a slot number.  NetWare will prompt
+            with valid slot number(s) for the adapter(s). Select one
+            of them.
+
+2  For servers already installed with NetWare 4.11, start the server.
+   At the server console, issue the load and bind statement(s) in this
+   order:
+   
+        LOAD C:<PATH>\E100B SLOT=n FRAME=ETHERNET_802.2
+        BIND IPX TO E100B NET=xxxxxxxx
+      
+      Note: If MSM and ETHERTSM Nlms aren't loaded, they'll
+            automatically load before the driver.
+
+   Where:
+
+   SLOT=n  specifies the NBI (NetWare Bus Interface) slot number.
+   Substitute n with the valid value for the adapter.  You will be
+   prompted with the slot numbers of installed PRO/100+ adapters. The
+   NBI slot number is different from the slot number indicated in the
+   Intel SETUP.EXE utility.
+
+   NET=xxxxxxxx  is the unique network address for that LAN segment.
+
+   The default frame type is 802.2.  If your workstations need to use
+   the 802.3 frame type, see the section later in this document about
+   using multiple frame types on one adapter.
+
+3  Add the load and bind statements you need to the server's
+   AUTOEXEC.NCF file so the EtherExpress PRO/100+ adapter driver loads
+   automatically each time the server starts.
+
+
+Hints and tips
+==============
+
+
+1  Installing multiple adapters:
+
+   If you have multiple adapters in a single server, each adapter must
+   have a different NET number and SLOT number. Also, you may want to
+   name each adapter. For example:
+      
+      LOAD C:\E100B SLOT=10001 NAME=LAN_A
+      BIND IPX TO LAN_A NET=1234
+      LOAD C:\E100B SLOT=10003 NAME=LAN_B
+      BIND IPX TO LAN_B NET=5678
+
+   If you have problems loading the driver on multiple adapters and
+   the initialization fails due to "Insufficient RCBs," increase the
+   number of buffers allocated to the server. Add the following to
+   STARTUP.NCF:
+      
+      SET MINIMUM PACKET RECEIVE BUFFERS = 100 (or larger)
+      SET MAXIMUM PACKET RECEIVE BUFFERS = 500 (or larger)
+
+   The MINIMUM value you specify must be at least 30 times the number
+   of EtherExpress PRO/100+ adapters in the computer.
+
+   Recommended settings:
+      
+      1-3 adapters:  100
+      4 adapters:    150
+
+   The MAXIMUM you can specify depends on the amount of memory in the
+   server.  It must be greater than the MINIMUM.
+
+
+2  Installing one adapter with multiple frame types:
+
+   When binding multiple frame types to one adapter, enter a LOAD and
+   BIND statement for each frame type. Each LOAD statement uses the
+   same SLOT number, but each BIND statement needs a unique network
+   number. You must also include a name on each load line to avoid
+   being prompted for the adapter to bind IPX to.
+      
+      Example:
+      
+      LOAD C:\E100B SLOT=10003 FRAME=ETHERNET_802.3 NAME=LAN8023
+      BIND IPX TO LAN8023 NET=77777
+      LOAD C:\E100B SLOT=10003 FRAME=ETHERNET_802.2 NAME=LAN8022
+      BIND IPX TO LAN8022 NET=88888
+
+
+3  LOAD line parameters:
+
+   SLOT:(required parameter)
+
+      For PCI adapters, SLOT is derived from bus number and device
+      location. Novell determines the slot number for PCI and Plug and
+      Play adapters using NBI. These slot numbers are different then
+      the slot numbers used with other drivers or the Intel SETUP
+      utility. One way to determine the slot number is to load the
+      driver from the command line. You'll be prompted with valid
+      device number(s) for the adapter(s). Select one of them.
+
+          Syntax:  SLOT=n     (n = 10001,10002,10005...)
+
+      If you have multiple PCI adapters of the same type installed and
+      need to match the physical adapter to the associated slot
+      number, use the NetWare server command CONFIG.  The information
+      shown through this utility shows the NBI slot number and the
+      adapter's Ethernet address.  Match the Ethernet address shown
+      here to the address printed on the adapter.
+
+   FORCEDUPLEX:
+
+      Duplex modes:
+
+      Auto-negotiate:  The adapter negotiates with the hub how to
+      send/receive packets, either full or half duplex.  If
+      unsuccessful at negotiating the duplex, the adapter defaults to
+      half duplex. You must have an auto-negotiating switch to get
+      full duplex support with the FORCEDUPLEX parameter set to 0
+      (auto-negotiation).
+
+      Full duplex:  The adapter sends and receives packets at the same
+      time. This improves the performance of your adapter. Set duplex
+      mode to full duplex ONLY if you have a switch that supports full
+      duplex.
+
+      Half duplex:  The adapter performs one operation at a time. It
+      either sends or receives.
+      
+      Note: The PRO/100B T4 adapter does not support full duplex at
+            100 Mbps, nor does the T4 adapter support Auto-
+            Negotiation.  The PRO/100+ TX adapter does not have any of
+            these limitations.
+
+      Syntax: FORCEDUPLEX=n
+
+      Where n=0 auto-negotiate (PRO/100+ TX adapter only)
+              1 half duplex
+              2 full duplex
+      
+      Note: If the adapter is set to half or full duplex, set the
+            SPEED parameter to either 10 or 100. (see SPEED below)
+
+         Default:   auto-negotiation    (PRO/100+ TX adapter)
+                    half duplex         (PRO/100B T4 adapter)
+
+      Examples:
+
+      PRO/100+ TX (100 Mbps full duplex):
+                  FORCEDUPLEX=2 SPEED=100
+
+      PRO/100+ TX (10 Mbps full duplex):
+                  FORCEDUPLEX=2 SPEED=10
+
+      PRO/100B T4 (100 Mbps full duplex): Not Supported
+
+      PRO/100B T4 (10 Mbps full duplex):
+                  FORCEDUPLEX=2 SPEED=10
+
+
+   SPEED:
+
+      Specifies the speed the driver uses. If you don't use this
+      parameter, the driver automatically detects the network speed.
+      If no cable is attached, the driver defaults to 10 Mbps.
+      
+      NOTE: You must set the SPEED parameter to either 10 or 100 if
+            you're setting the FORCEDUPLEX parameter to either half or
+            full.
+
+      If you use this parameter, the driver operates at the specified
+      speed instead of auto-detecting network speed.
+
+      Syntax:  SPEED=n  (n = 10 or 100)
+
+      Default: none, the adapter automatically senses speed.
+
+
+
+   NODE:
+
+      Specifies a local administered address (LAA) unique to each
+      adapter.  Use this option to provide your own unique node
+      address for the adapter.  The node address is a 12-digit
+      hexadecimal number; the second digit must be one of the
+      following digits: 2, 6, A, E.
+
+      Syntax: NODE=xnxxxxxxxxxx
+
+      n = 2, 6, A, E
+      x = hexadecimal number
+
+      Default: The adapter's assigned address
+
+
+
+
+
+   FRAME:
+
+      Configures the adapter to process one of the four valid NetWare
+      Ethernet frame types.
+
+      Syntax:  FRAME=n
+
+      n = Ethernet_802.2
+          Ethernet_802.3
+          Ethernet_II
+          Ethernet_SNAP
+
+      Default: Ethernet_802.2
+
+
+
+   TXTHRESHOLD:
+
+      Represents the threshold for transmits from extended SRAM FIFO.
+
+         Syntax: TXTHRESHOLD=n (n = number of 8 bytes)
+
+         For example, 16 represents 16x8 (or 128 bytes). In this case,
+         the LAN controller transmits after copying 128 bytes from the
+         host memory.
+
+         Default: dynamically set
+
+      The maximum number you can specify is 200 (200x8=1600 bytes)
+      which ensures there will not be any underruns.
+
+
+
+*  Third-party trademarks are the property of their respective owners.

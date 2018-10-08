@@ -1,0 +1,196 @@
+   1 LANtastic 6.0
+                                                                    v1.03
+
+
+LANtastic* 6.0 installation notes for the Intel EtherExpress(TM) PRO/100+
+PCI LAN adapter
+=========================================================================
+
+Location of driver:     \NDIS\E100B.DOS
+
+
+General Instructions (sample configuration files below)
+-------------------------------------------------------
+
+The installation procedure transfers files to a specific directory on the
+workstation and creates or modifies existing configuration files to fit
+your specific needs.  The installation utility, INSTALL.EXE, is located
+on LANtastic Network Software Disk 1.
+
+1  Run INSTALL.EXE from Disk 1.
+
+2  The LANtastic Install program screen appears. You must complete each
+   of the questions. These options are specific to your needs.
+   
+   1  Asks for a unique computer name.
+   
+   2  Asks you to select the drive that you want LANtastic to be
+      installed on. The default is Drive C:.
+   
+   3  Asks you to specify a directory where you want the LANtastic files
+      to be installed. The default is \LANTASTI.
+   
+   4  Asks if you want to share your computer's drives or printers.
+   
+   5  Asks you to select the maximum number of connected computers.
+   
+   6  Prompts you to select any other LANtastic features that you may
+      want to install.
+   
+   7  Summarizes the options you selected. If it looks correct, continue
+      with the installation.
+   
+   8  Prompts you to select a network adapter to run your LANtastic
+      software on. From the list of adapters, select "NDIS SUPPORT FOR
+      NETWORK ADAPTERS".
+   
+   9  Asks you to insert the manufacturer's driver diskette. Insert the
+      Intel Configuration and Drivers diskette into drive A: and specify
+      the source path for driver files as A:\NDIS.
+   
+   10 Asks if you want to Set Up Permanent Drive or Printer Connections.
+   
+   11 Summarizes the options you selected. If they are correct, choose
+      Perform the Installation and LANtastic will install the files.
+
+
+Hints and Tips
+==============
+
+Below are sample CONFIG.SYS, STARTNET.BAT and PROTOCOL.INI files. These
+are the three files with EtherExpress PRO/100+ configuration options that
+the Install program creates. For details on PROTOCOL.INI parameters, see
+the end of this document.
+
+
+Sample CONFIG.SYS file
+----------------------
+
+DEVICE=C:\LANTASTI\PROTMAN.DOS /I:C:\LANTASTI
+DEVICE=C:\LANTASTI\E100B.DOS
+FILES=100
+BUFFERS=30
+
+
+Sample C:\LANTASTI\STARTNET.BAT file
+------------------------------------
+
+@echo off
+rem LANtastic  Version 6.00  installed 95/12/04 03:38:23
+rem (for Windows)
+C:
+cd C:\LANTASTI
+SET LAN_CFG=C:\LANTASTI
+rem If LANtastic is disabled, skip everything.
+IF EXIST DISABLED GOTO :STARTNET_DONE
+
+@echo ===== Begin LANtastic configuration =====
+PATH C:\LANTASTI;C:\LANTASTI\NW;%PATH%
+SET LAN_DIR=C:\LANTASTI.NET
+SET NWDBPATH=C:\LANTASTI\NW
+LOADHIGH AI-NDIS BIND_TO=E100B_NIF
+AILANBIO @STARTNET.CFG
+REDIR LAB1 @STARTNET.CFG
+IF EXIST NOSHARE GOTO :NOSHARE
+SERVER C:\LANTASTI.NET @STARTNET.CFG
+NET LOGIN \\LAB1
+GOTO :CONTINUE
+:NOSHARE
+@echo LANtastic server was installed but turned off.
+:CONTINUE
+rem If CONNECT.BAT exists, run it to set up connections.
+IF EXIST CONNECT.BAT GOTO :CONNECT
+rem Otherwise set up connections specified during install.
+NET USE LPT1: \\LAB1\@PRINTER
+NET LPT TIMEOUT 10
+GOTO :CONNECT_DONE
+:CONNECT
+@echo Setting up LANtastic connections from CONNECT.BAT
+rem Build CONNECT.BAT like this: "NET SHOW/BATCH >
+C:\LANTASTI\CONNECT.BAT"
+
+call CONNECT.BAT
+:CONNECT_DONE
+NET POSTBOX
+@echo ===== End LANtastic configuration =====
+
+:STARTNET_DONE
+cd \
+
+
+Sample C:\LANTASTI\PROTOCOL.INI file
+------------------------------------
+
+;PROTOCOL.INI for LANtastic Version 6.00
+
+;--- using Intel EtherExpress PRO/100+ adapter
+
+[PROTMAN]
+   DRIVERNAME = PROTMAN$
+   DYNAMIC = YES
+
+; PROTOCOL.INI section for the Intel EtherExpress PRO/100+ adapter.
+
+[E100B_NIF]
+   DRIVERNAME = E100B$
+
+
+
+Parameters for the PROTOCOL.INI file are listed below.
+   
+   DRIVERNAME: (required) If you have a single adapter, use the syntax in
+      the Sample Configuration file section.  If you are installing
+      multiple adapters, each adapter must have a unique driver name.
+      Additional instances of the driver would be referenced by
+      DRIVERNAME=E100Bx$, where "x" is a unique number 2 through 9.
+   
+   SPEED: (optional; parameters are [Auto / 10 / 100]) The parameter
+      disables Auto-Speed Detect and causes the adapter to function at
+      the speed indicated. If the FORCEDUPLEX parameter is assigned to
+      either 1 or 2, the SPEED parameter is required because auto-speed
+      sensing is disabled if the duplex mode is forced. Auto-negotiate
+      devices cannot detect speed changes in this configuration until the
+      driver is reloaded.[Example: SPEED=100]
+   
+   FORCEDUPLEX: Full duplex and auto-negotiate capabilities vary between
+      the PRO/100 TX and the PRO/100 T4 adapters.
+
+         EtherExpress PRO/100+ TX adapter: Supports auto-negotiate, full
+         and half duplex at 10 or 100 Mbps.
+
+         EtherExpress PRO/100B T4 adapter: Supports full and half duplex
+         at 10 Mbps; supports only half duplex at 100 Mbps.  Auto-
+         negotiate is not a valid option at either speed.
+   
+      This parameter disables Auto-Negotiate capability and forces the
+      adapter to operate in Half or Full Duplex mode. The SPEED parameter
+      must be specified and must be valid if the default of Auto-
+      negotiate is changed. Options for FORCEDUPLEX are Auto (for auto-
+      negotiate), 1 (for half), 2 (for full). [Example: FORCEDUPLEX = 2]
+   
+   SLOT: (required for multiple adapters) This parameter is optional if
+      only one adapter is present.  If it is specified but is incorrect,
+      a message indicates that the value doesn't match the configuration
+      but the driver finds the adapter and loads anyway.
+   
+      This parameter is required if more than one adapter is present in
+      either one bus or multiple PCI buses of a system. The parameter
+      tells the driver which adapter it controls. The SLOT number is the
+      encoded value of the PCI adapter's device location. To determine
+      the slot number, load the driver with only the DRIVERNAME parameter
+      specified.  The driver reports all the slots that have PCI
+      adapter(s) installed. You can determine which card is in which slot
+      by using SETUP.EXE and matching the Ethernet addresses of the
+      adapter to the device number specified in View Configuration.
+      [Example: SLOT=0x1C]
+   
+   NODE: (optional) This value sets the adapter's Individual Address,
+      overriding the value read from the adapter EEprom. The address must
+      consist of 12 hexadecimal digits, enclosed in double quotes.  The
+      value can not be all zeros. The value can not have the Multicast
+      bit set. So, use only the hexadecimal digits 2, 6, A, or E as the
+      second digit of the twelve required in the NODE ADDRESS parameter.
+      Use any hexadecimal digits in all other positions.[Example: NODE =
+      "02AA00123456"]
+
+*  Third-party trademarks are the property of their respective owners.

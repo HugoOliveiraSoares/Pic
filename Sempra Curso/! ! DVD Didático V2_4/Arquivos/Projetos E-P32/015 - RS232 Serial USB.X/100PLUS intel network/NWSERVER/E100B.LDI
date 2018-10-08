@@ -1,0 +1,281 @@
+
+;DrIvEr DeScRiPtIoN
+;VeRsIoN=1.06
+;CoPyRiGhT=(c)Copyright 1997 by Intel Corp.  All Rights Reserved.
+VER: 1.06
+SyntaxVersion: 1.00
+;- Internal Version 1.06
+
+;- File: E100B.LDI
+;- Intel EtherExpress(TM) PRO/100+ Installation Information File
+;- This file handles all EE PRO/100 family adapters :
+;- Intel EtherExpress PRO PCI Adapter
+;- PRO/100+ PCI with TX Physical Layer
+;- PRO/100B PCI with TX Physical Layer
+;- PRO/100B PCI with T4 Physical Layer
+
+   Driver E100B
+   {
+      Description: $E100B_1
+      Help: $E100B_2
+      PAR: 1.00
+      Prod: PCI.8086.1229.8086.*.*
+      Prod: PCI.8086.1229.0000.0000.01
+
+      File: E100B.LAN
+
+      PROMPT   SLOT    OPTIONAL
+
+      {
+         Help:           $E100B_3
+         Type:           DECIMAL (5)
+         Values:         1 - 65535
+         Default:        UNDEFINED
+      }
+
+      PROMPT   SPEED    OPTIONAL
+
+      {
+         Help:           $E100B_4
+         Type:           DECIMAL (3)
+         Values:         0, 10, 100
+         Default:        0
+         Out:            'SPEED=%s'
+      }
+
+      PROMPT   FORCEDUPLEX    OPTIONAL
+
+      {
+         Help:           $E100B_5
+         Type:           DECIMAL (1)
+         Values:         0, 1, 2
+         Default:        0
+         Out:            'FORCEDUPLEX=%s'
+      }
+
+      PROMPT   IOMAPMODE   OPTIONAL
+
+      {
+         Help:           $E100B_6
+         Type:           DECIMAL (1)
+         Values:         0, 1
+         Default:        0
+         Out:            'IOMAPMODE=%s'
+      }
+
+
+      FRAME   FrameSelect
+
+      {
+         Help:             $E100B_7
+
+         CDescription:     $E100B_8
+         Choice:           'Ethernet_802.3'
+
+         CDescription:     $E100B_9
+         Choice:           'Ethernet_802.2'
+
+         CDescription:     $E100B_10
+         Choice:           'Ethernet_SNAP'
+
+         CDescription:     $E100B_11
+         Choice:           'Ethernet_II'
+
+         Default:          1,2
+
+      }
+
+   }
+
+DLANG: 4
+;English
+
+       $E100B_1 = "Intel EtherExpress PRO PCI Adapter"
+
+       $E100B_2 = "This driver supports the following EtherExpress(TM)
+                         PRO PCI family adapters ->\n
+                         PRO/100+ with Tx Physical Layer\n
+                         PRO/100B with TX Physical Layer\n
+                         PRO/100B with T4 Physical Layer\n\n"
+
+       $E100B_3 = "Slot number for the adapter.\n
+                          For PCI adapters, this refers to the Device Location."
+
+       $E100B_4 = "Line speed override for the adapter. Disables
+                          auto-negotiation. Must be forced if duplex mode is specified.\n
+                          Valid options are 0 (Auto), 10, or 100."
+
+       $E100B_5 =  "Force the operating mode to Full Duplex.\n
+                          SPEED must be specified and valid for this keyword.\n
+                          Valid options are 0 (Auto), 1 (HALF), 2 (DUPLEX)."
+
+       $E100B_6 =  "Force the driver to use I/O mapped mode.\n
+                          The default mode is memory-mapped.\n
+                          Valid options are 0 (DEFAULT) or 1."
+
+       $E100B_7 =  "The driver defaults to 802.2 frame format. You
+                            may use this default to select from the other 3
+                            options => 802.3, Ethernet II and Ethernet SNAP."
+
+       $E100B_8 = "E100B 802.3"
+
+       $E100B_9 = "E100B 802.2"
+
+       $E100B_10 = "E100B SNAP"
+
+       $E100B_11  = "E100B E_II"
+
+LANG: 6
+;French
+
+       $E100B_1 = "Intel EtherExpress PRO PCI Adapter"
+
+       $E100B_2 = "This driver supports the following EtherExpress(TM)
+                         PRO PCI family adapters ->\n
+                         PRO/100+ with Tx Physical Layer\n
+                         PRO/100B with TX Physical Layer\n
+                         PRO/100B with T4 Physical Layer\n\n"
+
+       $E100B_3 = "Slot number for the adapter.\n
+                          For PCI adapters, this refers to the Device Location."
+
+       $E100B_4 = "Line speed override for the adapter. Disables
+                          auto-negotiation. Must be forced if duplex mode is specified.\n
+                          Valid options are 0 (Auto), 10, or 100."
+
+       $E100B_5 =  "Force the operating mode to Full Duplex.\n
+                          SPEED must be specified and valid for this keyword.\n
+                          Valid options are 0 (Auto), 1 (HALF), 2 (DUPLEX)."
+
+       $E100B_6 =  "Force the driver to use I/O mapped mode.\n
+                          The default mode is memory-mapped.\n
+                          Valid options are 0 (DEFAULT) or 1."
+
+       $E100B_7 =  "The driver defaults to 802.2 frame format. You
+                            may use this default to select from the other 3
+                            options => 802.3, Ethernet II and Ethernet SNAP."
+
+       $E100B_8 = "E100B 802.3"
+
+       $E100B_9 = "E100B 802.2"
+
+       $E100B_10 = "E100B SNAP"
+
+       $E100B_11  = "E100B E_II"
+
+LANG: 7
+;German
+
+       $E100B_1 = "Intel EtherExpress PRO PCI Adapter"
+
+       $E100B_2 = "This driver supports the following EtherExpress(TM)
+                         PRO PCI family adapters ->\n
+                         PRO/100+ with Tx Physical Layer\n
+                         PRO/100B with TX Physical Layer\n
+                         PRO/100B with T4 Physical Layer\n\n"
+
+       $E100B_3 = "Slot number for the adapter.\n
+                          For PCI adapters, this refers to the Device Location."
+
+       $E100B_4 = "Line speed override for the adapter. Disables
+                          auto-negotiation. Must be forced if duplex mode is specified.\n
+                          Valid options are 0 (Auto), 10, or 100."
+
+       $E100B_5 =  "Force the operating mode to Full Duplex.\n
+                          SPEED must be specified and valid for this keyword.\n
+                          Valid options are 0 (Auto), 1 (HALF), 2 (DUPLEX)."
+
+       $E100B_6 =  "Force the driver to use I/O mapped mode.\n
+                          The default mode is memory-mapped.\n
+                          Valid options are 0 (DEFAULT) or 1."
+
+       $E100B_7 =  "The driver defaults to 802.2 frame format. You
+                            may use this default to select from the other 3
+                            options => 802.3, Ethernet II and Ethernet SNAP."
+
+       $E100B_8 = "E100B 802.3"
+
+       $E100B_9 = "E100B 802.2"
+
+       $E100B_10 = "E100B SNAP"
+
+       $E100B_11  = "E100B E_II"
+
+LANG: 8
+;Italian
+
+       $E100B_1 = "Intel EtherExpress PRO PCI Adapter"
+
+       $E100B_2 = "This driver supports the following EtherExpress(TM)
+                         PRO PCI family adapters ->\n
+                         PRO/100+ with Tx Physical Layer\n
+                         PRO/100B with TX Physical Layer\n
+                         PRO/100B with T4 Physical Layer\n\n"
+
+       $E100B_3 = "Slot number for the adapter.\n
+                          For PCI adapters, this refers to the Device Location."
+
+       $E100B_4 = "Line speed override for the adapter. Disables
+                          auto-negotiation. Must be forced if duplex mode is specified.\n
+                          Valid options are 0 (Auto), 10, or 100."
+
+       $E100B_5 =  "Force the operating mode to Full Duplex.\n
+                          SPEED must be specified and valid for this keyword.\n
+                          Valid options are 0 (Auto), 1 (HALF), 2 (DUPLEX)."
+
+       $E100B_6 =  "Force the driver to use I/O mapped mode.\n
+                          The default mode is memory-mapped.\n
+                          Valid options are 0 (DEFAULT) or 1."
+
+       $E100B_7 =  "The driver defaults to 802.2 frame format. You
+                            may use this default to select from the other 3
+                            options => 802.3, Ethernet II and Ethernet SNAP."
+
+       $E100B_8 = "E100B 802.3"
+
+       $E100B_9 = "E100B 802.2"
+
+       $E100B_10 = "E100B SNAP"
+
+       $E100B_11  = "E100B E_II"
+
+
+LANG: 14
+;Spanish
+
+       $E100B_1 = "Intel EtherExpress PRO PCI Adapter"
+
+       $E100B_2 = "This driver supports the following EtherExpress(TM)
+                         PRO PCI family adapters ->\n
+                         PRO/100+ with Tx Physical Layer\n
+                         PRO/100B with TX Physical Layer\n
+                         PRO/100B with T4 Physical Layer\n\n"
+
+       $E100B_3 = "Slot number for the adapter.\n
+                          For PCI adapters, this refers to the Device Location."
+
+       $E100B_4 = "Line speed override for the adapter. Disables
+                          auto-negotiation. Must be forced if duplex mode is specified.\n
+                          Valid options are 0 (Auto), 10, or 100."
+
+       $E100B_5 =  "Force the operating mode to Full Duplex.\n
+                          SPEED must be specified and valid for this keyword.\n
+                          Valid options are 0 (Auto), 1 (HALF), 2 (DUPLEX)."
+
+       $E100B_6 =  "Force the driver to use I/O mapped mode.\n
+                          The default mode is memory-mapped.\n
+                          Valid options are 0 (DEFAULT) or 1."
+
+       $E100B_7 =  "The driver defaults to 802.2 frame format. You
+                            may use this default to select from the other 3
+                            options => 802.3, Ethernet II and Ethernet SNAP."
+
+       $E100B_8 = "E100B 802.3"
+
+       $E100B_9 = "E100B 802.2"
+
+       $E100B_10 = "E100B SNAP"
+
+       $E100B_11  = "E100B E_II"
+
+;DrIvEr DeScRiPtIoN EnD

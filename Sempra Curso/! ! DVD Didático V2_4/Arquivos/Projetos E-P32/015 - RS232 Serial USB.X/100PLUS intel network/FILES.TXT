@@ -1,0 +1,264 @@
+   Files on Configuration and Drivers disk
+                                                       v1.09
+
+
+Intel EtherExpress(TM) PRO/100+ adapter drivers and setup
+files
+=========================================================
+
+
+Root Directory
+
+README.BAT     Batch file for SETUP /README
+
+SETUP.EXE      Installation and configuration utility (runs
+               in DOS)
+
+OEMSETUP.INF   Windows NT* installation information file
+
+D100DISK       Tag file to indicate driver disk for Windows
+               NT
+
+82557NDI.DLL   Windows 95 OEM DLL
+
+NET82557.INF   Configuration file for Windows installation
+
+PROSET.INF     PROSet Windows 95 install file
+
+EXAMPLES.TXT   Sample load commands for Adapter Fault
+               Tolerance in NetWare
+
+FILES.TXT      List of files on disk
+
+
+
+
+\DMI
+
+E100B.OVL      Overlay file for DMI
+
+E100B.MIF      Management Information File for DMI
+
+
+
+
+\DOS
+
+E100BODI.COM   DOS ODI driver
+
+E100BODI.INS   Text file for NetWare* 4.x install
+
+DRIVERS.DOS    Driver name for NetWare 4.x install
+
+NET.CFG        Sample NET.CFG for ODI configurations
+
+LSL.COM        LSL from Novell
+
+IPXODI.COM     IPXODI from Novell
+
+NETX.EXE       NETX from Novell
+
+
+
+
+\WFW
+
+E100B.38_      NDIS 3 MAC driver for Windows for WorkGroups
+
+OEMSETUP.INF   Windows for Workgroups setup file
+
+
+
+
+\NDIS
+
+E100B.DOS      DOS NDIS 2.0.1 driver
+
+E100B.OS2      OS/2 NDIS 2.0.1 driver
+
+E100BEDS.NIF   Extended NIF file for IBM DOS
+
+E100BEO2.NIF   Extended NIF file for OS/2
+
+MSLANMAN.BAT   Lan Manager directory structure batch file
+
+OEMSETUP.INF   IBM Lan Server 4.0 DOS setup file
+
+PROTOCOL.INI   PROTOCOL.INI stub
+
+
+
+
+\NDIS\STNDNIF
+
+E100BDOS.NIF   Standard NIF file for IBM DOS
+
+E100BOS2.NIF   Standard NIF file for IBM LSP for OS/2
+
+
+
+
+\NT
+
+557SET.HL_     Help file for 82557-based adapters
+
+CTL3D32.DL_    Microsoft 3D control file
+
+E100B.SY_      NDIS 3.1 Miniport driver for Win NT 3.51 &
+               Win 95
+
+E100BNT.SY_    NDIS 4 Miniport driver for Win NT 4.0
+
+PROSET.CP_     PROSet setup control panel
+
+E100SET.HL_    PROSet setup program help file
+
+EP100DG.DL_    PROSet setup program support file
+
+EPRO100.DL_    PROSet setup program support file
+
+PROKDD.SY_     PROSet setup program support file
+
+PROSET.EX_     PROSet setup program (run via Control Panel)
+
+SPDO3DG.SY_    PROSet setup program support file
+
+
+
+
+\NWSERVER
+
+E100B.LAN      NetWare 4.1 server driver
+
+E100B.LDI      Text for NetWare 4.1 installation
+
+E100B.INF      Setup file for Client 32
+
+OEMSETUP.INF   Setup file for NetWare NT 3.51 requester
+
+
+
+
+\NWSERVER\311LAN
+
+100BLAN.EXE    Self extracting file containing NeWare 3.2
+               spec driver
+
+100BLAN.TXT    Text readme file for 100BLAN.EXE
+
+
+
+
+\OS2
+
+E100BODI.SYS   ODI driver for OS/2
+
+
+
+
+\WIN95
+
+EPROPS.DL_     PROSet adapter setup program support file
+
+PROW95.VX_     PROSet adapter setup program support file
+
+SPDO3DG.VX_    PROSet adapter setup program support file
+
+
+
+
+\INFO\GENERAL
+
+RELNOTES.TXT   Release notes and latest information
+
+TECHSUP.TXT    Technical support information
+
+HWSPECS.TXT    Hardware specifications
+
+CABLE10.TXT    Cabling information for 10BASE-T
+
+CABLE100.TXT   Cabling information for 100BASE-TX
+
+PCI.TXT        PCI configuration directions
+
+DUPLEX.TXT     Duplex support configuration information
+
+DIAG.TXT       Running diagnostics on the adapter
+
+DIAGLED.TXT    Diagnostic LED information
+
+MASTENAB.TXT   Error text for non-busmaster enabled slots
+
+SHAREIRQ.TXT   Error text for shared interrupts
+
+
+
+
+\INFO\IBM
+
+AS400.TXT      IBM LAN Support to AS/400 and NetWare
+
+LANSERV.TXT    OS/2 and LAN Server 3.0 installation
+
+
+
+
+\INFO\MS
+
+MSWFW311.TXT   WFW 3.11 installation
+
+MSLANMGR.TXT   LAN Manager workstation/server installation
+
+MSNT351.TXT    Windows NT 3.5 installation
+
+MSNT40.TXT     Windows NT 4.0 installation
+
+MSWIN95.TXT    Windows 95 installation
+
+
+
+
+\INFO\NETWARE
+
+NW311.TXT      NetWare 3.11 Server Driver installation
+
+NW312.TXT      NetWare 3.12 & 4.10 Server installation
+
+NW41.TXT       NetWare 4.11 Server Driver installation
+
+NWODIDOS.TXT   DOS ODI Client installation
+
+NWODIOS2.TXT   OS/2 ODI Client installation
+
+NWCLNT32.TXT   NetWare Client 32 installation under Windows
+               95
+
+NWNTREQ.TXT    Windows NT 3.51 with NT Requester
+               installation
+
+
+
+
+\INFO\OTHER
+
+LANTAS60.TXT   LANtastic 6.0 installation
+
+BANYAN.TXT     Banyan NDIS Workstation installation
+
+NDIS.TXT       NDIS 2.x installation
+
+
+
+
+\INFO\UNIX
+
+UNIXINFO.TXT   UNIX* driver information
+
+
+
+
+
+
+
+*  Third-party trademarks are the property of their
+   respective owners.

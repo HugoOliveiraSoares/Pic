@@ -1,0 +1,100 @@
+   7 Workstation: Windows NT with NetWare Client Services
+                                                                    v1.05
+
+
+Windows* NT* 4.0 and Novell NetWare client Services driver installation
+notes for Intel's EtherExpress(TM) PRO/100+ adapter
+=====================================================================
+
+Location of driver: \NWSERVER\E100B.LAN
+                    \NWSERVER\OEMSETUP.INF
+
+
+General instructions for Novell NetWare* Client Services under Windows NT
+using the ODI server driver.
+=========================================================================
+
+1  Install the Novell NetWare Client Services per the instructions
+   provided by Novell.
+   
+   Note: If the NDIS driver for the PRO/100+ is installed and you want to
+         us the NetWare 32 ODI LAN driver, remove the NDIS driver from NT
+         before going to step 2.  Novell NetWare Client service can be
+         run with the NDIS 3 driver.
+
+2  Start Windows NT and log in as ADMINISTRATOR (or another valid user
+   name).
+
+3  Double-click the "Network" icon in the Control Panel. The "Network
+   Settings" screen appears.
+
+4  Select the Adapter tab.
+
+5  Click the "Add" button.
+
+6  Click the Have Disk button.
+
+7  Insert the Intel Configuration and Drivers Disk into your floppy drive
+   and type A:\nwserver.  Click OK to continue.
+
+8  When "ODI Intel EtherExpress PRO/100+ adapter for NetWare" appears,
+   click OK.
+
+9  After the files are copied, the default driver settings will be
+   displayed (they'll be displayed with their defaults which in most
+   cases is OK).  Click OK when correct.
+   
+   NOTE: Do not click on Advanced Settings.  See the section titled
+   Advanced Setting below.
+
+   Speed: Specifies the line speed of the adapter.
+             0    =    Auto detect (default)
+             10   =    10 Mbps
+             100  =    100 Mbps
+   
+
+   ForceDuplex:
+
+   Note: The PRO/100B T4 adapter does not support full duplex at 100
+   Mbps.  It does at 10 Mbps.  The PRO/100+ TX adapter supports full
+   duplex at 10 and 100 Mbps
+
+             0 = auto-negotiate (default)
+             1 = half duplex
+             2 = full duplex
+      
+      Note: If the adapter is set to half or full duplex, set the SPEED
+            parameter to either 10 or 100. (see SPEED)
+
+10 You will have to restart Windows NT to complete the installation.
+
+
+Advanced Settings
+=================
+
+Only select Advanced Settings if you want to use local Administration of
+Addressing or use multiple Intel EtherExpress PRO/100+ adapters. Entering
+Advanced Setting requires that you know the slot number the adapter is
+using.
+
+1  To get to Advanced Setting from the Network Dialog box selected the
+   Adapters tab and highlight the ODI Intel EtherExpress PRO/100+ adapter
+   and click Configure.
+
+2  Click Advanced.
+
+3  There are 2 advanced options, Node Address Override and Slot.
+
+   NODE ADDRESS OVERRIDE: Use this option to provide your own unique node
+   address for the adapter.  The node address is a 12-digit hexadecimal
+   number; the second digit must be one of the following digits: 2, 6, A,
+   E.
+
+   SLOT: Select the slot number the adapter is in. Only necessary if
+   multiple PRO/100+ adapter cards are being used.  Before clicking OK,
+   you must enter a valid slot number.  To exit without saving a slot
+   number, click Cancel.
+
+
+
+* Third-party trademarks are the property of their respective owners.

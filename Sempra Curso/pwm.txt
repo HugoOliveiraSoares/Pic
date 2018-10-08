@@ -1,0 +1,15 @@
+Tpwm - periodo desejado do pwm
+pr2 - registrador que define o final da contagem do timer2
+tosc - periodo do barramento da CPU
+fosc - frequencia do barramento da CPU
+tmr2 - prescale value valor do prescale do timer2
+
+pr2=(Tpwm*fosc)/4*prescalertmr2 - 1
+
+
+frequencia PWM = 5khz
+periodo PWM = 200 us
+prescale do timer2 = 16
+
+pr2=(Tpwm*fosc)/4*prescalertmr2 - 1
+pr2 = 149

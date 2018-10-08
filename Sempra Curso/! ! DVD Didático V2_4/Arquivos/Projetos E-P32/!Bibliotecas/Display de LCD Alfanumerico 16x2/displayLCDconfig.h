@@ -1,0 +1,66 @@
+/******************************************************************************
+ *
+ *           SEMPRA Bibliotecas (PIC32MX775F512L) - Display de LCD Alfanumerico
+ *
+ ******************************************************************************
+ * Nome do Arquivo:     displayLCDconfig.h
+ * Dependencias:    	<p18cxxx.h> <delays.h> <stdlib.h> (Veja seção INCLUDES)
+ * Empresa:         	SEMPRA
+ * Plataforma:			kit de Desenvolvimento E-P32 v1.01
+ *
+ * Descrição:			Este arquivo possui as configurações da biblioteca de
+ *				LCD utilizada pela Sempra. Este cabeçalho foi
+ *                              desenvolvido de modo que permitisse a alteração
+ *                              do usuário de maneira mais simples caso haja
+ *                              migração de plataforma. Assim, as funções são
+ *                              as mesmas, só a configuração das portas aos
+ *                              pinos de dados e controle é que sofrem alteração
+ *
+ ****************************************************************************/
+
+#include "Delays.h"		// Biblioteca padrão C18 Microchip para uso de rotinas de atraso (delay)
+						// mais informações nos arquivos de ajuda da biblioteca C18
+						// presentes na propria pasta de instalação, por exemplo,
+						// C:\mplabc18\doc\hlpC18Lib.chm
+						// Procure pelo item: "Delay Functions"
+
+#include <stdlib.h>		// Biblioteca padrão C18 Microchip para uso de rotinas de conversão
+						// de tipos como itoa(). Mais informações nos arquivos de ajuda da
+						// biblioteca C18 presentes na propria pasta de instalação, por exemplo,
+						// C:\mplabc18\doc\hlpC18Lib.chm
+						// Procure pelo item: "Data Conversion Functions"
+#include <math.h>
+
+#include "HardwareProfile.h"
+
+/** LISTA DE COMANDOS ******************************************************************/
+
+#define LIMPA_DISPLAY	0b0000000001
+#define LIGA_DISPLAY	0b0000001000
+#define DESLIGA_DISPLAY	0b0000001100
+#define LIGA_CURSOR		0b0000001110
+#define DESLIGA_CURSOR	0b0000001100
+#define PISCA_CURSOR	0b0000001111
+
+
+/** LISTA DE FUNCIONALIDADES ******************************************************************
+ * Voce deve comentar neste arquivo as funcionalidades que não deseja utilizar em sua aplicação.
+ * Desta forma você economizará espaço na memória de programa de seu microcontrolador. 
+ *********************************************************************************************/
+
+// Informação: Este define habilita/desabilita as funções de escrita através da memória de programa
+// Descrição:  Habilitando este define você poderá utilizar a fução: EscreveFraseRomLCD. Caso
+// 			   sua aplicação na faça uso desta função comente o define PERMITE_FUNCOES_PGM e 
+//			   economize espaço em sua memória de programa.
+
+#define PERMITE_FUNCOES_PGM
+
+// Informação: Este define habilita/desabilita as funções que escrevem números no LCD
+// Descrição:  Habilitando este define você poderá utilizar a fuções: EscreveInteiroLCD e EscreveFloatLCD. Caso
+// 			   sua aplicação na faça uso desta função comente o define PERMITE_NUMEROS e 
+//			   economize espaço em sua memória de programa.
+
+#define PERMITE_NUMEROS
+
+
+

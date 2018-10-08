@@ -1,0 +1,38 @@
+
+                                                  v1.03
+
+Notes for using the archive 100BLAN.EXE contained on the
+Intel EtherExpress (TM) PRO/100+ adapter driver disk
+============================================================
+   Location of Archive:  \NWSERVER\311LAN\100BLAN.EXE
+   
+   Contents of Archive:     E100B.LAN (ODI 3.2 spec driver)
+                            E100B.LDI (Install file)
+
+
+OVERVIEW
+========
+
+100BLAN.EXE is a self-extracting archive that contains the
+NetWare Server ODI 3.2 spec driver used for NetWare 3.11.
+The NetWare server driver contained on the directory
+\NWSERVER in the Intel Configuration and Drivers diskette
+follows the NetWare ODI 3.3 spec and should be used for
+NetWare 3.12 and greater.
+
+
+INSTRUCTIONS
+============
+
+Copy the file 100BLAN.EXE to your local hard disk.  Change
+directories to the location on your local hard disk where
+you copied 100BLAN.EXE.  At the DOS prompt type:
+
+100blan <return>
+
+The file will expand to include E100B.LAN, and E100B.LDI. 
+Refer to the readme \INFO\NETWARE\NW311.TXT to install 
+the driver.
+
+   
+

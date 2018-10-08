@@ -1,0 +1,183 @@
+   5 LAN Server
+                                                                    v1.03
+
+LAN Server installation notes for Intel EtherExpress(TM) PRO/100+ PCI LAN
+Adapters:
+=========================================================================
+
+Location of files:  \NDIS\E100B.OS2   (OS/2* driver)
+                    \NDIS\E100BEO2.NIF
+      
+                         or
+      
+                    \NDIS\E100B.DOS   (DOS driver)
+                    \NDIS\E100BEDS.NIF (DLR and LSP installation file)
+
+NOTE: LAN Requester needs DOS 3.3 through 5, but if you're using DOS 6.0
+      or higher, run SETVER.EXE prior to using the executable files found
+      on the DOS LAN Requester disks. See your DOS manual if you need
+      help with SETVER.EXE.
+
+
+Sample configuration file
+-------------------------
+
+PROTOCOL.INI (will include):
+
+[E100B_NIF]
+   DriverName = E100B$
+
+
+General installation - LAN Server and OS/2 Requester (4.0 or 3.0)
+-----------------------------------------------------------------
+
+1  Run the MPTS utility with LAN Server 4.0 or OS/2 Requester 4.0 (Run
+   the LAPS utility with LAN Server 3.0 or OS/2 Requester 3.0)
+
+2  Click Install.
+
+3  When prompted, insert the Intel Configuration and Drivers disk in a
+   floppy drive, specify A:\NDIS for driver location, and click OK.
+
+4  When Install reads the E100BEO2.NIF, installation is complete. Click
+   OK.  The adapter driver has been copied to your system.
+
+5  Click Configure from the MPTS window.
+
+6  At the Configure window, make sure the LAN adapters and protocols
+   button is on and click CONFIGURE.
+
+7  At the LAPS Configuration window, select the Intel EtherExpress
+   PRO/100+ adapter (OS/2 driver: E100B.OS2) from the Network Adapters
+   window.
+   
+   Click Add in the Network Adapter window to add the PRO/100+ PCI
+   adapter to the current configuration.
+
+8  Select your desired Protocol(s) from the Protocol window and click Add
+   from this window to add the protocol(s) to the current configuration.
+
+9  Click OK when you're done and follow the prompts to exit MPTS. Your
+   CONFIG.SYS is automatically updated.
+   
+   Shutdown and reset your system so the changes can take effect.
+
+
+General installation under DOS (DOS LAN Services)
+=================================================
+
+NOTE: Due to a problem with the DLS installation utility, you need to
+      complete the following steps before executing the installation of
+      DLS:
+   
+      1  On DLS Diskette 1, make a directory off the root called NDIS.
+      
+      2  Copy the file E100B.DOS (from the \NDIS directory of the Intel
+         Configuration and Drivers) into this new directory \NDIS on DLS
+         Diskette 1.
+
+1  Run the DOS LAN Services installation program at the DOS workstation.
+   Follow the prompts.
+
+2  When presented with an adapter list, select Network card not shown in
+   list below.
+
+3  When prompted for the location of the OEMSETUP.INF file, insert the
+   Intel Configuration and Drivers disk in your drive and enter A:\NDIS
+   as the path.
+
+4  Select the Intel EtherExpress PRO/100+ adapter from the list.  Follow
+   the prompts.
+
+5  Enter your machine name, username and domain name.
+
+6  Set the options as you need; then highlight "The listed options are
+   correct" and press Enter.
+
+7  Accept the defaults on the next screen, highlight "The listed options
+   are correct" and press Enter.
+
+8  Set the Speed, Duplex mode, or Slot Device if needed. We recommend
+   accepting the defaults. Then highlight "The listed options are
+   correct" and press Enter.
+
+9  You may be asked to insert DLS disks. Follow the prompts to complete
+   the installation and restart your computer for changes to take effect.
+
+
+General Installation under DOS: LAN Support Program (LSP)
+=========================================================
+
+1  Run DXMAID from the LAN Support Program disk.
+
+2  Follow the prompts and instructions.
+
+3  When prompted, insert the Intel Configuration and Drivers disk and
+   enter the pathname A:\NDIS.
+
+4  The default configuration is suitable for most environments.  We
+   recommend accepting the defaults.
+
+5  After the installation is complete, restart your computer for the
+   changes to take affect.
+
+
+General Installation under DOS (DOS LAN Requester)
+==================================================
+
+1  Run the DOS LAN Requester installation program at the DOS workstation.
+   Follow the prompts to configure your DOS LAN Requester as you require.
+
+2  After the installation is complete, restart your computer for the
+   changes to take affect.
+
+
+Advanced settings
+=================
+   
+   SPEED: (optional; parameters are [Auto / 10 / 100]) The parameter
+      disables Auto-Speed Detect and causes the adapter to function at
+      the speed indicated. If the FORCEDUPLEX parameter is assigned to
+      either 1 or 2, the SPEED parameter is required because auto-speed
+      sensing is disabled if the duplex mode is forced. Auto-negotiate
+      devices cannot detect speed changes in this configuration until the
+      driver is reloaded.[Example: SPEED=100]
+   
+   FORCEDUPLEX: Full duplex and auto-negotiate capabilities vary between
+      the PRO/100 TX and the PRO/100 T4 adapters.
+
+         EtherExpress PRO/100+ TX adapter: Supports auto-negotiate, full
+         and half duplex at 10 or 100 Mbps.
+
+         EtherExpress PRO/100B T4 adapter: Supports full and half duplex
+         at 10 Mbps; supports only half duplex at 100 Mbps.  Auto-
+         negotiate is not a valid option at either speed.
+   
+      This parameter disables Auto-Negotiate capability and forces the
+      adapter to operate in Half or Full Duplex mode. The SPEED parameter
+      must be specified and must be valid if the default of Auto-
+      negotiate is changed. Options for FORCEDUPLEX are Auto (for auto-
+      negotiate), 1 (for half), 2 (for full). [Example: FORCEDUPLEX = 2]
+   
+   SLOT: (required for multiple adapters) This parameter is optional if
+      only one adapter is present.  If it is specified but is incorrect,
+      a message indicates that the value doesn't match the configuration
+      but the driver finds the adapter and loads anyway.
+   
+      This parameter is required if more than one adapter is present in
+      either one bus or multiple PCI buses of a system. The parameter
+      tells the driver which adapter it controls. The SLOT number is the
+      encoded value of the PCI adapter's device location. To determine
+      the slot number, load the driver with only the DRIVERNAME parameter
+      specified.  The driver reports all the slots that have PCI
+      adapter(s) installed. You can determine which card is in which slot
+      by using SETUP.EXE and matching the Ethernet addresses of the
+      adapter to the device number specified in View Configuration.
+      [Example: SLOT=0x1C]
+
+
+
+*  Third-party trademarks are the property of their respective owners.
+
+
+

@@ -1,0 +1,102 @@
+   3 Windows NT Adapter Fault Tolerance
+                                                           v1.03
+
+Adapter Fault Tolerance installation notes for the
+EtherExpress(TM) PRO/100+ adapter under Windows NT 4.0
+============================================================
+
+Overview
+--------
+Adapter Fault Tolerance provides link redundancy for two
+EtherExpress PRO/100+ adapters.  When configured, there becomes 
+a primary and secondary PRO/100+ adapter.  If the primary loses 
+communication with the hub/switch, the secondary automatically 
+takes over.  The secondary adapter will take over for such 
+reasons as cable connection problems, switch or hub port
+failure or adapter failure.  For more information on adapter
+fault tolerance please see the readme file AFT.TXT.
+     
+     
+
+Before you get started
+----------------------
+
+Before you can configure the PRO/100+ adapter for Adapter Fault 
+Tolerance, you need to do the following:
+      
+      Install two PRO/100+ adapters in a Windows NT 4.0
+      system as described in the readme file MSNT40.TXT. When
+      installation is complete make sure you restart NT.
+      
+      If connecting to a hub, each PRO/100+ adapter in a team 
+      will need to be connected to a separate port, which is
+      in the same collision domain.  If connected to a switch,
+      each PRO/100+ adapter in a team will have to be connected 
+      to a separate port which is in the same network.
+
+
+General Instructions
+--------------------
+
+1. Double-click on the Network Icon in the Control Panel.
+
+2. Select the Adapter tab and double-click the "Intel
+   EtherExpress PRO/100+ PCI Adapter" found in the Network
+   Adapters list box.  This will launch the Intel PROSet utility.
+
+3. Click on the Fault Tolerance button.
+
+4. The Intel Adapter Fault Tolerance dialog box appears.  Click
+   OK to continue. Adapter Fault Tolerance will automatically be
+   installed.
+
+5. To complete the configuration and installation, you will need
+   to click the Close button in the Network dialog box.  This
+   will update the bindings and allow you to assign the adapters
+   to an Adapter Fault Tolerance team.
+
+6. The dialog box Intel Adapter Fault Tolerance Configuration
+   Manager is displayed during the binding process after the
+   Close button is clicked.  Follow the directions on the screen
+   to assign PRO/100+ adapters to the Fault Tolerance team.
+   When done click OK to continue.
+      
+      Note: If you are creating more than one Adapter Fault
+            Tolerance team, do not restart NT until all teams are
+            created.
+
+7. To add additional Adapter Fault Tolerance teams, repeat this 
+   process starting at step 1.
+
+
+Additional Information
+----------------------
+
+Launching the Configuration Manager:
+   
+   To launch the Intel Adapter Fault Tolerance Configuration
+   Manager, select the Adapters tab in the Network dialog box.
+   Highlight the Intel Adapter Fault Tolerance Team and select
+   Properties.
+
+Identifying the Properties of the Intel Adapter Fault Tolerance
+team:
+   
+   In the Intel Adapter Fault Tolerance Configuration Manager,
+   highlight the Intel Adapter Fault Tolerance team and click
+   Properties.  See Help for more detailed information about the
+   settings.
+
+Identifying the Properties of the PRO/100+ adapter in a Fault 
+Tolerance team:
+   
+   In the Intel Adapter Fault Tolerance Configuration Manager,
+   highlight the PRO/100+ adapter and click Properties.
+   See Help for more detailed information about the settings.
+
+
+
+*  Third-party trademarks are the property of their respective
+   owners.
+
+

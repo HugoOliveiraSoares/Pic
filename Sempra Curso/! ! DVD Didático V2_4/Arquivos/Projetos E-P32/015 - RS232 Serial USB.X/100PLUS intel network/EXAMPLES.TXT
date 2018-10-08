@@ -1,0 +1,65 @@
+
+;- This file gives examples of load and bind statements to 
+;- add to your AUTOEXEC.NCF and STARTUP.NCF files to set up 
+;- Adapter Fault Tolerance on Intel EtherExpress(TM)
+;- PRO/100+ TX PCI Adapters.
+
+
+
+;- Setting up Adapter Fault Tolerance
+;- ==================================
+
+
+;- Copy the load statements below into the appropriate
+;- files and customize them for your server. Parameters for
+;- these statements are defined in your user documentation 
+;- and in the AFT readme files.
+
+
+
+;- Copy the following statement into your STARTUP.NCF file:
+
+;- Load Adapter Fault Tolerance
+
+load aft
+
+
+;- Copy the rest of the load statments into your
+;- AUTOEXEC.NCF file, and customize them for your server:
+
+
+;- Load LAN driver on 1st Adapter
+load e100b slot=7 frame=ethernet_802.2 name=pri_802.2
+load e100b slot=7 frame=ethernet_802.3 name=pri_802.3
+load e100b slot=7 frame=ethernet_snap  name=pri_snap
+load e100b slot=7 frame=ethernet_ii    name=pri_ii
+
+;- Load LAN driver on 2nd Adapter
+load e100b slot=8 frame=ethernet_802.2 name=sec_802.2
+load e100b slot=8 frame=ethernet_802.3 name=sec_802.3
+load e100b slot=8 frame=ethernet_snap  name=sec_snap
+load e100b slot=8 frame=ethernet_ii    name=sec_ii
+
+
+;- Bind ipx to 1st adapter
+bind ipx pri_802.2 net=2
+bind ipx pri_802.3 net=3
+bind ipx pri_snap net=5
+bind ipx pri_ii net=11
+
+
+;- Set the 2nd adapter to be an Adapter Fault Tolerance
+;- partner to the first adapter
+aft bind 7 8
+
+
+;- Note: No protocols should be bound to the secondary
+;- adapter. All protocol bindings to the primary adapter
+;- will be transferred to the secondary if the primary link
+;- fails.
+
+
+
+;- *********************************************************
+
+                                                    ;- v1.01

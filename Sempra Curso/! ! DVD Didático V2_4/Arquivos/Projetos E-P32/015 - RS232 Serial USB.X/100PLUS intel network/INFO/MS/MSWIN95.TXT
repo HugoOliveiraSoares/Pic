@@ -1,0 +1,302 @@
+   4 Windows 95
+                                                                    v1.09
+
+
+Windows* 95 installation notes for Intel's EtherExpress(TM) PRO/100+ PCI
+LAN Adapters
+========================================================================
+
+LOCATION OF DRIVER:       \NT\E100B.SY_ (compressed)
+LOCATION OF SETUP FILE:   \NET82557.INF
+
+
+General Instructions
+--------------------
+
+1  Install the adapter in the computer and turn on the power.  Have the
+   Windows 95 CD ROM available, as you will need it to copy additional
+   files. While Windows 95 is starting, it will detect the new hardware.
+
+2  When Windows 95 starts, a NEW HARDWARE FOUND dialog box appears. It
+   identifies the adapter as a PCI Ethernet Controller.  Select the
+   option "Driver from disk provided by Hardware Manufacturer".
+   
+   NOTE: If the New Hardware Found dialog box doesn't appear, you'll need
+         to manually configure the adapter. See the section on
+         alternative ways to add a network adapter to Windows 95.
+
+3  Insert the EtherExpress PRO/100+ Configuration and Drivers disk in
+   drive A and click OK.
+
+4  A dialog box prompts for a location with "A:\". Click OK.
+
+5  A dialog may appear requesting Windows 95 system network files. If so,
+   follow the instructions.
+      
+      Note: The Windows 95 system files are typically available on the
+            Windows 95 CD in the win95 directory (D:\win95). If Windows
+            95 requests the E100B.DOS file, it can be found on the Intel
+            Configuration and Drivers disk, typically in A:.
+
+6  The Systems Setting Change dialog appears indicating you should
+   restart the system for changes to become effective.  Remove the
+   PRO/100+ adapter disk from the drive and click Yes for the changes to
+   take effect.
+   
+   NOTE: Windows 95 will reference this adapter's driver as "Intel 82557-
+         based PCI Ethernet" not "Intel EtherExpress PRO/100+ adapter".
+
+
+Installing Intel's PROSet adapter diagnostic and configuration software
+-----------------------------------------------------------------------
+
+Intel's PROSet software allows you to test the adapter in the Windows 95
+environment.  It can also resolve some Windows 95 issues that may result
+from changing or updating adapter hardware.
+
+1  From the Explorer, double click on the 3.5 floppy disk icon.  The
+   Explore function can be accessed by clicking on the Windows 95 Start
+   button with the right mouse button.
+
+2  Locate the PROSet icon in the root directory of the diskette and click
+   the right mouse button.  From the menu that appears, click Install.
+
+3  When the PROSet software has been copied to your computer, go to the
+   control panel and click on the PROSet icon.  PROSet examines your
+   computer and displays the PROSet Window.  This window shows the
+   adapter's I/O address, interrupt and Ethernet address.
+   
+   Note: The adapter's interrupt is set by the computer's BIOS.  If you
+         have to change the interrupt, some computers allow you to change
+         this setting, and some don't. Check your computer's
+         documentation for details. PROSet will inform you of any
+         problems with the current setting.
+
+4  Click Test to begin diagnostics.
+
+
+Advanced Configuration Parameters
+---------------------------------
+
+The defaults work correctly for most configurations. Please use caution
+when changing these parameters.  To make a change, follow the steps
+listed below.
+
+Note: Be sure to use PROSet to configure these settings rather than the
+      Advanced Configuration tab under Properties. Since this driver also
+      supports all 82557-based adapters, some parameters have different
+      values depending on which adapter is installed.  PROSet will
+      display the proper values for the adapter you are configuring.  The
+      Properties screen may not.
+
+1  Double-click on the PROSet icon located in the Control Panel.
+
+2  Click on Change button.
+
+3  If you need to make changes to Speed and/or you are using a full
+   duplex hub, change these options on the Basic Settings menu.
+
+4  Click on Advanced.
+
+5  For the highlighted Property on the left, the Value is displayed on
+   the right.
+
+Duplex Mode - Default Setting: Auto Duplex Detect
+   
+   A performance option that lets you choose how the adapter sends and
+   receives packets over the network. A regular adapter can perform only
+   one operation at a time (half-duplexing). The PRO/100+ adapter has the
+   ability to send and receive packets at the same time (full-duplexing).
+   In order to reap the benefits of full duplexing, you MUST have a full
+   duplex hub.
+
+         EtherExpress PRO/100+ TX adapter: Supports auto-negotiate, full
+         and half duplex at 10 or 100 Mbps.
+
+         EtherExpress PRO/100B T4 adapter: Supports full and half duplex
+         at 10 Mbps; supports only half duplex at 100 Mbps.  Auto-
+         negotiate is not a valid option at either speed.
+   
+   Auto Duplex: The adapter negotiates with the hub how to send/receive
+      packets, either full or half duplex.  You must use a hub that
+      supports Auto-negotiation (also known as Nway)
+   
+   Full Duplex: The adapter sends and receives packets at the same time.
+      This improves the performance of your adapter. Set duplex mode to
+      full duplex ONLY if you have a full duplex hub.
+   
+   Half Duplex: The adapter performs one operation at a time. It either
+      sends or receives.
+
+Note: If you select Full duplex you must manually set the Speed parameter
+      to 100. Do not leave speed set to auto-detect.
+
+The PRO/100 adapter has the added ability to "talk" to the hub and
+determine at which mode to communicate (either full or half duplex). This
+is called auto-negotiation. You must have an auto-negotiating hub (an
+NWay* hub) to get full duplex support with the Duplex mode set to Auto
+Duplex Detect. If you don't have an auto-negotiating hub, set Duplex mode
+to Full Duplex and if you are operating at 100Mbs, you must set the Speed
+parameter to 100.  Auto-speed detect will not work at 100mb.
+
+Coalesce Buffers - Recommended setting:  8
+   
+   Number of memory buffers available to the driver in case the driver
+   runs out of available Map Registers. This packet area is also used
+   when a packet consists of many fragments.
+
+Map Registers - Recommended Setting: 64
+   
+   Map registers are system resources used in physical to virtual address
+   conversion with bus mastering cards. The Map Registers parameter
+   specifies how many registers should be allocated to the driver.
+
+Receive Buffers - Recommended setting:  16
+   
+   Specifies the number of buffers used by the driver when copying data
+   to the protocol memory.
+
+Transmit Control Blocks - Recommended setting:  16
+   
+   Specifies how many transmit control buffers the driver allocates for
+   adapter use.  This directly corresponds to how many outstanding
+   packets the driver can have in its "send" queue.
+
+Speed - Default setting:  Auto Detect
+   
+   This parameter lets the EtherExpress PRO/100+ adapter know what speed
+   to use on the Ethernet wire.  The choices are 10 Mbps, 100 Mbps, and
+   Auto Detect.  In Auto Detect mode, the adapter detects if its
+   environment can support 100 Mbps speed. It then sets the speed to 100
+   if it can, or 10 if it can't. If you are using a crossover cable
+   connected to another adapter, set the speed to either 10 Mbps or 100
+   Mbps.
+
+Alternatives for adding network cards to Windows 95
+---------------------------------------------------
+
+Windows 95 automatically detects Plug and Play devices when they are
+added to the system, and either loads drivers for the new device, or
+prompts the user for the location of the drivers.  However, this feature
+does not work the same on all computers and with all cards.
+
+This text provides alternatives for adding drivers for newly installed
+hardware. One of these should work in cases where the general
+instructions above don't work.
+
+Some of these methods arrive at the same dialog boxes, but yield
+different results because of the path taken.
+
+
+Control Panel ... SYSTEM (Recommended Method)
+--------------------------------------------
+    
+    1   Double-click My Computer.
+    2   Double-click Control Panel.
+    3   Double-click System.
+    4   Click the Device Manager tab.
+    5   Double-click Other Devices (question mark icon).
+    6   Double-click PCI Ethernet Controller.
+    7   Click the Driver tab.
+    8   Click Change Driver.
+    9   Select Network Adapters and click OK.
+    10  Click Have Disk, insert the Intel Configuration and Drivers disk
+        in the appropriate drive, and click OK.
+   
+   If you get into Device Manager and do not have an Other Devices icons
+   in the device list, Windows 95 did not detect your card at all.  This
+   condition indicates a problem with the adapter itself, or with the
+   system BIOS, rather than a Windows 95 Plug and Play problem.
+
+
+Control Panel ... Add New Hardware
+----------------------------------
+    
+    1   Double-click My Computer.
+    2   Double-click Control Panel.
+    3   Double-click Add New Hardware.
+    4   Click Next.
+    5   Select the No option and click Next.
+    6   Select Network Adapters and click Next.
+    7   Click Have Disk, insert the Intel Configuration and Drivers disk
+        in the appropriate drive, and click OK.
+    8   Select the Intel 82557-based adapter and click OK.
+    9   Click Next and click Finish.
+
+
+
+Hints and Tips
+--------------
+
+1. Multiple Adapters in Windows 95:
+   
+   If you have multiple Intel PRO adapters installed in the system, be
+   sure to install and run PROSet. It will automatically detect that you
+   have multiple adapters and update the EID (Ethernet ID) field, which
+   is required by Windows 95 for card identification.
+   
+   Background: If multiple network adapters are installed in a Windows 95
+   system, each card must be identified by the last 8 digits of the
+   Ethernet address.  However, Windows 95 requires decimal numbers which
+   makes it necessary to perform a hex to decimal conversion.  For
+   example, an adapter with the Ethernet address of 00AA00123456 would
+   require putting 1193046 as the Ethernet ID value (00123456 converted
+   to decimal is 1193046). Windows calculator, in scientific mode, is a
+   tool you can use for the conversion if you need to do the conversion
+   manually.
+
+2. Windows 95 Push Installation:
+   
+   Intel has created some support files and readme information in an
+   archive name 100PPUSH.EXE to help with Windows 95 push installations
+   using the PRO/100+ adapter. Download 100PPUSH.EXE by visiting the web
+   at support.intel.com or dialing the Intel BBS at 503-264-7999.
+
+3. Using NDIS 2 driver and Full Duplex:
+   
+   Installing the NDIS 2 driver through Windows 95 does not properly set
+   the driver to Full Duplex.  In order for you to use Full Duplex with
+   E100B.DOS, you must edit the PROTOCOL.INI file in the Windows 95
+   directory to include:
+   
+   [E100B_NIF]
+   Drivername = E100B$
+   FORCEDUPLEX = 2
+
+4. Moving adapters to different slots:
+   
+   When removing a PCI adapter and placing it in a different slot,
+   Windows 95 retains the old instance of the driver and adds a new one
+   for the new slot/card combination.  This behavior is common to any
+   adapter. The driver stops functioning when the number of accumulated
+   old drivers reaches 2 (for a total of 3 installed drivers, including
+   the current driver).  The workaround is to remove the old driver
+   before changing slots, or to run PROSet and allow it to associate the
+   card with the appropriate instance of the driver.
+
+5. Swapping 82557-based adapters in the same slot.
+
+   In order for Windows 95 to properly recognize a different 82557-based
+   adapter in the same slot, the EID must be updated.  This update can be
+   achieved in a few different ways. Perform one of the following items
+   for the update to happen.
+   
+   -  The easiest method is to run PROSet after swapping the adapters.
+   
+   -  Or, remove the adapter by performing a Remove Device in the Device
+      Manager or Remove Adapter in Network Control Panel. Then, shut down
+      the computer and install the other 82557-based adapter.
+   
+   -  Or, shut down the computer, remove the adapter, turn on the
+      computer and start Windows 95 without any adapter. At this point,
+      Windows 95 detects that the adapter was removed and deletes the
+      obsolete registry entries.  Shut down the computer, install the
+      adapter, start Windows 95, and perform a regular adapter
+      installation.
+
+
+
+*  Third-party trademarks are the property of their respective owners.
+
+
+

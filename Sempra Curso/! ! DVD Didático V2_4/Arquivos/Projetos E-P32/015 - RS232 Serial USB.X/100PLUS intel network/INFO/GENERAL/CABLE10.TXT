@@ -1,0 +1,187 @@
+   10 Mbps cabling specifications
+                                                       v1.06
+
+
+10 Mbps cabling specifications for the Intel
+EtherExpress(TM) PRO/100+ TX PCI adapter
+
+
+
+
+Specifications and recommendations for 10 Mbps cabling
+======================================================
+
+NOTE: For 100 Mbps operation, refer to the 100 Mbps cabling
+specifications help file.
+
+
+Twisted-Pair Ethernet (TPE) cabling
+===================================
+
+The EtherExpress PRO adapters have a snap-in RJ-45 connector
+for use with TPE cabling. TPE cabling is also known as RJ-45
+cabling, Unshielded Twisted Pair (UTP), and 10BASE-T
+cabling.
+
+For more information on the 10BASE-T specification, contact
+your local network supplier or call the IEEE at 800-678-
+IEEE.
+
+
+Recommended cables
+------------------
+
+The RJ45 connector can use 22, 24, or 26-gauge UTP cabling.
+The cable must comply with the IEEE 802.3 10BASE-T standard
+for Category 3, 4, or 5.
+
+The cable between the computer and the hub must be less than
+100 meters long. Contact your cable vendor for a high-
+quality cable.
+
+Silver Satin is not within the 10BASE-T specification and
+may not work or may work intermittently.
+
+82557-based PCI adapters don't support pre-10BASE-T
+concentrators.
+
+
+Cable and connector pinouts
+---------------------------
+
+If you need to repair a cable or provide connectors for UTP
+cable, wire straight through as shown in the following
+table.
+
+
+Function     Pin#               Pin#
+------------------------------------
+    TX+       1    <-------->    1
+    TX-       2    <-------->    2
+    RX+       3    <-------->    3
+    RX-       6    <-------->    6
+
+
+
+Use only four of the eight pins. Pins 1 and 2 must be a
+pair, and pins 3 and 6 must be a pair.
+
+To allow for a straight-through cable, hubs provide an
+internal transmit/receive crossover function. This means the
+transmit circuit of the network card is connected to the
+receive circuit of the hub and vice versa.
+
+
+Pinout for the RJ45 connector
+-----------------------------
+   ----------              -------------------------
+1 |--        |          8 |------------             |
+2 |--        |          7 |------------             |
+3 |--         ---       6 |------------             |
+4 |--            |      5 |------------             |
+5 |--            |      4 |------------             |
+6 |--         ---       3 |------------             |
+7 |--        |          2 |------------             |
+8 |--        |          1 |------------             |
+   ----------              -------------------------
+END                           TOP
+
+
+Pin name and function:
+1  Transmit Data Plus. The positive signal for the TD
+   differential pair. This signal contains the serial output
+   data stream transmitted onto the network.
+2  Transmit Data Minus. The negative signal for the TD
+   differential pair. This contains the same output as pin
+   1.
+3  Receive Data Plus. The positive signal for the RD
+   differential pair. This signal contains the serial input
+   data stream received from the network.
+4  Not used.
+5  Not used.
+6  Receive data minus. The negative signal for the RD
+   differential pair. This signal contains the same input as
+   pin 3.
+7  Not used.
+8  Not used.
+
+
+Connecting two workstations without a hub
+-----------------------------------------
+
+10BASE-T uses a star topology. This means a hub or
+concentrator is in the center of a star, and each
+workstation or server is connected to this hub.
+
+For test purposes, you can directly connect two workstations
+or a workstation and a server without using a hub. This
+setup requires a special cable incorporating the crossover
+function described earlier in this document.
+
+
+Function  Pin#              Pin#      Function
+----------------------------------------------
+TX+        1    <-------->   3        RX+
+TX-        2    <-------->   6        RX-
+RX+        3    <-------->   1        TX+
+RX-        6    <-------->   2        TX-
+
+NOTE: This is not an IEEE-supported configuration and should
+be used for test purposes only.
+
+
+Link integrity
+==============
+
+There are two or three LEDs on Intel PRO adapters:
+
+1. A LNK light for link
+
+2. An ACT light for activity
+
+3. 100 Mbps models also have a 100 light
+
+Refer to your adapter Installation Guide or the "Diagnostic
+LEDs" Readme file for complete information.
+
+NOTE: The ACT LED indicates read/write activity on the
+network, not necessarily activity on the adapter.
+
+
+Common problems
+===============
+
+
+A hub can't detect a workstation
+--------------------------------
+
+This is often the result of a crossed wire in the cable or
+wiring closet.
+
+Make sure the wiring is correct.
+
+
+Workstations can't connect to the network
+-----------------------------------------
+
+Reset or power off/on your concentrator or hub.
+
+
+Polarity problems
+-----------------
+
+A common problem in 10BASE-T wiring is crossing the positive
+and negative phases of the transmit and receive signals (for
+example, crossing pins 1 (TX+) and 2 (TX-)).
+
+EtherExpress PRO adapters automatically detect this problem
+and adjust for it internally. However, it's best to check
+your wiring and correct this problem if you find it.
+
+
+
+
+
+
+*  Third-party trademarks are the property of their
+   respective owners.

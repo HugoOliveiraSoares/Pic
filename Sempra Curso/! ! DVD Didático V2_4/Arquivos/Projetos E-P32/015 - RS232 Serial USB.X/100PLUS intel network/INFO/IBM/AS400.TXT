@@ -1,0 +1,136 @@
+   4 Using IBM LAN Support for AS/400 and NetWare
+                                                                    v1.02
+
+Installing and configuring Intel EtherExpress PRO/100+ PCI LAN Adapters
+using IBM LAN support for AS/400 and NetWare*.
+=======================================================================
+
+Location of Driver:  \NDIS\E100B.DOS (for LANSUP)
+Location of Driver:  \DOS\E100BODI.COM (for ODINSUP)
+
+
+(Sample configuration files are included below.)
+
+
+General instructions
+--------------------
+
+There are two ways to connect the EtherExpress PRO/100+ PCI adapter
+simultaneously to an IBM AS/400 (or other host based on DLC protocol) and
+a Novell server:
+
+- Using LANSUP.COM (NDIS-based) or
+- Using ODINSUP.COM (ODI-based)
+
+LANSUP.COM and ODINSUP.COM are Novell drivers included in VLMUPx.EXE
+(where x is the number of the latest version). The files are available on
+WWW (http://netwire.novell.com/).
+
+
+Sample CONFIG.SYS file for LANSUP
+---------------------------------
+
+DEVICE = \LANMAN\PROTMAN.DOS    (version 1.1 or later )
+DEVICE = \LANMAN\E100B.DOS      (version 1.34 or later)
+DEVICE = \LANMAN\DXMA0MOD.SYS   (version 1.35 or later)
+DEVICE = \LANMAN\DXME0MOD.SYS   (version 1.35 or later)
+DEVICE = C:\PCS\EIMPCS.SYS
+DEVICE = C:\PCS\ECYDDX.SYS
+
+
+Sample AUTOEXEC.BAT file for LANSUP
+-----------------------------------
+
+CD\LANMAN
+NETBIND                         (version 1.1 or later )
+LSL                             (version 2.11 or later)
+LANSUP                          (version 1.27 or later)
+IPXODI                          (version 2.20 or later)
+NETX or VLM                     (version 3.32 or later of
+                                 NETX.EXE, or version 1.20
+                                 or later of VLM.EXE)
+F:
+LOGIN
+C:\PCS\STARTPCS
+
+
+Sample PROTOCOL.INI file for LANSUP
+-----------------------------------
+
+[PROTOCOL MANAGER]
+   DRIVERNAME = PROTMAN$
+
+[ETHERNET]
+   DRIVERNAME = DXME0$
+   BINDINGS = E100B
+
+[E100B]
+   DRIVERNAME = E100B$
+
+
+Sample NET.CFG file for LANSUP
+------------------------------
+
+Link Driver LANSUP
+   Max Frame Size = 1490
+
+NetWare DOS Requester
+   First Network Drive = F
+
+
+Sample CONFIG.SYS file for ODINSUP
+----------------------------------
+
+DEVICE = \LANMAN\PROTMAN.DOS /I:C:\LAMAN   (version 1.1 or later)
+DEVICE = \LANMAN\DXMA0MOD.SYS              (version 1.35 or later)
+DEVICE = \LANMAN\DXME0MOD.SYS              (version 1.35 or later)
+DEVICE = C:\PCS\EIMPCS.SYS
+DEVICE = C:\PCS\ECYDDX.SYS
+
+
+Sample AUTOEXEC.BAT file for ODINSUP
+------------------------------------
+
+CD\LANMAN
+LSL                                       (version 2.11 or later)
+E100BODI                                  (version 1.25 or later)
+ODINSUP                                   (version 2.00 or later)
+NETBIND                                   (version 1.1 or later)
+IPXODI                                    (version 2.20 or later)
+NETX or VLM                    (version 3.32 or later of NETX.EXE;
+                                version 1.20 or later of VLM.EXE)
+F:
+LOGIN
+C:\PCS\STARTPCS
+
+
+Sample PROTOCOL.INI file for ODINSUP
+------------------------------------
+
+[PROTOCOL MANAGER]
+   DRIVERNAME = PROTMAN$
+
+[ETHERNET]
+   DRIVERNAME = DXME0$
+   BINDINGS = E100BODI
+
+[E100BODI]
+   DRIVERNAME = E100BODI$
+
+
+Sample NET.CFG (C:\LANMAN\NET.CFG) file for ODINSUP
+---------------------------------------------------
+
+Link Driver E100BODI
+   Frame ethernet_802.2
+   Frame ethernet_II
+   Frame ethernet_802.2
+   Frame ethernet_snap
+
+Protocol ODINSUP
+   Bind  E100BODI
+
+NetWare DOS Requester
+   First Network Drive = F
+
+*  Third-party trademarks are the property of their respective owners.

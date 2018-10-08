@@ -1,0 +1,17 @@
+; OEMSETUP.INF for Lan Server 4.0 DOS client
+; Version 3.01
+
+[disks]
+1 = \ndis, "Intel EtherExpress PRO Adapter Driver Disk", E100B_1
+
+[netcard]
+intel$e100b="Intel EtherExpress PRO Adapter",0,ndis,ethernet,real,intel$e100b,intel$e100b_nif
+
+[intel$e100b]
+devdir=1:e100b.dos
+device=e100b.dos,@devdir\e100b.dos
+
+[intel$e100b_nif]
+Drivername=E100B$
+param=Speed,"Line Speed (Mbits/sec)",text,"Auto-Speed,10,100","Auto-Speed",0x3c
+param=ForceDuplex,"Force Duplex Mode",text,"Auto,1,2","Auto",0x3c

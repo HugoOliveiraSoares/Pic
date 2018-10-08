@@ -1,0 +1,7 @@
+build/default/production/Contador_main.o : \
+	E:/Axoon\ Med\ -\ PIC\ Minas/Desenvolvimento/DVD\ Didático\ -\ Software\ e\ Firmware/DVD\ V2.2/Software/Arquivos/Projetos/Contador\ de\ Cliques.X/Contador_main.c \
+	E:/Axoon\ Med\ -\ PIC\ Minas/Desenvolvimento/DVD\ Didático\ -\ Software\ e\ Firmware/DVD\ V2.2/Software/Arquivos/Projetos/Contador\ de\ Cliques.X/display7seg.h \
+	C:/mplabc18/v3.37/h/delays.h \
+	C:/mplabc18/v3.37/h/p18cxxx.h \
+	C:/mplabc18/v3.37/h/p18f4550.h \
+

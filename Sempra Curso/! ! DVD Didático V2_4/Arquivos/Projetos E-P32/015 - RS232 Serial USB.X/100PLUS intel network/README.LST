@@ -1,0 +1,40 @@
+Installing EtherExpress(TM) PRO/100+ adapter drivers
+   Novell network drivers      
+      INFO\NETWARE\NW41.TXT
+      INFO\NETWARE\NW312.TXT
+      INFO\NETWARE\NW311.TXT
+      INFO\NETWARE\NWAFT.TXT
+      INFO\NETWARE\NWODIDOS.TXT
+      INFO\NETWARE\NWCLNT32.TXT
+      INFO\NETWARE\NWNTREQ.TXT
+      INFO\NETWARE\NWODIOS2.TXT
+      INFO\NETWARE\NWPARAM.TXT
+   Microsoft network drivers 
+      INFO\MS\MSNT351.TXT
+      INFO\MS\MSNT40.TXT     
+      INFO\MS\MSAFT.TXT
+      INFO\MS\MSWIN95.TXT
+      INFO\MS\MSWFW311.TXT
+      INFO\MS\MSLANMGR.TXT
+   IBM, Banyan, LANtastic and other network drivers   
+      INFO\OTHER\LANTAS60.TXT
+      INFO\OTHER\BANYAN.TXT
+      INFO\OTHER\NDIS.TXT
+      INFO\IBM\AS400.TXT
+      INFO\IBM\LANSERV.TXT
+      INFO\UNIX\UNIXINFO.TXT
+Latest news and general adapter information
+   INFO\GENERAL\RELNOTES.TXT
+   FILES.TXT
+   INFO\GENERAL\TECHSUP.TXT
+Hardware specifications and cabling information               
+   INFO\GENERAL\HWSPECS.TXT
+   INFO\GENERAL\CABLE10.TXT
+   INFO\GENERAL\CABLE100.TXT
+Adapter installation and special configurations                 
+   INFO\GENERAL\AFT.TXT
+   INFO\GENERAL\PCI.TXT
+   INFO\GENERAL\DUPLEX.TXT
+Running diagnotics and error messages
+   INFO\GENERAL\DIAG.TXT
+   INFO\GENERAL\DIAGLED.TXT

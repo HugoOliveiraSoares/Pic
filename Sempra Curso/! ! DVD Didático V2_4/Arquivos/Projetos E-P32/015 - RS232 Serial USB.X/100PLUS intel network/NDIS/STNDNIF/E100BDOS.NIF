@@ -1,0 +1,4 @@
+    Model = Intel EtherExpress PRO Adapter
+    Path  = ETHERNET\E100B
+    DeviceDriver = E100B.DOS
+    Type  = NDIS

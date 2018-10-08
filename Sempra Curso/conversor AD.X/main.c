@@ -1,0 +1,95 @@
+/** I N C L U D E S **********************************************************/
+#include <p18cxxx.h>	// Necessário para que o compilador adicione a biblioteca
+			// com as definições do PIC selecionado no projeto, neste
+			// caso, o modelo 18F4550.
+
+#include <adc.h>	// Biblioteca C18 com funções para Conversor AD
+#include "displayLCD.h"	// Biblioteca com funções para o Display LCD
+
+#define RESOLUCAO (5.0/1023.0) // Resolução do CAD de 10bits = 5V/(2^10-1)
+
+void ConfiguraSistema(void);
+
+void main(void)
+{
+	int resultadoBin = 0;	  // Guarda o valor da conversão AD em BINÁRIO.
+	float resultadoVolts = 0; // Guarda o valor da conversão AD em VOLTS.
+	float resolucao = RESOLUCAO; // Guarda o valor da resolução do conversor AD.
+		
+	ConfiguraSistema(); //Função que faz configurações do firmware
+		
+	//Escreve msg inicial no LCD
+	PosicaoCursorLCD(1,1);
+	EscreveFraseRomLCD("Conversor AD Pot");
+	
+	SelChanConvADC(ADC_CH4); // Inicia a primeira medida
+	
+	while(1)
+	{
+		// Verifica se o CAD terminou uma conversão
+		if( !BusyADC() ) 
+		{
+			resultadoBin = ReadADC(); // Guarda o resultado da conversão
+			ConvertADC();//Inicia a nova medida
+		}
+		//Escreve no LCD, valor em Decimal
+		PosicaoCursorLCD(2,1);
+		EscreveInteiroLCD(resultadoBin);
+		EscreveFraseRomLCD(" : ");
+
+		// Converte a medida  para o valor em volts
+		resultadoVolts = (resultadoBin * resolucao);			
+	
+		//Escreve no LCD, valor em Volts
+		EscreveFloatLCD(resultadoVolts,2);
+		EscreveFraseRomLCD("V   ");
+	}//end while(1)
+}//end main
+
+
+/******************************************************************************
+ * Funcao:		void ConfiguraSistema(void)
+ * Entrada:		Nenhuma (void)
+ * Saída:		Nenhuma (void)
+ * Descrição:	ConfiguraSistema é a rotina de configuração principal do PIC.
+ *		Seu objetivo é configurar as portas de I/O e os periféricos
+ *		do microcontrolador para que os mesmos trabalhem da maneira
+ *		desejada no projeto.
+ *****************************************************************************/
+void ConfiguraSistema(void)
+{
+	ADCON1 = ADCON1 | 0x0f; // Desabilita pinos analógicos
+	ConfiguraLCD(); // Configura o Diaplay LCD
+	// Configura o Conversor Analogico Digital (CAD)
+	OpenADC(
+		  //Parâmetro Config
+		  ADC_FOSC_64		&	//Clock do AD como FOSC/64
+		  ADC_RIGHT_JUST	&	//Justificando a direita
+		  ADC_2_TAD,			//Tempo de aquisição de 2 TAD
+		  //Parâmetro Config2
+		  ADC_CH4		&	//Canal 4
+		  ADC_INT_OFF   	&	//Não utiliza interrupção
+		  ADC_REF_VDD_VSS,              //Tensoes de referencia
+		  //Parâmetro PortConfig
+		  ADC_5ANA );			//Habilita 5 Portas analógicas (AN0 - AN4)
+}//end ConfiguraSistema
+
+
+/** V E C T O R   R E M A P P I N G ******************************************/
+// Rotina necessária para o compilador C18 saber onde é o início do vetor de
+// "reset".
+// ATENÇÃO: Copiar esta parte do código dentro do arquivo "main.c" dos
+// projetos usados com o Bootloader USB-HID para gravação in-circuit.
+
+extern void _startup (void);        // See c018i.c in your C18 compiler dir
+#pragma code REMAPPED_RESET_VECTOR = 0x1000
+void _reset (void)
+{
+	_asm goto _startup _endasm
+}
+#pragma code	// Diretiva que retorna a alocação dos endereços 
+				// da memória de programa para seus valores padrão
+
+/** F I M  D A  S E Ç Ã O  D E   V E C T O R   R E M A P P I N G *************/
+
+/** FIM DO ARQUIVO main.c ***************************************************************/

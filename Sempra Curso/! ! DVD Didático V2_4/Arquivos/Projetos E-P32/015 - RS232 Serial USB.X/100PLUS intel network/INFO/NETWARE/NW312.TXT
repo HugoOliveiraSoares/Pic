@@ -1,0 +1,154 @@
+   2 Server: NetWare 3.12 & 4.10 servers
+                                                                    v1.07
+
+
+NetWare* 3.12 and 4.10 Server Driver Installation Notes for Intel's
+EtherExpress(TM) PRO/100+ adapter
+===================================================================
+
+Location of driver: \NWSERVER\E100B.LAN (ODI Assembly Specification
+            version 3.3)
+
+Location of NLMs:   Novell's automated services (LANDR9.EXE or greater)
+      
+      NOTE: LANDRx.EXE is a Novell archive that contains the latest
+            server NLMs and support files. The x in LANDRx.EXE is subject
+            to change with each new release of the archive.
+
+These instructions are for use with the ODI Assembly Specification v3.30
+NLMs. The \NWSERVER\E100B.LAN driver on this disk is written to this
+specification. To load the driver on NetWare 4.10 or 3.12 requires
+updated ETHERTSM, MSM and the new NBI.NLM. Obtain these files from
+Novell's automated services.
+
+   For NetWare 4.10:
+   NBI.NLM             (ver 1.49, 08/30/96 or newer)
+   MSM.NLM             (ver 3.18, 08/22/96 or newer)
+   ETHERTSM.NLM        (ver 3.11, 07/03/96 or newer)
+
+   For NetWare 3.12:
+   NBI31X.NLM          (ver 1.49, 08/30/96 or newer)
+   MSM31X.NLM          (ver 3.18, 08/22/96 or newer)
+   ETHERTSM.NLM        (ver 3.11, 07/03/96 or newer)
+
+Note: NBI.NLM (or NBI31X.NLM) must be loaded before MSM and ETHERTSM.
+      NetWare 3.12 needs MSM31X.NLM renamed to MSM.NLM.
+
+
+
+Sample load commands
+====================
+   
+   LOAD C:<PATH>\E100B SLOT=n FRAME=ETHERNET_802.2
+   BIND IPX TO E100B NET=xxxxxxxx
+
+
+General Instructions
+====================
+
+1  Install NetWare 3.12 or 4.10 according to the NetWare instructions.
+
+2  Copy the PRO/100+ server driver (\NWSERVER\E100B.LAN) and any updated
+   NLMs, to the NetWare server's hard drive.
+
+   If you can't log in to the server (before starting the server) copy
+   the E100B.LAN driver from the \NWSERVER directory on the Intel
+   Configuration and Drivers disk to the root directory of the server's
+   hard drive.
+
+   If you can log into the server, copy the driver to the SYSTEM
+   subdirectory. If you do this, you won't need to specify a path on the
+   load line. If you copy it to another directory, make sure the LOAD
+   statement includes the correct path.
+
+3  Start the server. At the server console, load NBI, MSM and ETHERTSM
+   (for NetWare 3.12 load NBI31X, MSM31X and ETHERTSM) in this order.
+   Next, load and bind the server driver as follows:
+      
+      LOAD C:<PATH>\E100B SLOT=x FRAME=ETHERNET_802.2
+      BIND IPX TO E100B NET=xxxxxxxx
+
+   Where:
+
+   SLOT=x  Specifies the NBI (NetWare Bus Interface) slot number.
+   Substitute x with the valid value for the adapter.  You will be
+   prompted with the slot number(s) of installed PRO/100+ adapters.  The
+   NBI numbers are different from the slot number indicated in the Intel
+   SETUP.EXE utility.
+
+
+
+   NET=xxxxxxxx is the unique network address for that LAN segment.
+
+   The default frame type is 802.2.  If your workstation needs to use the
+   802.3 frame type, see the section later in this document about using
+   multiple frame types on one adapter.
+
+4  Add the load and bind statements you need to the server's AUTOEXEC.NCF
+   file so the EtherExpress PRO/100+ adapter driver loads automatically
+   each time the server starts.
+
+
+Hints and tips
+==============
+
+
+1  If the error message MSGetPhysical is encountered:
+
+   Upgrade the ETHERTSM.NLM and MSM31x.NLM and be sure to rename
+   MSM31x.NLM to MSM.NLM
+
+
+2  Installing multiple adapters:
+
+   If you have multiple adapters in a single server, each adapter must
+   have a different NET number and SLOT number. Also, you may want to
+   name each adapter. For example:
+      
+      LOAD C:\E100B SLOT=3 NAME=LAN_A
+      BIND IPX TO LAN_A NET=222
+      LOAD C:\E100B SLOT=4 NAME=LAN_B
+      BIND IPX TO LAN_B NET=333
+
+3  If you have problems loading the driver on multiple adapters and the
+   initialization fails due to "Insufficient RCBs," increase the number
+   of buffers allocated to the server. Add the following to STARTUP.NCF:
+      
+      SET MINIMUM PACKET RECEIVE BUFFERS = 100 (or larger)
+      SET MAXIMUM PACKET RECEIVE BUFFERS = 500 (or larger)
+
+   The MINIMUM value you specify must be at least 30 times the number of
+   EtherExpress PRO/100+ adapters in the computer.
+
+   Recommended settings:
+      
+      1-3 adapters:  100
+      4 adapters:    150
+
+   The MAXIMUM you can specify depends on the amount of memory in the
+   server, but it must be greater than the MINIMUM.
+
+
+4  Installing one adapter with multiple frame types:
+
+   When binding multiple frame types to one adapter, enter a LOAD and
+   BIND statement for each frame type. Each LOAD statement uses the same
+   SLOT number, but each BIND statement needs a unique network number.
+   You must also include a name on each load line to avoid being prompted
+   for the adapter to bind IPX to.
+      
+      Example:
+      
+      LOAD C:\E100B SLOT=3 FRAME=ETHERNET_802.3 NAME=LAN8023
+      BIND IPX TO LAN8023 NET=77777
+      LOAD C:\E100B SLOT=3 FRAME=ETHERNET_802.2 NAME=LAN8022
+      BIND IPX TO LAN8022 NET=88888
+
+
+5  Optional LOAD line parameters.
+        See readme NWPARAM.TXT titled NetWare Server Parameters for
+        additional information.
+
+
+
+*  Third-party trademarks are the property of their respective owners.

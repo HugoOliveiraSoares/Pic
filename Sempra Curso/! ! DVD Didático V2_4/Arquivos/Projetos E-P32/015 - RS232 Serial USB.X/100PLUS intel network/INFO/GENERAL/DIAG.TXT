@@ -1,0 +1,227 @@
+   Adapter diagnostics
+                                                       v1.05
+
+
+Running diagnostics on Intel EtherExpress(TM) PRO/100+ TX
+adapters
+============================================================
+
+Intel's diagnostic software lets you test the adapter to see
+if there are any problems with the adapter hardware, the
+cabling, or the network.
+
+It's a good idea to run diagnostics every time you install
+an adapter.
+
+You can also use diagnostics to isolate problems during
+troubleshooting.
+
+
+DOS and Windows* 3.1 users
+==========================
+
+NOTE: If you want to test the adapter with a responder on
+the network, skip to the procedure after step 5.
+
+1  Restart your computer without loading any EtherExpress
+   PRO/100+ adapter network drivers.
+   
+   NOTE: If network drivers are installed, you must first
+   unload or disable them or reboot your computer without
+   loading them.
+
+2  Disconnect the network cable from the adapter under test.
+   (Leaving the cable connected will cause the test to
+   fail.)
+
+3  Insert the Intel Configuration and Drivers disk into a
+   drive, switch to that drive, and at the DOS prompt, type
+   SETUP <Enter>
+
+4  From the Board Menu, select the adapter you want to test.
+   (If you have only one adapter installed, the Board Menu
+   doesn't appear.)
+
+5  From the Main Menu, select Test Adapter. Then select Test
+   Adapter again. The program runs a series of tests that
+   make sure the adapter is functioning properly.
+
+6  Repeat steps 2 - 5 for each adapter installed in the
+   computer.
+
+
+To test the adapter with a responder on the network
+---------------------------------------------------
+
+1  Go to a computer on the same network segment with an
+   EtherExpress 16 ISA, Flash32, EtherExpress PRO, PRO/100+,
+   PRO/100 PCI, PRO/100B PCI, or PRO/10+ PCI adapter
+   installed.
+   
+   NOTE: if you disconnected the network cable from a
+   PRO/100+ TX PCI adapter in the preceding test, reconnect
+   it now.
+
+2  If this computer already has EtherExpress adapter network
+   drivers installed, restart the computer without loading
+   them. For example, if the drivers are loaded from the
+   AUTOEXEC.BAT file, add REM in front of each line that
+   loads a driver. Or, boot from a DOS disk.
+
+3  Run the diagnostics program for the adapter that's
+   installed in the computer (such as SoftSet, SETUP, or
+   PROSet).
+
+4  From the Main menu, select the command for testing the
+   adapter, then select Set up as diagnostics responder.
+
+5  Return to the computer you want to test. Run SETUP,
+   choose Test adapter, and then choose Continuous Network
+   test.
+
+
+Windows NT* users
+=================
+
+If you have not already installed new drivers from the Intel
+Configuration and Drivers disk:
+
+1  Double-click the Network icon in the Control Panel.
+
+2  Click the Add Adapter button.
+
+3  Don't select an Intel adapter from the list.
+   
+   For NT 3.51, scroll to the end of the list (NT 3.51) and
+   select: <Other> Requires disk from manufacturer.
+   
+   For NT 4.0, click Have Disk.
+
+4  Insert the Intel Configuration and Drivers disk into your
+   floppy drive and click OK. In NT 4.0 click Close to
+   complete process.
+   
+   The drivers are copied and the PROSet program launches.
+
+5  Click the Test button.
+   
+   If you've just added the adapter, the network driver
+   won't be active and the diagnostics will test the adapter
+   and its connection to the network.
+   
+   If you're testing an adapter that's already been
+   installed, the network driver will probably be active and
+   the diagnostics will test the driver. This diagnostic
+   tracks the driver's actual network activity.
+   
+   If you have already installed the drivers:
+   
+   1  For NT 3.51: Double-click the Intel PROSet icon in the
+      Control Panel.
+      
+      For NT 4.0: Open the Network Control panel, go to the
+      Adapters tab, select an adapter and click Properties.
+   
+   2  Click Test on the window that appears.
+      
+      If you have more than one adapter, first select the
+      adapter from the displayed list.
+      
+      If you've just added the adapter, the network driver
+      won't be active and the diagnostics will test the
+      adapter and its connection to the network.
+      
+      If you're testing an adapter that's already been
+      installed, the network driver will probably be active
+      and the diagnostics will test the driver. This
+      diagnostic tracks the driver's actual network
+      activity.
+
+
+Windows 95 users
+================
+
+Use PROSet to test the adapter:
+
+1  Double-click the Intel PROSet icon in the Control Panel
+   (if the icon is not present, you may need to install
+   PROSet; see installation instructions below).
+
+2  Click Test on the window that appears.
+   
+   If you have more than one adapter, first select the
+   adapter from the displayed list.
+   
+   When using the Intel PRO adapter setup program, you have
+   two testing options:
+   
+   A. Test the adapter and driver together:
+   
+   The adapter and driver test doesn't require you to unload
+   the NDIS driver.
+   
+   a.  Click Test NDIS.
+   
+   b.  When the test is complete, click OK to exit.
+   
+   
+   
+   B.   Test the adapter hardware:
+   
+   The adapter hardware test unloads the NDIS driver.
+   
+   a.  Click Unload NDIS.
+   
+   b.  After the NDIS driver unloads, click OK to continue.
+   
+   c.  When the test is complete, click OK to exit. PROSet
+      reloads the driver.
+   
+   d.  Restart the computer. You must restart the computer
+      before accessing any network drives.
+
+
+Installing the PROSet adapter diagnostic and configuration
+software
+------------------------------------------------------------
+
+Intel's PROSet software allows you to test the adapter in
+the Windows 95 environment.  It can also resolve some
+Windows 95 issues that may result from changing or updating
+adapter hardware.
+
+1  From the Explorer, double click on the 3.5 floppy disk
+   icon.  The Explore function can be accessed by clicking
+   on the Windows 95 Start button with the right mouse
+   button.
+
+2  Locate the PROSet icon in the root directory of the
+   diskette and click the right mouse button. From the menu
+   that appears, click Install.
+
+3  When the PROSet software has been copied to your
+   computer, go to the control panel and click on the PROSet
+   icon. PROSet examines your computer and displays the
+   PROSet Window. This window shows the adapter's I/O
+   address, interrupt and Ethernet address.
+   
+   NOTE: The adapter's interrupt is set by the computer's
+   BIOS. If you have to change the interrupt, some computers
+   allow you to change this setting, and some don't. Check
+   your computer's documentation for details. PROSet will
+   inform you of any problems with the current setting.
+
+4  Click Test to begin diagnostics.
+
+
+
+
+
+
+
+
+
+
+
+*  Third-party trademarks are the property of their
+   respective owners.

@@ -1,0 +1,41 @@
+   Diagnostic LEDs
+                                                       v1.04
+
+
+Diagnostic LEDs for Intel EtherExpress(TM) PRO/100+ TX PCI
+adapters
+
+LNK:
+----
+   
+   Indicates the adapter is connected to a hub or switch and
+   is receiving link pulses. If the LNK light isn't on,
+   check all connections at the adapter and the hub. Make
+   sure the hub is transmitting at the correct speed and the
+   drivers are loaded.
+   
+   Also, make sure you have the correct wiring configuration
+   for the adapter to the hub connection. Some hubs require
+   a crossover cable rather than a straight-through cable.
+   
+   Note that this LED will be on when running the
+   diagnostics loopback test without a cable attached to the
+   adapter.
+
+
+ACT:
+----
+
+Indicates read/write activity on the network. It doesn't
+always mean there is activity on this adapter. If the ACT
+light isn't on, make sure the hub and network are operating
+and the drivers are loaded.
+
+
+100:
+----
+
+Indicates 100 Mbps when on, and 10 Mbps when off.
+
+Note that 100 LED may stay on if link is broken during
+activity.

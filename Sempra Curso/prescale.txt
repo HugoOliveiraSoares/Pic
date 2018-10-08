@@ -1,0 +1,6 @@
+65535*83,33ns ~= 5,5ms
+
+Prescaler =>  tempo desejado/tempo de overflow sem prescaler
+
+Prescaler => 100ms/5,5ms
+Prescaler =>18,3

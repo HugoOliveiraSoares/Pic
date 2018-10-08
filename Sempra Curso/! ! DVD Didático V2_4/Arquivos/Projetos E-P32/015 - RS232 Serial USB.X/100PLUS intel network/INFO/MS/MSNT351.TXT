@@ -1,0 +1,196 @@
+   1 Windows NT 3.51
+                                                                    v1.03
+
+
+Windows NT* 3.51 installation notes for Intel's EtherExpress(TM) PRO/100+
+LAN Adapter
+=========================================================================
+LOCATION OF DRIVER:    \NT\E100B.SY_ (NDIS 3 compressed)
+                       \OEMSETUP.INF
+
+
+General Instructions
+--------------------
+
+After putting the adapter in the computer, you need to configure it
+under Windows NT.
+
+1  Double-click the Network icon in the Control Panel.
+
+2  Click the Add Adapter button.
+
+3  Do NOT select an Intel adapter from the list. Instead, scroll to the
+   end of the list and select:
+      
+      <Other> Requires disk from manufacturer.
+
+4  Click the Continue button.
+
+5  Insert the Intel Configuration and Drivers Disk into your floppy drive
+   and click OK.
+
+6  Select "Intel EtherExpress PRO/100+ PCI Adapter (TX or T4)" and click
+   OK.
+
+7  The Intel PROSet Setup program automatically scans computer resources
+   and determines the settings assigned to your adapter.  It also adds an
+   Intel PROSet icon to the Control Panel for future use of PROSet.
+
+8  Click the Test button in the Intel PROSet program to run diagnostics.
+
+   If you've just added the adapter, the network driver won't be active
+   and the diagnostics will test the adapter and its connection to the
+   network. If you're testing an adapter that's already been installed,
+   the network driver will probably be active and the diagnostics will
+   test the driver. This diagnostic tracks the driver's actual network
+   activity.
+
+9  Click OK to exit the test screen and return to the Intel PROSet main
+   menu.
+
+10 Click OK to accept the adapter's configuration and exit the PROSet
+   Program.
+
+11 Click OK in the Network Settings dialog.  Other configuration screens
+   may appear.  Configure as desired.  When prompted, restart Windows NT.
+      
+      Note: The NDIS 3 miniport driver will automatically get installed
+            in Windows NT 3.51.
+
+12 Repeat the General Instruction process for installing additional
+   adapters.
+
+
+                                    
+                            ADAPTER SETTINGS
+
+There are two ways to run PROSet, which allows changing the adapter
+settings.
+   
+   -  From the Control Panel double click on the Intel PROSet icon.
+   
+   -  From the Network Settings screen highlight the Intel PRO/100+
+      adapter and click Configure.
+
+   From the main Intel PROSet menu click the Change button to get to the
+   Adapter Settings screen. The defaults work correctly for most
+   configurations.
+
+
+Network Speed
+-------------
+   
+   Recommended setting:  Auto (default)
+
+      This parameter lets the EtherExpress PRO/100+ adapter know what
+      speed to use on the Ethernet wire.  The choices are 10 Mbps, 100
+      Mbps, and Auto.  In Auto mode, the adapter detects if its
+      environment can support 100 Mbps speed. It then sets the speed to
+      100 if it can, or 10 if it can't. If you are using a cross over
+      cable connected to another adapter, set the speed to either 10 Mbps
+      or 100 Mbps.
+      
+      Note: If the Duplex Mode is not set to Auto, then set the speed to
+            either 10 Mbps or 100 Mbps.
+
+
+
+
+DUPLEX MODE (100BASE-T4 does not support full duplex)
+-----------
+   
+   Recommended setting: Auto (PRO/100+ TX adapter only)
+
+         Auto:  The adapter negotiates with the hub how to send/receive
+         packets, either full or half duplex. The PRO/100B T4 adapter
+         does not support auto-negotiating.
+
+         Full duplex:  The adapter sends and receives packets at the same
+         time. This improves the performance of your adapter. Set duplex
+         mode to full duplex only if you have a full duplex switch.
+
+         Half duplex:  The adapter performs one operation at a time. It
+         either sends or receives.
+
+      A regular adapter can perform only one operation at a time (half-
+      duplexing). The PRO/100+ TX adapter has the ability to send and
+      receive packets at the same time (full-duplexing) at both 10 and
+      100 Mbps. The PRO/100T4 adapter only supports full duplex at 10
+      Mbps.  In order to reap the benefits of full duplexing, you MUST
+      have a full duplex hub.
+
+      The PRO/100+ adapter has the added ability to "talk" to the hub and
+      determine at which mode to communicate (either full or half
+      duplex). This is called auto-negotiation. You must have an auto-
+      negotiating switch to get full duplex support with the Duplex Mode
+      set to Auto. If you don't have an auto-negotiating hub and want to
+      run at full duplex, set Duplex Mode to Full and then set the SPEED
+      parameter to either 100 Mbps (PRO/100+ TX) or 10 Mbps (PRO/100+ TX
+      or T4).
+      
+      Note: If you set duplex to Full, and leave Speed at Auto, the
+            adapter will run at 10 Mbps.
+
+
+
+2  Click the Advanced button in the Adapter Settings screen to change the
+   Advanced setting.
+      
+      Note: The defaults work correctly for most configurations. Please
+            use caution when changing these parameters. Use the on-line
+            help for additional information.
+
+
+COALESCE BUFFERS
+----------------
+   
+   Recommended setting:  8
+
+
+RECEIVE BUFFERS
+---------------
+   
+   Recommended setting:  16
+
+
+TRANSMIT CONTROL BLOCKS
+-----------------------
+   
+   Recommended setting:  16
+   
+   
+
+
+ADAPTIVE TRANSMIT THRESHOLD
+---------------------------
+
+Recommended setting:  On
+
+This parameter dynamically optimizes the point at which early transmit
+cycles will be executed.  This results in higher performance but may
+generate an occasional underrun. To eliminate underruns, set it to OFF.
+
+
+ADAPTIVE TECHNOLOGY
+-------------------
+
+Recommended setting:  On
+
+Adaptive Technology customizes the PRO/100+ adapter to the respective
+operating system by downloading microcode to the silicon.  This improves
+performance and minimizes CPU utilization.
+
+
+
+
+MAP REGISTERS
+-------------
+   
+   Recommended settings:
+      PCI:    MapRegisters = 8 (default for NT 3.5)
+      PCI:    MapRegisters = 64 (default for NT 3.51 or later)
+      
+
+
+
+*  Third-party trademarks are the property of their respective owners.

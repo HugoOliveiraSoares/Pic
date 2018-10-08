@@ -1,0 +1,310 @@
+; NET82557.INF
+; Version 1.56
+; $Revision: 25 $
+; Copyright 1997 Intel Corp.
+;
+
+[Version]
+LayoutFile=layout.inf
+Signature="$Windows 95$"
+Class=Net
+Provider=%V_INTEL%
+
+[Manufacturer]
+%V_INTEL%=INTEL
+
+
+;----------------------------------------------------------------------------
+; Device section
+; 
+[INTEL]
+%PCIE100BTX.DeviceDesc%=PCIE100BTX.ndi,PCI\VEN_8086&DEV_1229&SUBSYS_00018086
+%PCIE100BT4.DeviceDesc%=PCIE100BT4.ndi,PCI\VEN_8086&DEV_1229&SUBSYS_00028086
+%PCIE10PPCI.DeviceDesc%=PCIE10PPCI.ndi,PCI\VEN_8086&DEV_1229&SUBSYS_00038086
+%PCIE100RWU.DeviceDesc%=PCIE100RWU.ndi,PCI\VEN_8086&DEV_1229&SUBSYS_00048086
+%I557IFE.DeviceDesc%=I557IFE.ndi,PCI\VEN_8086&DEV_1229&SUBSYS_00058086
+%I557IFEWFM.DeviceDesc%=I557IFEWFM.ndi,PCI\VEN_8086&DEV_1229&SUBSYS_00068086
+%I558IFE.DeviceDesc%=I558IFE.ndi,PCI\VEN_8086&DEV_1229&SUBSYS_00078086
+%I558IFEWFM.DeviceDesc%=I558IFEWFM.ndi,PCI\VEN_8086&DEV_1229&SUBSYS_00088086
+%PCIE100PLUS.DeviceDesc%=PCIE100PLUS.ndi,PCI\VEN_8086&DEV_1229&SUBSYS_00098086
+%PCIE100B.DeviceDesc%=PCIE100B.ndi,PCI\VEN_8086&DEV_1229&REV_01
+%PCIE100B2.DeviceDesc%=PCIE100B2.ndi,PCI\VEN_8086&DEV_1229&REV_02
+
+
+;----------------------------------------------------------------------------
+; Install sections
+; 
+[PCIE100B.ndi]
+CopyFiles=PCIE100B.ndi.copyfiles,PCIE100B.inf.copyfiles
+AddReg=PCIE100B.ndi.reg,E100B.ndi.reg,E100B_100.ndi.reg,E100B_GENERIC.ndi.reg
+
+[PCIE100B2.ndi]
+CopyFiles=PCIE100B.inf.copyfiles
+AddReg=PCIE100B2.ndi.reg,E100B.ndi.reg,E100B_100.ndi.reg,E100B_GENERIC.ndi.reg
+
+[PCIE100BTX.ndi]
+CopyFiles=PCIE100B.inf.copyfiles
+AddReg=PCIE100BTX.ndi.reg,E100B.ndi.reg,E100B_100.ndi.reg,E100B_GENERIC.ndi.reg
+
+[PCIE100BT4.ndi]
+CopyFiles=PCIE100B.inf.copyfiles
+AddReg=PCIE100BT4.ndi.reg,E100B.ndi.reg,E100B_100.ndi.reg,E100B_GENERIC.ndi.reg
+
+[PCIE10PPCI.ndi]
+CopyFiles=PCIE100B.inf.copyfiles
+AddReg=PCIE10PPCI.ndi.reg,E100B.ndi.reg,E100B_10.ndi.reg,E100B_GENERIC.ndi.reg
+
+[PCIE100RWU.ndi]
+CopyFiles=PCIE100B.inf.copyfiles
+AddReg=PCIE100RWU.ndi.reg,E100B.ndi.reg,E100B_100.ndi.reg,E100B_GENERIC.ndi.reg
+
+[I557IFE.ndi]
+CopyFiles=PCIE100B.inf.copyfiles
+AddReg=I557IFE.ndi.reg,E100B.ndi.reg,E100B_100.ndi.reg,E100B_GENERIC.ndi.reg
+
+[I557IFEWFM.ndi]
+CopyFiles=PCIE100B.inf.copyfiles
+AddReg=I557IFEWFM.ndi.reg,E100B.ndi.reg,E100B_100.ndi.reg,E100B_GENERIC.ndi.reg
+
+[I558IFE.ndi]
+CopyFiles=PCIE100B.inf.copyfiles
+AddReg=I558IFE.ndi.reg,E100B.ndi.reg,E100B_100.ndi.reg,E100B_GENERIC.ndi.reg
+
+[I558IFEWFM.ndi]
+CopyFiles=PCIE100B.inf.copyfiles
+AddReg=I558IFEWFM.ndi.reg,E100B.ndi.reg,E100B_100.ndi.reg,E100B_GENERIC.ndi.reg
+
+[PCIE100PLUS.ndi]
+CopyFiles=PCIE100B.inf.copyfiles
+AddReg=PCIE100PLUS.ndi.reg,E100B.ndi.reg,E100B_100.ndi.reg,E100B_GENERIC.ndi.reg
+
+
+;----------------------------------------------------------------------------
+; Device registration
+; 
+[PCIE100B.ndi.reg]
+HKR,Ndi,DeviceID,0,"PCI\VEN_8086&DEV_1229"
+HKR,Ndi,NdiInstaller,0,"82557ndi.dll,i82557NdiProc"
+
+[PCIE100B2.ndi.reg]
+HKR,Ndi,DeviceID,0,"PCI\VEN_8086&DEV_1229"
+
+[PCIE100BTX.ndi.reg]
+HKR,Ndi,DeviceID,0,"PCI\VEN_8086&DEV_1229&SUBSYS_00018086"
+
+[PCIE100BT4.ndi.reg]
+HKR,Ndi,DeviceID,0,"PCI\VEN_8086&DEV_1229&SUBSYS_00028086"
+
+[PCIE10PPCI.ndi.reg]
+HKR,Ndi,DeviceID,0,"PCI\VEN_8086&DEV_1229&SUBSYS_00038086"
+
+[PCIE100RWU.ndi.reg]
+HKR,Ndi,DeviceID,0,"PCI\VEN_8086&DEV_1229&SUBSYS_00048086"
+
+[I557IFE.ndi.reg]
+HKR,Ndi,DeviceID,0,"PCI\VEN_8086&DEV_1229&SUBSYS_00058086"
+
+[I557IFEWFM.ndi.reg]
+HKR,Ndi,DeviceID,0,"PCI\VEN_8086&DEV_1229&SUBSYS_00068086"
+
+[I558IFE.ndi.reg]
+HKR,Ndi,DeviceID,0,"PCI\VEN_8086&DEV_1229&SUBSYS_00078086"
+
+[I558IFEWFM.ndi.reg]
+HKR,Ndi,DeviceID,0,"PCI\VEN_8086&DEV_1229&SUBSYS_00088086"
+
+[PCIE100PLUS.ndi.reg]
+HKR,Ndi,DeviceID,0,"PCI\VEN_8086&DEV_1229&SUBSYS_00098086"
+
+
+;----------------------------------------------------------------------------
+; Common NDI parameters
+; 
+[E100B_GENERIC.ndi.reg]
+HKR,Ndi\Params\DriverName,ParamDesc,0,"Driver Name"
+HKR,Ndi\Params\DriverName,Type,0,"edit"
+HKR,Ndi\Params\DriverName,Default,0,"E100B$"
+HKR,Ndi\Params\DriverName,Flag,1,10,00,00,00
+
+HKR,Ndi\Params\MapRegisters,ParamDesc,0,"Map Registers"
+HKR,Ndi\Params\MapRegisters,Type,0,"int"
+HKR,Ndi\Params\MapRegisters,Default,0,"64"
+HKR,Ndi\Params\MapRegisters,Flag,1,20,00,00,00
+HKR,Ndi\Params\MapRegisters,Min,0,"0"
+HKR,Ndi\Params\MapRegisters,Max,0,"64"
+HKR,Ndi\Params\MapRegisters,Step,0,"1"
+HKR,Ndi\Params\MapRegisters,Base,0,"10"
+
+HKR,Ndi\Params\Eid,ParamDesc,0,"Ethernet ID"
+HKR,Ndi\Params\Eid,Type,0,"dword"
+HKR,Ndi\Params\Eid,Default,0,"0"
+HKR,Ndi\Params\Eid,Flag,1,20,00,00,00
+HKR,Ndi\Params\Eid,Base,0,"10"
+
+HKR,Ndi\Params\NumRfd,ParamDesc,0,"Receive Frame Descriptors"
+HKR,Ndi\Params\NumRfd,Type,0,"int"
+HKR,Ndi\Params\NumRfd,Default,0,"16"
+HKR,Ndi\Params\NumRfd,Flag,1,20,00,00,00
+HKR,Ndi\Params\NumRfd,Min,0,"1"
+HKR,Ndi\Params\NumRfd,Max,0,"00001024"
+HKR,Ndi\Params\NumRfd,Step,0,"1"
+HKR,Ndi\Params\NumRfd,Base,0,"10"
+
+HKR,Ndi\Params\NumTcb,ParamDesc,0,"Transmit Control Blocks"
+HKR,Ndi\Params\NumTcb,Type,0,"int"
+HKR,Ndi\Params\NumTcb,Default,0,"16"
+HKR,Ndi\Params\NumTcb,Flag,1,20,00,00,00
+HKR,Ndi\Params\NumTcb,Min,0,"1"
+HKR,Ndi\Params\NumTcb,Max,0,"00000064"
+HKR,Ndi\Params\NumTcb,Step,0,"1"
+HKR,Ndi\Params\NumTcb,Base,0,"10"
+
+HKR,Ndi\Params\NumCoalesce,ParamDesc,0,"Coalesce Buffers"
+HKR,Ndi\Params\NumCoalesce,Type,0,"int"
+HKR,Ndi\Params\NumCoalesce,Default,0,"8"
+HKR,Ndi\Params\NumCoalesce,Flag,1,20,00,00,00
+HKR,Ndi\Params\NumCoalesce,Min,0,"1"
+HKR,Ndi\Params\NumCoalesce,Max,0,"00000032"
+HKR,Ndi\Params\NumCoalesce,Step,0,"1"
+HKR,Ndi\Params\NumCoalesce,Base,0,"10"
+
+HKR,,MsPciScan,0,"2"
+HKR,,Adaptive_IFS,0,"1"
+
+
+;----------------------------------------------------------------------------
+; 100Mb only NDI parameters
+; 
+[E100B_100.ndi.reg]
+HKR,Ndi\Params\Speed,ParamDesc,0,"Speed"
+HKR,Ndi\Params\Speed,Type,0,"enum"
+HKR,Ndi\Params\Speed,Default,0,"auto"
+HKR,Ndi\Params\Speed,Flag,1,30,00,00,00
+HKR,Ndi\Params\Speed\Enum,auto,0,"Automatic"
+HKR,Ndi\Params\Speed\Enum,10,0,"10  Mb/sec"
+HKR,Ndi\Params\Speed\Enum,100,0,"100 Mb/sec"
+
+HKR,Ndi\Params\ForceDpx,ParamDesc,0,"Duplex Mode"
+HKR,Ndi\Params\ForceDpx,Type,0,"enum"
+HKR,Ndi\Params\ForceDpx,Default,0,"0"
+HKR,Ndi\Params\ForceDpx,Flag,1,20,00,00,00
+HKR,Ndi\Params\ForceDpx\Enum,0,0,"Auto Duplex Detect"
+HKR,Ndi\Params\ForceDpx\Enum,1,0,"Half-Duplex"
+HKR,Ndi\Params\ForceDpx\Enum,2,0,"Full-Duplex"
+
+
+;----------------------------------------------------------------------------
+; 10Mb only NDI parameters
+; 
+[E100B_10.ndi.reg]
+HKR,Ndi\Params\ForceDpx,ParamDesc,0,"Duplex Mode"
+HKR,Ndi\Params\ForceDpx,Type,0,"enum"
+HKR,Ndi\Params\ForceDpx,Default,0,"1"
+HKR,Ndi\Params\ForceDpx,Flag,1,20,00,00,00
+HKR,Ndi\Params\ForceDpx\Enum,1,0,"Half-Duplex"
+HKR,Ndi\Params\ForceDpx\Enum,2,0,"Full-Duplex"
+
+
+;----------------------------------------------------------------------------
+; NDI object registration
+; 
+[E100B.ndi.reg]
+HKR,,DevLoader,0,"*ndis"
+HKR,,DeviceVxDs,0,"e100b.sys"
+HKR,,EnumPropPages,0,"netdi.dll,EnumPropPages"
+HKR,NDIS,LogDriverName,0,"E100B-100"
+HKR,NDIS,MajorNdisVersion,1,03
+HKR,NDIS,MinorNdisVersion,1,0A
+HKR,NDIS\NDIS2,DriverName,0,"E100B$"
+HKR,NDIS\NDIS2,FileName,0,"e100b.dos"
+HKR,NDIS\ODI,DriverName,0,"e100bodi"
+HKR,NDIS\ODI,FileName,0,"e100bodi.com"
+HKR,Ndi\Interfaces,DefUpper,0,"ndis3,ndis2"
+HKR,Ndi\Interfaces,DefLower,0,"ethernet"
+HKR,Ndi\Interfaces,UpperRange,0,"ndis3,ndis2,odi"
+HKR,Ndi\Interfaces,LowerRange,0,"ethernet"
+HKR,Ndi\Install,ndis3,0,"E100B.ndis3"
+HKR,Ndi\Install,ndis2,0,"E100B.ndis2"
+HKR,Ndi\Install,odi,0,"E100B.odi"
+;HKR,,DeviceVxDs,0,"e100bnt.sys"
+;HKR,Ndi\Install,ndis3,0,"E100B.ndis4"
+
+
+;----------------------------------------------------------------------------
+; Copy files
+; 
+[DestinationDirs]
+DefaultDestDir=11
+PCIE100B.ndi.copyfiles=11
+PCIE100B.inf.copyfiles=17
+E100B.ndis3.CopyFiles=11
+E100B.ndis2.CopyFiles=26
+E100B.odi.CopyFiles=26
+
+[SourceDisksNames]
+1=%DISKNAME%,,0000-0000
+
+[SourceDisksFiles]
+82557ndi.dl_=1
+net82557.inf=1
+nt\e100bnt.sy_=1
+nt\e100b.sy_=1
+ndis\e100b.dos=1
+dos\e100bodi.com=1
+
+; Install NDI Installer Helper Dll
+[PCIE100B.ndi.copyfiles]
+82557ndi.dll,82557ndi.dl_,,2
+
+; Install INF
+[PCIE100B.inf.copyfiles]
+net82557.inf
+
+; Install NDIS4
+[E100B.ndis4]
+CopyFiles=E100B.ndis4.CopyFiles
+[E100B.ndis4.CopyFiles]
+e100bnt.sys,nt\e100bnt.sy_,,2
+
+; Install NDIS3
+[E100B.ndis3]
+CopyFiles=E100B.ndis3.CopyFiles
+[E100B.ndis3.CopyFiles]
+e100b.sys,nt\e100b.sy_,,2
+
+; Install NDIS2
+[E100B.ndis2]
+CopyFiles=E100B.ndis2.CopyFiles
+[E100B.ndis2.CopyFiles]
+e100b.dos,ndis\e100b.dos
+
+; Install ODI
+[E100B.odi]
+CopyFiles=E100B.odi.CopyFiles
+[E100B.odi.CopyFiles]
+e100bodi.com,dos\e100bodi.com
+
+
+;----------------------------------------------------------------------------
+; Localizable Strings
+; 
+[Strings]
+; Vendors
+V_MS="Microsoft"
+V_INTEL="Intel"
+
+; Source disk name
+DISKNAME="Adapter Configuration and Drivers Diskette"
+
+; Device descriptions
+PCIE100B.DeviceDesc="Intel EtherExpress PRO PCI Adapter"
+PCIE100B2.DeviceDesc="Intel EtherExpress PRO PCI Adapter"
+PCIE100BTX.DeviceDesc="Intel EtherExpress PRO/100B PCI Adapter (TX)"
+PCIE100BT4.DeviceDesc="Intel EtherExpress PRO/100B PCI Adapter (T4)"
+PCIE10PPCI.DeviceDesc="Intel EtherExpress PRO/10+ PCI Adapter"
+PCIE100RWU.DeviceDesc="Intel EtherExpress PRO/100 WfM PCI Adapter"
+I557IFE.DeviceDesc="Intel 82557-based Integrated Fast Ethernet"
+I557IFEWFM.DeviceDesc="Intel 82557-based Integrated Fast Ethernet for WfM"
+I558IFE.DeviceDesc="Intel 82558-based Integrated Fast Ethernet"
+I558IFEWFM.DeviceDesc="Intel 82558-based Integrated Fast Ethernet for WfM"
+PCIE100PLUS.DeviceDesc="Intel EtherExpress PRO/100+ PCI Adapter"

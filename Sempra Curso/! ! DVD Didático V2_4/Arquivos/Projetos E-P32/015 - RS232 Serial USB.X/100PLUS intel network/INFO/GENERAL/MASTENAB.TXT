@@ -1,0 +1,27 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Normally, your computer should have enabled the adapter for
+busmaster operation during power-up.  This computer didn't.
+
+The EtherExpress PRO adapter Setup program and all PRO/100+
+drivers take care of this problem for you in most cases.
+
+However, if you have problems with your adapter failing
+diagnostic tests, move the adapter to another slot in your
+computer and try the test again.
+
+If you still have problems, contact your network services
+supplier.

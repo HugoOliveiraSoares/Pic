@@ -1,0 +1,135 @@
+Duplex support
+                                                       v1.10
+
+Duplexing is a performance option that lets you choose how
+the adapter sends and receives packets over the network.
+
+
+PRO/100+ TX adapter duplex choices:
+-----------------------------------
+
+Auto. The TX adapter negotiates with the full duplex
+switching hub to send and receive packets at the highest
+rate. The hub must support auto-negotiation. If the hub does
+not support auto-negotiation, the adapter defaults to half
+duplex.
+
+Full duplex (requires full-duplex switching hub). The
+adapter sends and receives packets simultaneously by using a
+different wire to perform each function. This feature can
+improve adapter performance by eliminating collisions.
+
+Half duplex. The adapter performs one operation at a time
+(because send and receive lines are shared); it either sends
+or receives.
+
+
+Configuring for full-duplex
+===========================
+
+If you have an auto-negotiating hub (an NWay* hub), the
+Intel PRO/100+ TX PCI adapter will automatically match the
+duplex setting at the hub. If you don't have an auto-
+negotiating hub, you'll need to manually configure the
+adapter for full duplex support.
+
+Configuration is specific to the driver you're loading for
+your network operating system (NOS). See the sections for
+your NOS below.
+
+NOTE: If you're using the EtherExpress PRO/100+ TX adapter,
+you must set the Speed when configuring for full-duplex
+support. Don't leave the Speed set to Auto.
+
+To set up the duplex mode, refer to the section below that
+corresponds to your operating system. For example, if you
+are running Windows NT on a Novell network, choose the
+Windows NT method below.
+
+Note that performance may suffer if your hub is not full
+duplex and you configure the adapter to full duplex. Leave
+the adapter on half duplex if you are not sure what type of
+hub you are connected to.
+
+
+DOS/ODI clients
+---------------
+
+Edit the NET.CFG file. Add the SPEED and FORCEDUPLEX
+parameters under the link driver section. For example
+   
+   Link Driver E100BODI
+   
+   SPEED 100 (or 10 for 10 Mbps operation)
+   
+   FORCEDUPLEX 2
+
+
+Windows* NT 3.51
+----------------
+
+Use the PRO Adapter setup program:
+
+1  Double-click the PROSet icon in the Control Panel.
+
+2  Click Change.
+
+3  Set Speed on PRO/100 TX to 10 or 100.
+
+4  Set Duplex Mode to Full.
+
+5  Click OK until prompted to restart. Restart Windows NT.
+
+
+Windows* NT 4.0
+---------------
+
+1  Double-click the Network control panel icon in the
+   Control Panel.
+
+2  Go to the Adapters tab and click Properties.
+
+3  Select an adapter from the list and click Settings.
+
+4  Select a duplex mode and click OK.
+
+5  Click OK until prompted to restart. Restart Windows NT.
+   
+
+
+Windows 95
+----------
+
+Use the PRO Adapter setup program:
+
+1  Double-click the PROSet icon in the Control Panel.
+
+2  Click Change.
+
+3  Set Speed on PRO/100+ TX to 10 or 100.
+
+4  Set Duplex Mode to Full.
+
+5  Click OK until prompted to restart. Restart Windows 95.
+
+
+Other NDIS 2.x based clients
+----------------------------
+
+Edit the PROTOCOL.INI file. Add the FORCEDUPLEX and SPEED
+parameters to the E100B section. For example:
+   
+   [E100B_NIF]          ; varies depending on your NOS
+   
+   SPEED = 100          ; or 10 for 10 Mbps operation
+   
+   FORCEDUPLEX = 2
+
+
+
+
+
+
+
+*  Third-party trademarks are the property of their
+   respective owners.
