@@ -21,7 +21,7 @@ void main(void)
     //Configurações da Interrupção do Timer0
     INTCONbits.TMR0IE = 1;	// Habilita interrupcao de Timer0
     INTCONbits.TMR0IF = 0;	// Limpa a sinalizaÁ?o da interrupcao,
-							//para garantir que nao entra na interrupcao por sujeira na memoria							
+							//para garantir que nao entre na interrupcao por sujeira na memoria							
     INTCON2bits.TMR0IP = 1; // Tratamento de interrupcao no vetor de Alta prioridade
 
     OpenTimer0(TIMER_INT_ON  &	// Habilita Interrupção do Timer0

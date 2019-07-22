@@ -1,0 +1,10 @@
+Para que o módulo seja reconhecido em seu computador.
+É necessário que algum programa da microchip esteja instalado no mesmo, uma vez que o HID usa o driver fornecido pela
+Microchip@ para reconhecimento da placa.
+
+Você pode usar somente o MPLAB IPE não precisa ser o compilador, pelo menos o software de gravação
+
+baixar de: 
+
+http://microchipdeveloper.com/ipe:installation
+

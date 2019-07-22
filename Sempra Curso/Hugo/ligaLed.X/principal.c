@@ -32,8 +32,5 @@ void main()
 
 extern void _startup (void);        // See c018i.c in your C18 compiler dir
 	#pragma code REMAPPED_RESET_VECTOR = 0x1000
-	void _reset (void)
-	{
-	    _asm goto _startup _endasm
-	}
+
 /** EOF main.c ***************************************************************/
